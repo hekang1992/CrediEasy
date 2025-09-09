@@ -15,5 +15,6 @@ target 'CrediEasy' do
   pod 'RxCocoa'
   pod 'Kingfisher'
   pod 'RxGesture'
+  pod 'KeychainAccess'
   pod 'IQKeyboardManagerSwift'
 end

@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		739B70C02E6FC7B300C438D1 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */; };
+		739B70C22E6FC7C600C438D1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C12E6FC7C600C438D1 /* BaseView.swift */; };
+		739B70C62E6FCA4500C438D1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C52E6FCA4500C438D1 /* BaseViewController.swift */; };
+		739B70CA2E6FCA6B00C438D1 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C92E6FCA6B00C438D1 /* BaseTabBarController.swift */; };
+		739B70CC2E6FCB2600C438D1 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70CB2E6FCB2600C438D1 /* BaseNavigationController.swift */; };
+		739B70CE2E6FCB5F00C438D1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70CD2E6FCB5F00C438D1 /* HomeViewController.swift */; };
+		739B70D02E6FCB6D00C438D1 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70CF2E6FCB6D00C438D1 /* OrderViewController.swift */; };
+		739B70D22E6FCB7C00C438D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70D12E6FCB7C00C438D1 /* ProfileViewController.swift */; };
+		739B70D42E6FD05200C438D1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70D32E6FD05200C438D1 /* AuthManager.swift */; };
+		739B70D82E6FDA0500C438D1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70D72E6FDA0500C438D1 /* LoginViewController.swift */; };
+		739B70DC2E6FDA1900C438D1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70DB2E6FDA1900C438D1 /* LoginView.swift */; };
+		739B70DE2E6FDA2E00C438D1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70DD2E6FDA2600C438D1 /* LoginViewModel.swift */; };
+		739B70E02E6FDA6400C438D1 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70DF2E6FDA5E00C438D1 /* BaseModel.swift */; };
+		739B70E22E6FDBF300C438D1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70E12E6FDBF200C438D1 /* NetworkManager.swift */; };
+		739B70E42E6FF55000C438D1 /* IDFVManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70E32E6FF54F00C438D1 /* IDFVManager.swift */; };
 		73E394602E6FB548008BDDC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E394562E6FB548008BDDC1 /* AppDelegate.swift */; };
 		73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E394572E6FB548008BDDC1 /* Assets.xcassets */; };
 		73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E3945A2E6FB548008BDDC1 /* LaunchScreen.storyboard */; };
@@ -16,6 +31,21 @@
 /* Begin PBXFileReference section */
 		1F016C24E2A1B0A26B8781E4 /* Pods-CrediEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrediEasy.release.xcconfig"; path = "Target Support Files/Pods-CrediEasy/Pods-CrediEasy.release.xcconfig"; sourceTree = "<group>"; };
 		64F5BCD9574B33A894FD1D7A /* Pods_CrediEasy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrediEasy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		739B70C12E6FC7C600C438D1 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		739B70C52E6FCA4500C438D1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		739B70C92E6FCA6B00C438D1 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		739B70CB2E6FCB2600C438D1 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		739B70CD2E6FCB5F00C438D1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		739B70CF2E6FCB6D00C438D1 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		739B70D12E6FCB7C00C438D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		739B70D32E6FD05200C438D1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		739B70D72E6FDA0500C438D1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		739B70DB2E6FDA1900C438D1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		739B70DD2E6FDA2600C438D1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		739B70DF2E6FDA5E00C438D1 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		739B70E12E6FDBF200C438D1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		739B70E32E6FF54F00C438D1 /* IDFVManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFVManager.swift; sourceTree = "<group>"; };
 		73E3943E2E6FB540008BDDC1 /* CrediEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrediEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E394562E6FB548008BDDC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E394572E6FB548008BDDC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,8 +72,71 @@
 				8C8768C2260CA2B43A564232 /* Pods-CrediEasy.debug.xcconfig */,
 				1F016C24E2A1B0A26B8781E4 /* Pods-CrediEasy.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		739B70B42E6FC72200C438D1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				739B70C12E6FC7C600C438D1 /* BaseView.swift */,
+				739B70C52E6FCA4500C438D1 /* BaseViewController.swift */,
+				739B70C92E6FCA6B00C438D1 /* BaseTabBarController.swift */,
+				739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */,
+				739B70CB2E6FCB2600C438D1 /* BaseNavigationController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		739B70B52E6FC72800C438D1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				739B70DB2E6FDA1900C438D1 /* LoginView.swift */,
+				739B70DD2E6FDA2600C438D1 /* LoginViewModel.swift */,
+				739B70D72E6FDA0500C438D1 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		739B70B62E6FC72A00C438D1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				739B70CD2E6FCB5F00C438D1 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		739B70B72E6FC72D00C438D1 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		739B70B82E6FC72F00C438D1 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				739B70CF2E6FCB6D00C438D1 /* OrderViewController.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		739B70B92E6FC73100C438D1 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+				739B70D12E6FCB7C00C438D1 /* ProfileViewController.swift */,
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		739B70BA2E6FC73400C438D1 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				739B70DF2E6FDA5E00C438D1 /* BaseModel.swift */,
+				739B70D32E6FD05200C438D1 /* AuthManager.swift */,
+				739B70E32E6FF54F00C438D1 /* IDFVManager.swift */,
+				739B70E12E6FDBF200C438D1 /* NetworkManager.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		73E394352E6FB540008BDDC1 = {
@@ -71,6 +164,13 @@
 				73E394572E6FB548008BDDC1 /* Assets.xcassets */,
 				73E394562E6FB548008BDDC1 /* AppDelegate.swift */,
 				73E3945A2E6FB548008BDDC1 /* LaunchScreen.storyboard */,
+				739B70BA2E6FC73400C438D1 /* Other */,
+				739B70B92E6FC73100C438D1 /* Center */,
+				739B70B82E6FC72F00C438D1 /* Order */,
+				739B70B72E6FC72D00C438D1 /* Auth */,
+				739B70B62E6FC72A00C438D1 /* Home */,
+				739B70B52E6FC72800C438D1 /* Login */,
+				739B70B42E6FC72200C438D1 /* Base */,
 			);
 			path = CrediEasy;
 			sourceTree = "<group>";
@@ -182,9 +282,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CrediEasy/Pods-CrediEasy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CrediEasy/Pods-CrediEasy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -198,7 +302,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				739B70C62E6FCA4500C438D1 /* BaseViewController.swift in Sources */,
 				73E394602E6FB548008BDDC1 /* AppDelegate.swift in Sources */,
+				739B70E42E6FF55000C438D1 /* IDFVManager.swift in Sources */,
+				739B70E02E6FDA6400C438D1 /* BaseModel.swift in Sources */,
+				739B70CC2E6FCB2600C438D1 /* BaseNavigationController.swift in Sources */,
+				739B70CA2E6FCA6B00C438D1 /* BaseTabBarController.swift in Sources */,
+				739B70C22E6FC7C600C438D1 /* BaseView.swift in Sources */,
+				739B70E22E6FDBF300C438D1 /* NetworkManager.swift in Sources */,
+				739B70CE2E6FCB5F00C438D1 /* HomeViewController.swift in Sources */,
+				739B70DC2E6FDA1900C438D1 /* LoginView.swift in Sources */,
+				739B70D42E6FD05200C438D1 /* AuthManager.swift in Sources */,
+				739B70DE2E6FDA2E00C438D1 /* LoginViewModel.swift in Sources */,
+				739B70D22E6FCB7C00C438D1 /* ProfileViewController.swift in Sources */,
+				739B70C02E6FC7B300C438D1 /* LaunchViewController.swift in Sources */,
+				739B70D02E6FCB6D00C438D1 /* OrderViewController.swift in Sources */,
+				739B70D82E6FDA0500C438D1 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +348,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8K9YQ3M42C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrediEasy/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -266,6 +386,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8K9YQ3M42C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrediEasy/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

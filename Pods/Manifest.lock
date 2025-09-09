@@ -47,6 +47,7 @@ PODS:
     - IQKeyboardCore
   - IQTextView (1.0.5):
     - IQKeyboardToolbar/Placeholderable
+  - KeychainAccess (4.2.2)
   - Kingfisher (8.4.0)
   - RxCocoa (6.9.0):
     - RxRelay (= 6.9.0)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - DeviceKit
   - FBSDKCoreKit
   - IQKeyboardManagerSwift
+  - KeychainAccess
   - Kingfisher
   - RxCocoa
   - RxGesture
@@ -87,6 +89,7 @@ SPEC REPOS:
     - IQKeyboardToolbarManager
     - IQTextInputViewNotification
     - IQTextView
+    - KeychainAccess
     - Kingfisher
     - RxCocoa
     - RxGesture
@@ -109,6 +112,7 @@ SPEC CHECKSUMS:
   IQKeyboardToolbarManager: 6c693c8478d6327a7ef2107528d29698b3514dbb
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
   IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: b14cc47bbfa7a3c150dd12962ee9c86338545629
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
@@ -117,6 +121,6 @@ SPEC CHECKSUMS:
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: 1aef51a6c6fc53aa088cf42b73d3abd5809886aa
+PODFILE CHECKSUM: 5efe66967c91d3b42675733bc5c8c117124f86eb
 
 COCOAPODS: 1.16.2
