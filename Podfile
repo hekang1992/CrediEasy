@@ -6,5 +6,14 @@ target 'CrediEasy' do
   use_frameworks!
 
   # Pods for CrediEasy
-
+  pod 'TYAlertController'
+  pod 'DeviceKit'
+  pod 'Alamofire'
+  pod 'FBSDKCoreKit'
+  pod 'SnapKit'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Kingfisher'
+  pod 'RxGesture'
+  pod 'IQKeyboardManagerSwift'
 end
