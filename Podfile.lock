@@ -49,6 +49,7 @@ PODS:
     - IQKeyboardToolbar/Placeholderable
   - KeychainAccess (4.2.2)
   - Kingfisher (8.4.0)
+  - lottie-ios (4.5.2)
   - RxCocoa (6.9.0):
     - RxRelay (= 6.9.0)
     - RxSwift (= 6.9.0)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - KeychainAccess
   - Kingfisher
+  - lottie-ios
   - RxCocoa
   - RxGesture
   - RxSwift
@@ -91,6 +93,7 @@ SPEC REPOS:
     - IQTextView
     - KeychainAccess
     - Kingfisher
+    - lottie-ios
     - RxCocoa
     - RxGesture
     - RxRelay
@@ -114,6 +117,7 @@ SPEC CHECKSUMS:
   IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: b14cc47bbfa7a3c150dd12962ee9c86338545629
+  lottie-ios: 96784afc26ea031d3e2b6cae342a4b8915072489
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
@@ -121,6 +125,6 @@ SPEC CHECKSUMS:
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: 5efe66967c91d3b42675733bc5c8c117124f86eb
+PODFILE CHECKSUM: 02263d99ccee23507621022b8180b77c2ec83065
 
 COCOAPODS: 1.16.2

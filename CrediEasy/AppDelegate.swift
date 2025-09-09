@@ -57,7 +57,7 @@ extension AppDelegate {
         Settings.shared.appURLSchemeSuffix = model?.unknits ?? ""
         ApplicationDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             if AuthManager.shared.isLoggedIn {
                 self.window?.rootViewController = BaseTabBarController()
             } else {

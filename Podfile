@@ -17,4 +17,5 @@ target 'CrediEasy' do
   pod 'RxGesture'
   pod 'KeychainAccess'
   pod 'IQKeyboardManagerSwift'
+  pod 'lottie-ios'
 end

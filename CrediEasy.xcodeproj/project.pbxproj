@@ -25,6 +25,8 @@
 		73E394602E6FB548008BDDC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E394562E6FB548008BDDC1 /* AppDelegate.swift */; };
 		73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E394572E6FB548008BDDC1 /* Assets.xcassets */; };
 		73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E3945A2E6FB548008BDDC1 /* LaunchScreen.storyboard */; };
+		73F7BF9B2E7020E9005C8C43 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 73F7BF9A2E7020E9005C8C43 /* loading.json */; };
+		73F7BFA32E70224E005C8C43 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F7BFA22E70224E005C8C43 /* LoadingView.swift */; };
 		FF27BA78CB8B09A2E348A13F /* Pods_CrediEasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5BCD9574B33A894FD1D7A /* Pods_CrediEasy.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		73E394572E6FB548008BDDC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73E394582E6FB548008BDDC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E394592E6FB548008BDDC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		73F7BF9A2E7020E9005C8C43 /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		73F7BFA22E70224E005C8C43 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8C8768C2260CA2B43A564232 /* Pods-CrediEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrediEasy.debug.xcconfig"; path = "Target Support Files/Pods-CrediEasy/Pods-CrediEasy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +138,7 @@
 				739B70DF2E6FDA5E00C438D1 /* BaseModel.swift */,
 				739B70D32E6FD05200C438D1 /* AuthManager.swift */,
 				739B70E32E6FF54F00C438D1 /* IDFVManager.swift */,
+				73F7BFA22E70224E005C8C43 /* LoadingView.swift */,
 				739B70E12E6FDBF200C438D1 /* NetworkManager.swift */,
 			);
 			path = Other;
@@ -162,6 +167,7 @@
 			children = (
 				73E394582E6FB548008BDDC1 /* Info.plist */,
 				73E394572E6FB548008BDDC1 /* Assets.xcassets */,
+				73F7BF9A2E7020E9005C8C43 /* loading.json */,
 				73E394562E6FB548008BDDC1 /* AppDelegate.swift */,
 				73E3945A2E6FB548008BDDC1 /* LaunchScreen.storyboard */,
 				739B70BA2E6FC73400C438D1 /* Other */,
@@ -246,6 +252,7 @@
 			files = (
 				73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */,
 				73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */,
+				73F7BF9B2E7020E9005C8C43 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +313,7 @@
 				73E394602E6FB548008BDDC1 /* AppDelegate.swift in Sources */,
 				739B70E42E6FF55000C438D1 /* IDFVManager.swift in Sources */,
 				739B70E02E6FDA6400C438D1 /* BaseModel.swift in Sources */,
+				73F7BFA32E70224E005C8C43 /* LoadingView.swift in Sources */,
 				739B70CC2E6FCB2600C438D1 /* BaseNavigationController.swift in Sources */,
 				739B70CA2E6FCA6B00C438D1 /* BaseTabBarController.swift in Sources */,
 				739B70C22E6FC7C600C438D1 /* BaseView.swift in Sources */,
