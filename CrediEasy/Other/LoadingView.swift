@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import Lottie
+import Toast_Swift
 
 class LoadingView: UIView {
     
@@ -69,4 +70,15 @@ class ViewHud {
         }
     }
     
+}
+
+
+class ToastShowMessage {
+    static func showToast(message: String) {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let keyWindow = windowScene.windows.first(where: { $0.isKeyWindow }) {
+                keyWindow.makeToast(message, duration: 2.0, position: .center)
+            }
+        }
+    }
 }

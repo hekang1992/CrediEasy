@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginView: BaseView {
-
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         bgView.backgroundColor = UIColor.init(hexString: "#0073E5")
@@ -74,6 +74,7 @@ class LoginView: BaseView {
         phoneTx.attributedPlaceholder = attrString
         phoneTx.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(400))
         phoneTx.textColor = .black
+        phoneTx.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return phoneTx
     }()
     
@@ -118,6 +119,53 @@ class LoginView: BaseView {
         return sendBtn
     }()
     
+    lazy var voiceBtn: UIButton = {
+        let voiceBtn = UIButton(type: .custom)
+        voiceBtn.setImage(UIImage(named: "voice_image"), for: .normal)
+        return voiceBtn
+    }()
+    
+    lazy var loginBtn: UIButton = {
+        let loginBtn = UIButton(type: .custom)
+        loginBtn.setTitle("Log In", for: .normal)
+        loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(500))
+        loginBtn.setTitleColor(.white, for: .normal)
+        loginBtn.backgroundColor = UIColor.init(hexString: "#0073E5")
+        loginBtn.layer.cornerRadius = 27
+        loginBtn.layer.masksToBounds = true
+        return loginBtn
+    }()
+    
+    lazy var agreementLabel: UILabel = {
+        let agreementLabel = UILabel()
+        agreementLabel.numberOfLines = 0
+        let baseString = "By logging in, you agree to our Privacy Policy."
+        let attributedString = NSMutableAttributedString(string: baseString)
+        let entireAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 12),
+            .foregroundColor: UIColor.init(hexString: "#001E3C")
+        ]
+        attributedString.addAttributes(entireAttributes, range: NSRange(location: 0, length: baseString.count))
+        let linkText = "Privacy Policy"
+        if let linkRange = baseString.range(of: linkText) {
+            let nsRange = NSRange(linkRange, in: baseString)
+            attributedString.addAttributes([
+                .foregroundColor: UIColor.systemBlue,
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ], range: nsRange)
+        }
+        agreementLabel.attributedText = attributedString
+        return agreementLabel
+    }()
+    
+    lazy var agreeBtn: UIButton = {
+        let agreeBtn = UIButton(type: .custom)
+        agreeBtn.isSelected = true
+        agreeBtn.setImage(UIImage(named: "login_nor_image"), for: .normal)
+        agreeBtn.setImage(UIImage(named: "login_sel_image"), for: .selected)
+        return agreeBtn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgView)
@@ -132,6 +180,10 @@ class LoginView: BaseView {
         whiteView.addSubview(codeBgImageView)
         codeBgImageView.addSubview(codeTx)
         codeBgImageView.addSubview(sendBtn)
+        whiteView.addSubview(voiceBtn)
+        whiteView.addSubview(loginBtn)
+        whiteView.addSubview(agreementLabel)
+        whiteView.addSubview(agreeBtn)
         bgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -144,7 +196,7 @@ class LoginView: BaseView {
             make.top.equalTo(headImageView.snp.bottom).offset(-20)
             make.centerX.equalToSuperview()
             make.height.equalTo(382)
-            make.width.equalTo(327)
+            make.width.equalTo(320)
         }
         phonelabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(26)
@@ -191,10 +243,39 @@ class LoginView: BaseView {
             make.size.equalTo(CGSize(width: 44, height: 44))
             make.centerY.equalToSuperview()
         }
+        voiceBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(codeBgImageView.snp.bottom).offset(10)
+            make.size.equalTo(CGSize(width: 157, height: 24))
+        }
+        loginBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(voiceBtn.snp.bottom).offset(40)
+            make.size.equalTo(CGSize(width: 285, height: 54))
+        }
+        agreementLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().offset(15)
+            make.top.equalTo(loginBtn.snp.bottom).offset(14)
+            make.width.equalTo(259)
+        }
+        agreeBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(agreementLabel.snp.centerY)
+            make.size.equalTo(CGSize(width: 15, height: 15))
+            make.right.equalTo(agreementLabel.snp.left).offset(-5)
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField.text?.count != 0 {
+            alabel.textColor = UIColor.init(hexString: "#004A92")
+        }else {
+            alabel.textColor = UIColor.init(hexString: "#CCDAE9")
+        }
+        
     }
     
 }

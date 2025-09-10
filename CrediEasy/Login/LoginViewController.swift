@@ -13,6 +13,8 @@ class LoginViewController: BaseViewController {
     private var countdownTimer: Timer?
     private var remainingSeconds: Int = 60
     
+    let viewModel = LoginViewModel()
+    
     lazy var loginView: LoginView = {
         let loginView = LoginView(frame: .zero)
         return loginView
@@ -28,10 +30,45 @@ class LoginViewController: BaseViewController {
         
         loginView.sendBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            startTime()
-            ViewHud.addLoadView()
+            let phoneNumber = self.loginView.phoneTx.text ?? ""
+            if phoneNumber.isEmpty {
+                ToastShowMessage.showToast(message: "Please Input Your Phone")
+                return
+            }
+            let dict = ["anthemwise": phoneNumber, "app": "code"]
+            viewModel.getCodeInfo(dict: dict, type: "code")
         }).disposed(by: disposeBag)
         
+        loginView.voiceBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            let phoneNumber = self.loginView.phoneTx.text ?? ""
+            if phoneNumber.isEmpty {
+                ToastShowMessage.showToast(message: "Please Input Your Phone")
+                return
+            }
+            let dict = ["anthemwise": phoneNumber, "app": "voice"]
+            viewModel.getCodeInfo(dict: dict, type: "voice")
+        }).disposed(by: disposeBag)
+        
+        viewModel.codemodel.subscribe(onNext: { [weak self] model in
+            if let self = self, let _ = model {
+                startTime()
+            }
+        }).disposed(by: disposeBag)
+        
+        loginView.agreeBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            loginView.agreeBtn.isSelected.toggle()
+        }).disposed(by: disposeBag)
+        
+        loginView.loginBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            if self.loginView.agreeBtn.isSelected {
+                
+            }else {
+                ToastShowMessage.showToast(message: "Kindly review and accept our Privacy Policy prior to proceeding.")
+            }
+        }).disposed(by: disposeBag)
         
     }
     
@@ -78,7 +115,6 @@ extension LoginViewController {
         loginView.sendBtn.isEnabled = true
         loginView.sendBtn.backgroundColor = .systemBlue
         remainingSeconds = 60
-        ViewHud.hideLoadView()
     }
     
 }
