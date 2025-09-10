@@ -11,13 +11,14 @@ class BaseModel: Codable {
     var larcenable: String?
 }
 
-
 class andeModel: Codable {
     var hematopoietically: String?
     var percents: Int?
     var fifteenths: fifteenthsModel?
     var hullabaloos: String?
     var dioon: String?
+    var userInfo: userInfoModel?
+    var buoyed: [buoyedModel]?
 }
 
 class fifteenthsModel: Codable {
@@ -25,4 +26,14 @@ class fifteenthsModel: Codable {
     var commonalty: String?
     var moonblink: String?
     var unknits: String?
+}
+
+class userInfoModel: Codable {
+    var userphone: String?
+}
+
+class buoyedModel: Codable {
+    var roguy: String?
+    var sauch: String?
+    var spermatogonia: String?
 }

@@ -80,7 +80,7 @@ class IDFAManager {
         }
     }
     
-    private static func getIDFA() -> String? {
+    static func getIDFA() -> String? {
         return ASIdentifierManager.shared().advertisingIdentifier.uuidString
     }
 }

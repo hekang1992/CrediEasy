@@ -91,6 +91,22 @@ class LoginViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        
+        LocationManager.shared.requestLocation { info in
+            if let info = info {
+                let dict = ["deflux": info.administrativeArea ?? "",
+                            "smacksman": info.countryCode ?? "",
+                            "girasol": info.country ?? "",
+                            "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
+                            "squeegeing": info.latitude,
+                            "homostylism": info.latitude,
+                            "unspread": info.locality ?? "",
+                            "fleche": info.subLocality ?? ""]
+                self.viewModel.uploadLoacationInfo(dict: dict)
+            } else {
+                print("❌========")
+            }
+        }
     }
     
     deinit {
@@ -140,18 +156,3 @@ extension LoginViewController {
     
 }
 
-//class LoginFactory {
-//    
-//    static func saveLoginInfo(phone: String, token: String) {
-//        UserDefaults.standard.set(phone, forKey: "PHONE")
-//        UserDefaults.standard.set(token, forKey: "Token")
-//        UserDefaults.standard.synchronize()
-//    }
-//    
-//    static func removeLoginInfo() {
-//        UserDefaults.standard.set("", forKey: "PHONE")
-//        UserDefaults.standard.set("", forKey: "Token")
-//        UserDefaults.standard.synchronize()
-//    }
-//    
-//}

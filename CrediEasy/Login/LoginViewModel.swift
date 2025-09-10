@@ -46,7 +46,14 @@ final class LoginViewModel {
             ToastShowMessage.showToast(message: model.hypsodonty ?? "")
         }
         .store(in: &cancellables)
-        
+    }
+    
+    func uploadLoacationInfo(dict: [String: Any]) {
+        NetworkManager.shared.postForm(path: "/Sharpsburg/afterglows", parameters: dict).sink { completion in
+        } receiveValue: { model in
+            print("location=========\(model.hypsodonty ?? "")")
+        }
+        .store(in: &cancellables)
     }
     
 }

@@ -8,23 +8,35 @@
 import UIKit
 
 class ProfileViewController: BaseViewController {
-
+    
+    let viewModel = CenterViewModel()
+    
+    lazy var centerView: CenterView = {
+        let centerView = CenterView(frame: .zero)
+        return centerView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .systemPink
+        view.addSubview(centerView)
+        centerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        viewModel.model.asObservable().subscribe(onNext: { [weak self] model in
+            guard let self = self, let model = model else { return }
+            centerView.phoneLabel.text = model.ande?.userInfo?.userphone ?? ""
+            centerView.modelArray = model.ande?.buoyed ?? []
+            centerView.tableView.reloadData()
+        }).disposed(by: disposeBag)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getCenterInfo()
     }
-    */
-
+    
 }

@@ -10,7 +10,9 @@ import SnapKit
 import RxSwift
 
 class BaseView: UIView {
-
     let disposeBag = DisposeBag()
-    
+}
+
+class BaseViewCell: UITableViewCell {
+    let disposeBag = DisposeBag()
 }

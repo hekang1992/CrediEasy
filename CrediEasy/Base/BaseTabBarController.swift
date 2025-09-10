@@ -46,6 +46,8 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
+        
+        addTabBarShadow()
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -65,6 +67,20 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
                 print("个人中心被点击")
             }
         }
+    }
+    
+    private func addTabBarShadow() {
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOpacity = 0.1
+        tabBar.layer.shadowOffset = CGSize(width: 0, height: -2)
+        tabBar.layer.shadowRadius = 4
+        tabBar.layer.shadowPath = UIBezierPath(rect: tabBar.bounds).cgPath
+        tabBar.layer.masksToBounds = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tabBar.layer.shadowPath = UIBezierPath(rect: tabBar.bounds).cgPath
     }
 }
 
