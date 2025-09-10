@@ -16,6 +16,8 @@ class andeModel: Codable {
     var hematopoietically: String?
     var percents: Int?
     var fifteenths: fifteenthsModel?
+    var hullabaloos: String?
+    var dioon: String?
 }
 
 class fifteenthsModel: Codable {

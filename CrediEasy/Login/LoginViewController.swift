@@ -64,9 +64,30 @@ class LoginViewController: BaseViewController {
         loginView.loginBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             if self.loginView.agreeBtn.isSelected {
-                
+                let phone = self.loginView.phoneTx.text ?? ""
+                let code = self.loginView.codeTx.text ?? ""
+                if phone.isEmpty {
+                    ToastShowMessage.showToast(message: "Please Input Your Phone")
+                    return
+                }
+                if code.isEmpty {
+                    ToastShowMessage.showToast(message: "Please Input Your Code")
+                    return
+                }
+                let dict = ["dioon": phone, "overreligiousness": code]
+                viewModel.getLoginInfo(dict: dict)
             }else {
                 ToastShowMessage.showToast(message: "Kindly review and accept our Privacy Policy prior to proceeding.")
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.loginmodel.asObservable().subscribe(onNext: { model in
+            guard let model = model else { return }
+            let dioon = model.ande?.dioon ?? ""
+            let hullabaloos = model.ande?.hullabaloos ?? ""
+            AuthManager.shared.saveLoginInfo(phone: dioon, token: hullabaloos)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
             }
         }).disposed(by: disposeBag)
         
@@ -118,3 +139,19 @@ extension LoginViewController {
     }
     
 }
+
+//class LoginFactory {
+//    
+//    static func saveLoginInfo(phone: String, token: String) {
+//        UserDefaults.standard.set(phone, forKey: "PHONE")
+//        UserDefaults.standard.set(token, forKey: "Token")
+//        UserDefaults.standard.synchronize()
+//    }
+//    
+//    static func removeLoginInfo() {
+//        UserDefaults.standard.set("", forKey: "PHONE")
+//        UserDefaults.standard.set("", forKey: "Token")
+//        UserDefaults.standard.synchronize()
+//    }
+//    
+//}

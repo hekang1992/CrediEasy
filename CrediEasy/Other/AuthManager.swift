@@ -9,29 +9,30 @@ import Foundation
 
 class AuthManager {
     static let shared = AuthManager()
-    private let isLoggedInKey = "isLoggedIn"
-    private let authTokenKey = "authToken"
+    private let phoneKey = "phoneNumber"
+    private let tokenKey = "authToken"
     
     var isLoggedIn: Bool {
-        return UserDefaults.standard.bool(forKey: isLoggedInKey) &&
-               getAuthToken() != nil
-    }
-    
-    func saveLoginStatus(isLoggedIn: Bool, token: String?) {
-        UserDefaults.standard.set(isLoggedIn, forKey: isLoggedInKey)
-        if let token = token {
-            UserDefaults.standard.set(token, forKey: authTokenKey)
+        guard let phone = UserDefaults.standard.string(forKey: phoneKey),
+              let token = getAuthToken(),
+              !phone.isEmpty,
+              !token.isEmpty else {
+            return false
         }
-        UserDefaults.standard.synchronize()
+        return true
     }
     
     func getAuthToken() -> String? {
-        return UserDefaults.standard.string(forKey: authTokenKey)
+        return UserDefaults.standard.string(forKey: tokenKey)
     }
     
-    func logout() {
-        UserDefaults.standard.removeObject(forKey: isLoggedInKey)
-        UserDefaults.standard.removeObject(forKey: authTokenKey)
-        UserDefaults.standard.synchronize()
+    func saveLoginInfo(phone: String, token: String) {
+        UserDefaults.standard.set(phone, forKey: phoneKey)
+        UserDefaults.standard.set(token, forKey: tokenKey)
+    }
+    
+    func removeLoginInfo() {
+        UserDefaults.standard.removeObject(forKey: phoneKey)
+        UserDefaults.standard.removeObject(forKey: tokenKey)
     }
 }

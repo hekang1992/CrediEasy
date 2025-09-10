@@ -55,7 +55,9 @@ extension LaunchViewController {
                     FacebookModel.shared.facebookModel = facebookModel
                 }
             }
-            NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
+            }
         }.store(in: &cancellables)
         
     }
