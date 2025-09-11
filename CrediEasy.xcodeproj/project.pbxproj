@@ -28,6 +28,7 @@
 		73BFEDDC2E71686A00020AA9 /* CenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BFEDDB2E71686200020AA9 /* CenterViewModel.swift */; };
 		73BFEDDE2E717CB000020AA9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BFEDDD2E717CB000020AA9 /* HomeView.swift */; };
 		73BFEDE02E717CF300020AA9 /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BFEDDF2E717CF300020AA9 /* FrontView.swift */; };
+		73C99C8E2E72BC080099F9A4 /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C8D2E72BBFF0099F9A4 /* RateView.swift */; };
 		73E394602E6FB548008BDDC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E394562E6FB548008BDDC1 /* AppDelegate.swift */; };
 		73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E394572E6FB548008BDDC1 /* Assets.xcassets */; };
 		73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E3945A2E6FB548008BDDC1 /* LaunchScreen.storyboard */; };
@@ -62,6 +63,7 @@
 		73BFEDDB2E71686200020AA9 /* CenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewModel.swift; sourceTree = "<group>"; };
 		73BFEDDD2E717CB000020AA9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		73BFEDDF2E717CF300020AA9 /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
+		73C99C8D2E72BBFF0099F9A4 /* RateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
 		73E3943E2E6FB540008BDDC1 /* CrediEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrediEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E394562E6FB548008BDDC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E394572E6FB548008BDDC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,8 +121,9 @@
 		739B70B62E6FC72A00C438D1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				73BFEDDD2E717CB000020AA9 /* HomeView.swift */,
+				73C99C8D2E72BBFF0099F9A4 /* RateView.swift */,
 				73BFEDDF2E717CF300020AA9 /* FrontView.swift */,
+				73BFEDDD2E717CB000020AA9 /* HomeView.swift */,
 				73F8380D2E72718D0056D082 /* HomeViewModel.swift */,
 				739B70CD2E6FCB5F00C438D1 /* HomeViewController.swift */,
 			);
@@ -338,6 +341,7 @@
 				739B70E42E6FF55000C438D1 /* IDFVManager.swift in Sources */,
 				739B70E02E6FDA6400C438D1 /* BaseModel.swift in Sources */,
 				73BFEDDE2E717CB000020AA9 /* HomeView.swift in Sources */,
+				73C99C8E2E72BC080099F9A4 /* RateView.swift in Sources */,
 				73F7BFA32E70224E005C8C43 /* LoadingView.swift in Sources */,
 				739B70CC2E6FCB2600C438D1 /* BaseNavigationController.swift in Sources */,
 				739B70CA2E6FCA6B00C438D1 /* BaseTabBarController.swift in Sources */,
