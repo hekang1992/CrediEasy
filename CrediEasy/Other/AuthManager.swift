@@ -7,6 +7,11 @@
 
 import Foundation
 
+let schemeUrl = "io://at.eri.fo"
+let homeSchemeUrl = "io://at.eri.fo/leerish"
+let loginSchemeUrl = "io://at.eri.fo/demiman"
+let setttingSchemeUrl = "io://at.eri.fo/Canossa"
+
 class AuthManager {
     static let shared = AuthManager()
     private let phoneKey = "phoneNumber"

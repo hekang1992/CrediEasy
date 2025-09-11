@@ -19,6 +19,7 @@ class andeModel: Codable {
     var dioon: String?
     var userInfo: userInfoModel?
     var buoyed: [buoyedModel]?
+    
 }
 
 class fifteenthsModel: Codable {
@@ -36,4 +37,16 @@ class buoyedModel: Codable {
     var roguy: String?
     var sauch: String?
     var spermatogonia: String?
+    var derailer: String?
+    var disgaveled: [disgaveledModel]?
+}
+
+class disgaveledModel: Codable {
+    var arrode: String?
+    var consuelo: String?
+    var crackrope: String?
+    var fleuret: String?
+    var photoelectron: String?
+    var unresourcefulness: String?
+    var amps: Int?
 }

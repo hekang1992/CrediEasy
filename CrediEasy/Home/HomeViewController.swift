@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import MJRefresh
 
 class HomeViewController: BaseViewController {
+    
+    let viewModel = HomeViewModel()
     
     lazy var homeView: HomeView = {
         let homeView = HomeView()
@@ -22,17 +25,31 @@ class HomeViewController: BaseViewController {
         homeView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        self.homeView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.getHomeInfo()
+        })
+        
+        viewModel.model.asObservable().subscribe(onNext: { [weak self] model in
+            guard let self = self, let model = model else { return }
+            self.homeView.scrollView.mj_header?.endRefreshing()
+            if model.larcenable == "0" || model.larcenable == "00" {
+                
+            }
+        }).disposed(by: disposeBag)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getHomeInfo()
     }
-    */
+    
+}
 
+extension HomeViewController {
+    
+    private func getHomeInfo() {
+        viewModel.getHomeInfo()
+    }
+    
 }

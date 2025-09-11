@@ -19,4 +19,5 @@ target 'CrediEasy' do
   pod 'IQKeyboardManagerSwift'
   pod 'lottie-ios'
   pod 'Toast-Swift'
+  pod 'MJRefresh'
 end

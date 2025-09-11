@@ -50,6 +50,7 @@ PODS:
   - KeychainAccess (4.2.2)
   - Kingfisher (8.4.0)
   - lottie-ios (4.5.2)
+  - MJRefresh (3.7.9)
   - RxCocoa (6.9.0):
     - RxRelay (= 6.9.0)
     - RxSwift (= 6.9.0)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - KeychainAccess
   - Kingfisher
   - lottie-ios
+  - MJRefresh
   - RxCocoa
   - RxGesture
   - RxSwift
@@ -96,6 +98,7 @@ SPEC REPOS:
     - KeychainAccess
     - Kingfisher
     - lottie-ios
+    - MJRefresh
     - RxCocoa
     - RxGesture
     - RxRelay
@@ -121,6 +124,7 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: b14cc47bbfa7a3c150dd12962ee9c86338545629
   lottie-ios: 96784afc26ea031d3e2b6cae342a4b8915072489
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: 863987be98ab1f1c22f1b117f6a606ddfa12b859
+PODFILE CHECKSUM: b43167f57dc2c6f247fee8ac18b34368e700abf2
 
 COCOAPODS: 1.16.2
