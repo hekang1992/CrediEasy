@@ -37,6 +37,12 @@ class HomeViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        
+        homeView.agreeBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            homeView.agreeBtn.isSelected.toggle()
+        }).disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

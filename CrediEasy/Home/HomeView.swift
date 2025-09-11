@@ -24,13 +24,13 @@ class HomeView: BaseView {
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
         headImageView.image = UIImage(named: "home_head_image")
-        headImageView.isUserInteractionEnabled = true
         return headImageView
     }()
     
     lazy var applyImageView: UIImageView = {
         let applyImageView = UIImageView()
         applyImageView.image = UIImage(named: "home_apply_image")
+        applyImageView.isUserInteractionEnabled = true
         return applyImageView
     }()
     
