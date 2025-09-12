@@ -9,6 +9,8 @@ import UIKit
 
 class CenterView: BaseView {
     
+    var modelClickBlock: ((buoyedModel?) -> Void)?
+    
     var modelArray: [buoyedModel]?
 
     lazy var bgView: UIView = {
@@ -137,5 +139,10 @@ extension CenterView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let model = self.modelArray?[indexPath.row] {
+            self.modelClickBlock?(model)
+        }
+    }
     
 }

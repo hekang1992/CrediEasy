@@ -11,14 +11,12 @@ class RateView: BaseView {
     
     lazy var logoImageView: UIImageView = {
         let logoImageView = UIImageView()
-        logoImageView.image = UIImage(named: "rate_list_image")
         logoImageView.contentMode = .scaleAspectFit
         return logoImageView
     }()
     
     lazy var desclabel: UILabel = {
         let desclabel = UILabel()
-        desclabel.text = "91-240day"
         desclabel.textColor = UIColor.init(hexString: "#1C2123")
         desclabel.textAlignment = .left
         desclabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(500))

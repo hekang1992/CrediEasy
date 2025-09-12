@@ -11,6 +11,11 @@ import RxSwift
 class BaseViewController: UIViewController {
     
     let disposeBag = DisposeBag()
+    
+    lazy var headView: AppHeadView = {
+        let headView = AppHeadView(frame: .zero)
+        return headView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

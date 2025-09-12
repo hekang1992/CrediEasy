@@ -105,11 +105,15 @@ class HomeView: BaseView {
     
     lazy var oneView: RateView = {
         let oneView = RateView()
+        oneView.logoImageView.image = UIImage(named: "rate_list_image")
+        oneView.desclabel.text = "91-240day"
         return oneView
     }()
     
     lazy var twoView: RateView = {
         let twoView = RateView()
+        twoView.logoImageView.image = UIImage(named: "rae_li_image")
+        twoView.desclabel.text = "0.05%/day"
         return twoView
     }()
     

@@ -32,6 +32,15 @@ class ProfileViewController: BaseViewController {
             centerView.tableView.reloadData()
         }).disposed(by: disposeBag)
         
+        
+        centerView.modelClickBlock = { [weak self] model in
+            guard let self = self, let model = model else { return }
+            let roguy = model.roguy ?? ""
+            if roguy == setttingSchemeUrl {
+                let settingVc = SettingViewController()
+                self.navigationController?.pushViewController(settingVc, animated: true)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
