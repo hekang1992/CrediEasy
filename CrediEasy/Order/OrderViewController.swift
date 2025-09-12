@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class OrderViewController: BaseViewController {
     
@@ -134,8 +135,14 @@ class OrderViewController: BaseViewController {
             guard let self = self, let model = model else { return }
             self.modelArray = model.ande?.buoyed ?? []
             self.tableView.reloadData()
+            self.tableView.mj_header?.endRefreshing()
         }).disposed(by: disposeBag)
         
+        
+        self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            viewModel.getOrderListInfo(type: type)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
