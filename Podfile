@@ -16,7 +16,7 @@ target 'CrediEasy' do
   pod 'Kingfisher'
   pod 'RxGesture'
   pod 'KeychainAccess'
-  pod 'IQKeyboardManagerSwift'
+  pod 'IQKeyboardManagerSwift', '~> 6.5.4'
   pod 'lottie-ios'
   pod 'Toast-Swift'
   pod 'MJRefresh'

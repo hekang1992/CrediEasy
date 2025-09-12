@@ -7,8 +7,11 @@
 
 import UIKit
 import TYAlertController
+import Combine
 
 class SettingViewController: BaseViewController {
+    
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
@@ -143,7 +146,9 @@ class SettingViewController: BaseViewController {
                 self.present(alertVc, animated: true)
             }
             deleteView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
-                
+                self?.dismiss(animated: true) {
+                    self?.deleteAppInfo()
+                }
             }).disposed(by: disposeBag)
             
             deleteView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -158,7 +163,9 @@ class SettingViewController: BaseViewController {
                 self.present(alertVc, animated: true)
             }
             logoutView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
-                
+                self?.dismiss(animated: true) {
+                    self?.logoutInfo()
+                }
             }).disposed(by: disposeBag)
             
             logoutView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -167,6 +174,40 @@ class SettingViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         
+    }
+    
+}
+
+extension SettingViewController {
+    
+    private func logoutInfo() {
+        ViewHud.addLoadView()
+        NetworkManager.shared.get(path: "/Sharpsburg/blam").sink { Completion in
+            ViewHud.hideLoadView()
+        } receiveValue: { model in
+            if model.larcenable == "0" || model.larcenable == "00" {
+                AuthManager.shared.removeLoginInfo()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
+                }
+            }
+        }
+        .store(in: &cancellables)
+    }
+    
+    private func deleteAppInfo() {
+        ViewHud.addLoadView()
+        NetworkManager.shared.get(path: "/Sharpsburg/unminimized").sink { Completion in
+            ViewHud.hideLoadView()
+        } receiveValue: { model in
+            if model.larcenable == "0" || model.larcenable == "00" {
+                AuthManager.shared.removeLoginInfo()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
+                }
+            }
+        }
+        .store(in: &cancellables)
     }
     
 }

@@ -11,6 +11,8 @@
 		7351B8A42E73C8CF001F36B3 /* AppHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8A32E73C8CF001F36B3 /* AppHeadView.swift */; };
 		7351B8A62E73CC74001F36B3 /* CenterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8A52E73CC6D001F36B3 /* CenterListView.swift */; };
 		7351B8A82E73D0A6001F36B3 /* DeleOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8A72E73D09E001F36B3 /* DeleOutView.swift */; };
+		7351B8AC2E73E7A9001F36B3 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8AB2E73E7A2001F36B3 /* OrderViewModel.swift */; };
+		7351B8B02E73E9C2001F36B3 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8AF2E73E9C2001F36B3 /* OrderViewCell.swift */; };
 		739B70C02E6FC7B300C438D1 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */; };
 		739B70C22E6FC7C600C438D1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C12E6FC7C600C438D1 /* BaseView.swift */; };
 		739B70C62E6FCA4500C438D1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C52E6FCA4500C438D1 /* BaseViewController.swift */; };
@@ -49,6 +51,8 @@
 		7351B8A32E73C8CF001F36B3 /* AppHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeadView.swift; sourceTree = "<group>"; };
 		7351B8A52E73CC6D001F36B3 /* CenterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterListView.swift; sourceTree = "<group>"; };
 		7351B8A72E73D09E001F36B3 /* DeleOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleOutView.swift; sourceTree = "<group>"; };
+		7351B8AB2E73E7A2001F36B3 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		7351B8AF2E73E9C2001F36B3 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
 		739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		739B70C12E6FC7C600C438D1 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		739B70C52E6FCA4500C438D1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 		739B70B82E6FC72F00C438D1 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				7351B8AF2E73E9C2001F36B3 /* OrderViewCell.swift */,
+				7351B8AB2E73E7A2001F36B3 /* OrderViewModel.swift */,
 				739B70CF2E6FCB6D00C438D1 /* OrderViewController.swift */,
 			);
 			path = Order;
@@ -355,6 +361,7 @@
 				739B70E02E6FDA6400C438D1 /* BaseModel.swift in Sources */,
 				73BFEDDE2E717CB000020AA9 /* HomeView.swift in Sources */,
 				73C99C8E2E72BC080099F9A4 /* RateView.swift in Sources */,
+				7351B8B02E73E9C2001F36B3 /* OrderViewCell.swift in Sources */,
 				73F7BFA32E70224E005C8C43 /* LoadingView.swift in Sources */,
 				739B70CC2E6FCB2600C438D1 /* BaseNavigationController.swift in Sources */,
 				739B70CA2E6FCA6B00C438D1 /* BaseTabBarController.swift in Sources */,
@@ -374,6 +381,7 @@
 				739B70D22E6FCB7C00C438D1 /* ProfileViewController.swift in Sources */,
 				739B70C02E6FC7B300C438D1 /* LaunchViewController.swift in Sources */,
 				739B70D02E6FCB6D00C438D1 /* OrderViewController.swift in Sources */,
+				7351B8AC2E73E7A9001F36B3 /* OrderViewModel.swift in Sources */,
 				7351B8A42E73C8CF001F36B3 /* AppHeadView.swift in Sources */,
 				739B70D82E6FDA0500C438D1 /* LoginViewController.swift in Sources */,
 			);
@@ -414,6 +422,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -455,6 +464,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
