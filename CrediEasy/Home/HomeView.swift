@@ -27,6 +27,19 @@ class HomeView: BaseView {
         return headImageView
     }()
     
+    lazy var appLogoImageView: UIImageView = {
+        let appLogoImageView = UIImageView()
+        return appLogoImageView
+    }()
+    
+    lazy var appNamelabel: UILabel = {
+        let appNamelabel = UILabel()
+        appNamelabel.textColor = UIColor.init(hexString: "#FFFFFF")
+        appNamelabel.textAlignment = .left
+        appNamelabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(700))
+        return appNamelabel
+    }()
+    
     lazy var applyImageView: UIImageView = {
         let applyImageView = UIImageView()
         applyImageView.image = UIImage(named: "home_apply_image")
@@ -87,7 +100,6 @@ class HomeView: BaseView {
     
     lazy var desclabel: UILabel = {
         let desclabel = UILabel()
-        desclabel.text = "Maximum loan amount"
         desclabel.textColor = UIColor.init(hexString: "#999B9C")
         desclabel.textAlignment = .left
         desclabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
@@ -96,7 +108,6 @@ class HomeView: BaseView {
     
     lazy var moneylabel: UILabel = {
         let moneylabel = UILabel()
-        moneylabel.text = "₱120,000"
         moneylabel.textColor = UIColor.init(hexString: "#1C2123")
         moneylabel.textAlignment = .left
         moneylabel.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight(800))
@@ -106,14 +117,12 @@ class HomeView: BaseView {
     lazy var oneView: RateView = {
         let oneView = RateView()
         oneView.logoImageView.image = UIImage(named: "rate_list_image")
-        oneView.desclabel.text = "91-240day"
         return oneView
     }()
     
     lazy var twoView: RateView = {
         let twoView = RateView()
         twoView.logoImageView.image = UIImage(named: "rae_li_image")
-        twoView.desclabel.text = "0.05%/day"
         return twoView
     }()
     
@@ -179,6 +188,9 @@ class HomeView: BaseView {
         
         applyImageView.addSubview(agreementLabel)
         applyImageView.addSubview(agreeBtn)
+        
+        addSubview(appLogoImageView)
+        addSubview(appNamelabel)
         
         scrollView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -267,6 +279,16 @@ class HomeView: BaseView {
             make.size.equalTo(CGSize(width: 13, height: 13))
             make.centerY.equalTo(agreementLabel.snp.centerY)
             make.right.equalTo(agreementLabel.snp.left).offset(-5)
+        }
+        appLogoImageView.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.size.equalTo(CGSize(width: 30, height: 30))
+        }
+        appNamelabel.snp.makeConstraints { make in
+            make.centerY.equalTo(appLogoImageView.snp.centerY)
+            make.left.equalTo(appLogoImageView.snp.right).offset(5)
+            make.height.equalTo(20)
         }
     }
     

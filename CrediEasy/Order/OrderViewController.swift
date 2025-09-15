@@ -138,7 +138,6 @@ class OrderViewController: BaseViewController {
             self.tableView.mj_header?.endRefreshing()
         }).disposed(by: disposeBag)
         
-        
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             viewModel.getOrderListInfo(type: type)

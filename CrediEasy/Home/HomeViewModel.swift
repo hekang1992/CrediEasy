@@ -11,7 +11,11 @@ import Combine
 
 final class HomeViewModel {
     
+    /// 首页数据模型
     var model = BehaviorRelay<BaseModel?>(value: nil)
+    
+    /// 申请模型
+    var applyModel = BehaviorRelay<BaseModel?>(value: nil)
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -19,7 +23,8 @@ final class HomeViewModel {
     func getHomeInfo() {
         ViewHud.addLoadView()
         let dict = ["type": "home"]
-        NetworkManager.shared.get(path: "/Sharpsburg/galactagog", parameters: dict).sink { completion in
+        NetworkManager.shared.get(path: "/Sharpsburg/galactagog",
+                                  parameters: dict).sink { completion in
             ViewHud.hideLoadView()
         } receiveValue: { model in
             self.model.accept(model)
@@ -27,5 +32,19 @@ final class HomeViewModel {
         .store(in: &cancellables)
     }
     
+    
+    func applyProductInfo(productID: Int) {
+        ViewHud.addLoadView()
+        let dict = ["fuckups": String(productID)]
+        NetworkManager.shared.postForm(path: "/Sharpsburg/derned",
+                                       parameters: dict).sink { completion in
+            ViewHud.hideLoadView()
+        } receiveValue: { model in
+            if model.larcenable == "0" || model.larcenable == "00" {
+                self.applyModel.accept(model)
+            }
+        }.store(in: &cancellables)
+
+    }
     
 }

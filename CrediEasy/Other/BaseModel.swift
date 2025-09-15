@@ -19,7 +19,7 @@ class andeModel: Codable {
     var dioon: String?
     var userInfo: userInfoModel?
     var buoyed: [buoyedModel]?
-    
+    var roguy: String? ///schemurl
 }
 
 class fifteenthsModel: Codable {
@@ -49,4 +49,5 @@ class disgaveledModel: Codable {
     var photoelectron: String?
     var unresourcefulness: String?
     var amps: Int?
+    var threeDes: String?
 }
