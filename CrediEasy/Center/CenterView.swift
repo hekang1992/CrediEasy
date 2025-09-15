@@ -113,7 +113,8 @@ class CenterView: BaseView {
             make.top.equalTo(userLabel.snp.bottom).offset(4)
         }
         tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
             make.top.equalTo(phoneLabel.snp.bottom).offset(40)
         }
     }

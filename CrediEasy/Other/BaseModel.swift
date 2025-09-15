@@ -20,6 +20,13 @@ class andeModel: Codable {
     var userInfo: userInfoModel?
     var buoyed: [buoyedModel]?
     var roguy: String? ///schemurl
+    var feliciana: felicianaModel?
+    var beakful: [beakfulModel]?
+    var foxtrot: foxtrotModel?
+    var helotry: foxtrotModel?
+    var prefelic: [String]?
+    var evaporize: [String]?
+    var kinematograph: kinematographModel?
 }
 
 class fifteenthsModel: Codable {
@@ -50,4 +57,42 @@ class disgaveledModel: Codable {
     var unresourcefulness: String?
     var amps: Int?
     var threeDes: String?
+}
+
+class felicianaModel: Codable {
+    var saxcornet: String?
+    var symbol: String?
+    var foliature: Int?
+    var crackrope: String?
+    var lutes: lutesModel?
+    var consuelo: String?
+}
+
+class lutesModel: Codable {
+    var nickled: nickledModel?
+    var sunned: nickledModel?
+}
+
+class nickledModel: Codable {
+    var spermatogonia: String?
+    var unrecreant: String?
+}
+
+class beakfulModel: Codable {
+    var spermatogonia: String?
+    var estoppels: String?
+    var prelatish: String?
+    var ideist: Int?
+    var epees: String?
+}
+
+class foxtrotModel: Codable {
+    var ideist: Int?
+    var agynic: String?
+    var roguy: String?
+}
+
+class kinematographModel: Codable {
+    var epees: String?
+    var spermatogonia: String?
 }
