@@ -27,6 +27,7 @@ class andeModel: Codable {
     var prefelic: [String]?
     var evaporize: [String]?
     var kinematograph: kinematographModel?
+    var interspicular: [interspicularModel]?
 }
 
 class fifteenthsModel: Codable {
@@ -95,4 +96,10 @@ class foxtrotModel: Codable {
 class kinematographModel: Codable {
     var epees: String?
     var spermatogonia: String?
+}
+
+class interspicularModel: Codable {
+    var hydrophoria: String?
+    var identifiable: String?
+    var larcenable: String?
 }

@@ -11,7 +11,7 @@ class AppStepViewViewController: BaseViewController {
     
     var productID: String = ""
     
-    let viewModel = DetailViewModel()
+    let viewModel = DetailViewModel.shared
     
     lazy var oneView: RateView = {
         let oneView = RateView()
@@ -166,8 +166,10 @@ class AppStepViewViewController: BaseViewController {
             let epees = model.ande?.kinematograph?.epees ?? ""
             if epees == "renerve" {
                 viewModel.getIDetaiInfo(productID: productID)
-            }else {
-                
+            }else if epees == "phenogenesis" {
+                let personalVc = PersonalViewController()
+                personalVc.productID = productID
+                self.navigationController?.pushViewController(personalVc, animated: true)
             }
         }).disposed(by: disposeBag)
         
@@ -179,7 +181,9 @@ class AppStepViewViewController: BaseViewController {
                 passVc.model = model
                 self.navigationController?.pushViewController(passVc, animated: true)
             }else {
-                
+                let passVc = UploadFaceViewController()
+                passVc.productID = productID
+                self.navigationController?.pushViewController(passVc, animated: true)
             }
         }).disposed(by: disposeBag)
         
@@ -221,7 +225,11 @@ extension AppStepViewViewController {
                 judgeID(productID: productID)
             }
         }else {
-            
+            if epees == "renerve" {
+                let passVc = UploadFaceViewController()
+                passVc.productID = productID
+                self.navigationController?.pushViewController(passVc, animated: true)
+            }
         }
     }
     

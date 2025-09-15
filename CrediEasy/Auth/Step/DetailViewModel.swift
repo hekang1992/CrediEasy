@@ -10,6 +10,8 @@ import Combine
 
 final class DetailViewModel {
     
+    static let shared = DetailViewModel()
+    
     /// 产品详情模型---不是点击底部的
     var detailModel = BehaviorRelay<BaseModel?>(value: nil)
     

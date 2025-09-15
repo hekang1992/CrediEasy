@@ -98,7 +98,7 @@ final class NetworkManager {
                         }
                     }
                 }
-                if let imageData = image.jpegData(compressionQuality: 0.8) {
+                if let imageData = image.jpegData(compressionQuality: 0.3) {
                     formData.append(imageData,
                                     withName: imageName,
                                     fileName: "\(UUID().uuidString).jpg",

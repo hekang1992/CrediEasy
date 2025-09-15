@@ -65,6 +65,7 @@ class StepView: BaseView {
     
     private func createButton(for model: beakfulModel, at index: Int) -> UIButton {
         let button = UIButton(type: .custom)
+        button.adjustsImageWhenHighlighted = false
         button.setImage(UIImage(named: "setp_\(index)_image"), for: .normal)
         button.setImage(UIImage(named: "setp_\(index)_selimage"), for: .selected)
         button.tag = index
