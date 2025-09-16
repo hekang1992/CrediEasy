@@ -14,7 +14,6 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.delegate = self
         
-        // 创建三个视图控制器
         let homeVC = createNavController(viewController: HomeViewController(), title: "Home", imageName: "home_nor", selectedImageName: "home_sel")
         let orderVC = createNavController(viewController: OrderViewController(), title: "Order", imageName: "order_nor", selectedImageName: "order_sel")
         let profileVC = createNavController(viewController: ProfileViewController(), title: "Center", imageName: "center_nor", selectedImageName: "center_sel")
@@ -22,6 +21,21 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = [homeVC, orderVC, profileVC]
         
         setupTabBarAppearance()
+        
+        setupTabBarItemFont()
+    }
+    
+    private func setupTabBarItemFont() {
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(600))
+        ]
+        
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(600))
+        ]
+        
+        UITabBarItem.appearance().setTitleTextAttributes(normalAttributes, for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: .selected)
     }
     
     private func createNavController(viewController: UIViewController, title: String, imageName: String, selectedImageName: String) -> UINavigationController {
@@ -51,13 +65,10 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        print("将要切换到: \(viewController.title ?? "未知")")
-        return true // 返回true允许切换，返回false阻止切换
+        return true
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("已切换到: \(viewController.title ?? "未知")")
-        
         if let navController = viewController as? UINavigationController {
             if let _ = navController.topViewController as? HomeViewController {
                 print("首页被点击")

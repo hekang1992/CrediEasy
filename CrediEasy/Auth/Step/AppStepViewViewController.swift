@@ -169,6 +169,7 @@ class AppStepViewViewController: BaseViewController {
             }else if epees == "phenogenesis" {
                 let personalVc = PersonalViewController()
                 personalVc.productID = productID
+                personalVc.pagetitle = model.ande?.kinematograph?.spermatogonia ?? ""
                 self.navigationController?.pushViewController(personalVc, animated: true)
             }
         }).disposed(by: disposeBag)
@@ -207,9 +208,8 @@ class AppStepViewViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.viewModel.getProductDetaiInfo(productID: self.productID)
+            self.viewModel.getProductDetaiInfo(productID: self.productID, isTap: false)
         }
-        
     }
     
 }
@@ -223,12 +223,20 @@ extension AppStepViewViewController {
         if ideist == 0 {
             if epees == "renerve" {
                 judgeID(productID: productID)
+            }else if epees == "phenogenesis" {
+                let viewModel = DetailViewModel.shared
+                viewModel.getProductDetaiInfo(productID: productID, isTap: true)
             }
         }else {
             if epees == "renerve" {
                 let passVc = UploadFaceViewController()
                 passVc.productID = productID
                 self.navigationController?.pushViewController(passVc, animated: true)
+            }else if epees == "phenogenesis" {
+                let personalVc = PersonalViewController()
+                personalVc.productID = productID
+                personalVc.pagetitle = model.spermatogonia ?? ""
+                self.navigationController?.pushViewController(personalVc, animated: true)
             }
         }
     }

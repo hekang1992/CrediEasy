@@ -8,7 +8,6 @@
 import RxRelay
 import Combine
 
-
 final class PassportViewModel {
     
     var detailModel = BehaviorRelay<BaseModel?>(value: nil)

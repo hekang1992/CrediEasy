@@ -36,6 +36,8 @@ final class DetailViewModel {
                 self.detailModel.accept(model)
                 if isTap == true {
                     self.detailApplyModel.accept(model)
+                }else {
+                    self.detailApplyModel.accept(nil)
                 }
                 self.listModelArray.accept(model.ande?.beakful ?? [])
             }
