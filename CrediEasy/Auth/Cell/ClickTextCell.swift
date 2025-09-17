@@ -18,6 +18,20 @@ class ClickTextCell: BaseViewCell {
         }
     }
     
+    var authModel: revolutionisedModel? {
+        didSet {
+            guard let authModel = authModel else { return }
+            let undivergent = authModel.undivergent ?? 0
+            if undivergent == 1 {
+                phoneTx.keyboardType = .numberPad
+            }else {
+                phoneTx.keyboardType = .default
+            }
+            nameLabel.text = authModel.spermatogonia ?? ""
+            phoneTx.placeholder = authModel.estoppels ?? ""
+        }
+    }
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         bgView.backgroundColor = .white

@@ -18,6 +18,20 @@ class InputTextCell: BaseViewCell {
         }
     }
     
+    var authModel: revolutionisedModel? {
+        didSet {
+            guard let authModel = authModel else { return }
+            let undivergent = authModel.undivergent ?? 0
+            if undivergent == 1 {
+                phoneTx.keyboardType = .numberPad
+            }else {
+                phoneTx.keyboardType = .default
+            }
+            nameLabel.text = authModel.spermatogonia ?? ""
+            phoneTx.placeholder = authModel.estoppels ?? ""
+        }
+    }
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         bgView.backgroundColor = .white
@@ -28,7 +42,6 @@ class InputTextCell: BaseViewCell {
     
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "Your name"
         nameLabel.textColor = UIColor.init(hexString: "#1C2123")
         nameLabel.textAlignment = .left
         nameLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(600))
@@ -81,7 +94,9 @@ class InputTextCell: BaseViewCell {
         if let model = model {
             model.hydrophoria = textField.text
         }
-       
+        if let authModel = authModel {
+            authModel.whens = textField.text
+        }
     }
     
 }

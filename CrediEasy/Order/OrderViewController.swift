@@ -29,7 +29,7 @@ class OrderViewController: BaseViewController {
     lazy var twoBtn: UIButton = {
         let twoBtn = UIButton(type: .custom)
         twoBtn.setImage(UIImage(named: "under_nor_image"), for: .normal)
-        twoBtn.setImage(UIImage(named: "under_sel_image"), for: .selected)
+        twoBtn.setImage(UIImage(named: "undesel_image"), for: .selected)
         twoBtn.tag = 1
         twoBtn.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         return twoBtn

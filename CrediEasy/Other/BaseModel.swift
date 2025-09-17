@@ -111,6 +111,9 @@ class revolutionisedModel: Codable {
     var ranivorous: String?
     var spermatogonia: String?
     var scalping: [scalpingModel]?
+    var undivergent: Int?
+    var whens: String?
+    var derailer: Int?
 }
 
 class scalpingModel: Codable {

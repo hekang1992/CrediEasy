@@ -32,6 +32,16 @@ final class HomeViewModel {
         .store(in: &cancellables)
     }
     
+    func getCityAddressInfo() {
+        NetworkManager.shared.get(path: "/Sharpsburg/nordica").sink { completion in
+            
+        } receiveValue: { model in
+            if model.larcenable == "0" || model.larcenable == "00" {
+                CityInfoModel.shared.cityModel = model.ande
+            }
+        }.store(in: &cancellables)
+
+    }
     
     func applyProductInfo(productID: Int) {
         ViewHud.addLoadView()

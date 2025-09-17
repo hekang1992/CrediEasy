@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TYAlertController
 
 class PersonalViewController: BaseViewController {
     
@@ -106,7 +107,7 @@ class PersonalViewController: BaseViewController {
         
         whiteView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
             make.bottom.equalTo(nextBtn.snp.top).offset(-10)
         }
@@ -120,17 +121,61 @@ class PersonalViewController: BaseViewController {
 }
 
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headView = UIView()
+        return headView
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.model?.ande?.revolutionised?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.model?.ande?.revolutionised?[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ClickTextCell", for: indexPath)
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
-        return cell
+        let ranivorous = model?.ranivorous ?? ""
+        if ranivorous == "seriosities" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell", for: indexPath) as! InputTextCell
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            cell.authModel = model
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ClickTextCell", for: indexPath) as! ClickTextCell
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            cell.authModel = model
+            cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+                guard let self = self, let model = model else { return }
+                cellClickModel(with: model, cell: cell)
+            }).disposed(by: disposeBag)
+            return cell
+        }
     }
     
+    private func cellClickModel(with model: revolutionisedModel, cell: ClickTextCell) {
+        let ranivorous = model.ranivorous ?? ""
+        if ranivorous == "Munday" {
+            let popEnumView = PopEnmuView(frame: self.view.frame)
+            popEnumView.model = model
+            let alertVc = TYAlertController(alert: popEnumView, preferredStyle: .actionSheet)!
+            self.present(alertVc, animated: true)
+            popEnumView.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true)
+            }).disposed(by: disposeBag)
+            
+            popEnumView.sureBlock = { index in
+                self.dismiss(animated: true) {
+                    cell.phoneTx.text = model.scalping?[index].banshees ?? ""
+                }
+            }
+        }else {
+            
+        }
+    }
     
 }

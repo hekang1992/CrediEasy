@@ -64,7 +64,6 @@ extension LaunchViewController {
     
 }
 
-
 class FacebookModel{
     static let shared = FacebookModel()
     private init() {}
@@ -97,4 +96,11 @@ class vpnConnected{
         }
         return 0
     }
+}
+
+/// 城市信息model
+class CityInfoModel{
+    static let shared = CityInfoModel()
+    private init() {}
+    var cityModel: andeModel?
 }

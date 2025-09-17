@@ -81,6 +81,8 @@ class HomeViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        viewModel.getCityAddressInfo()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
