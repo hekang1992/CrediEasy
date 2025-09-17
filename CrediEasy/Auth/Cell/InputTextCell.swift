@@ -29,6 +29,10 @@ class InputTextCell: BaseViewCell {
             }
             nameLabel.text = authModel.spermatogonia ?? ""
             phoneTx.placeholder = authModel.estoppels ?? ""
+            
+            let whens = authModel.whens ?? ""
+            whens.isEmpty ? (phoneTx.text = "") : (phoneTx.text = whens)
+            
         }
     }
     
@@ -56,7 +60,7 @@ class InputTextCell: BaseViewCell {
         ])
         phoneTx.attributedPlaceholder = attrString
         phoneTx.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
-        phoneTx.textColor = .black
+        phoneTx.textColor = UIColor.init(hexString: "#0073E5")
         phoneTx.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return phoneTx
     }()

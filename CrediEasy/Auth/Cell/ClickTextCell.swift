@@ -29,6 +29,8 @@ class ClickTextCell: BaseViewCell {
             }
             nameLabel.text = authModel.spermatogonia ?? ""
             phoneTx.placeholder = authModel.estoppels ?? ""
+            let whens = authModel.whens ?? ""
+            whens.isEmpty ? (phoneTx.text = "") : (phoneTx.text = whens)
         }
     }
     
@@ -57,7 +59,8 @@ class ClickTextCell: BaseViewCell {
         ])
         phoneTx.attributedPlaceholder = attrString
         phoneTx.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
-        phoneTx.textColor = .black
+        phoneTx.textColor = UIColor.init(hexString: "#0073E5")
+        phoneTx.isEnabled = true
         return phoneTx
     }()
     
@@ -66,12 +69,20 @@ class ClickTextCell: BaseViewCell {
         return clickBtn
     }()
     
+    lazy var rightImageView: UIImageView = {
+        let rightImageView = UIImageView()
+        rightImageView.image = UIImage(named: "right_list_image")
+        return rightImageView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
         contentView.addSubview(bgView)
+        bgView.addSubview(rightImageView)
         bgView.addSubview(phoneTx)
         bgView.addSubview(clickBtn)
+        
         
         nameLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -90,9 +101,15 @@ class ClickTextCell: BaseViewCell {
             make.top.bottom.equalToSuperview()
             make.right.equalToSuperview().offset(-40)
         }
+        rightImageView.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 16, height: 16))
+        }
         clickBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
     }
     
     @MainActor required init?(coder: NSCoder) {

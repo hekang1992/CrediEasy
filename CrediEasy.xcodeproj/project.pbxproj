@@ -24,6 +24,13 @@
 		7351B8B72E740EC2001F36B3 /* URLParameterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8B62E740EC1001F36B3 /* URLParameterParser.swift */; };
 		7351B8B92E740FC5001F36B3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8B82E740FBD001F36B3 /* DetailViewModel.swift */; };
 		7353EDF42E7A4051007158B2 /* PopEnmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EDF32E7A404A007158B2 /* PopEnmuView.swift */; };
+		7353EEFC2E7AB03C007158B2 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EEFB2E7AB03B007158B2 /* ContactsManager.swift */; };
+		7353EF022E7AB0FF007158B2 /* LoveLifeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EEFF2E7AB0FF007158B2 /* LoveLifeViewCell.swift */; };
+		7353EF032E7AB0FF007158B2 /* LifeGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EEFD2E7AB0FF007158B2 /* LifeGoodViewController.swift */; };
+		7353EF042E7AB0FF007158B2 /* LoveLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */; };
+		7353EF052E7AB0FF007158B2 /* LifeGoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EEFE2E7AB0FF007158B2 /* LifeGoodViewModel.swift */; };
+		7353EF062E7AB0FF007158B2 /* LoveLifeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */; };
+		7353EF082E7AB274007158B2 /* PopCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EF072E7AB274007158B2 /* PopCityView.swift */; };
 		736E48292E7938E200A2786B /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736E48282E7938DB00A2786B /* PersonalViewModel.swift */; };
 		739B70C02E6FC7B300C438D1 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */; };
 		739B70C22E6FC7C600C438D1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C12E6FC7C600C438D1 /* BaseView.swift */; };
@@ -84,6 +91,13 @@
 		7351B8B62E740EC1001F36B3 /* URLParameterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterParser.swift; sourceTree = "<group>"; };
 		7351B8B82E740FBD001F36B3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		7353EDF32E7A404A007158B2 /* PopEnmuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopEnmuView.swift; sourceTree = "<group>"; };
+		7353EEFB2E7AB03B007158B2 /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
+		7353EEFD2E7AB0FF007158B2 /* LifeGoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGoodViewController.swift; sourceTree = "<group>"; };
+		7353EEFE2E7AB0FF007158B2 /* LifeGoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGoodViewModel.swift; sourceTree = "<group>"; };
+		7353EEFF2E7AB0FF007158B2 /* LoveLifeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveLifeViewCell.swift; sourceTree = "<group>"; };
+		7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveLifeViewController.swift; sourceTree = "<group>"; };
+		7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveLifeViewModel.swift; sourceTree = "<group>"; };
+		7353EF072E7AB274007158B2 /* PopCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCityView.swift; sourceTree = "<group>"; };
 		736E48282E7938DB00A2786B /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
 		739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		739B70C12E6FC7C600C438D1 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -176,6 +190,18 @@
 			path = Step;
 			sourceTree = "<group>";
 		};
+		7353EF092E7AB2AA007158B2 /* Hp */ = {
+			isa = PBXGroup;
+			children = (
+				7353EEFD2E7AB0FF007158B2 /* LifeGoodViewController.swift */,
+				7353EEFE2E7AB0FF007158B2 /* LifeGoodViewModel.swift */,
+				7353EEFF2E7AB0FF007158B2 /* LoveLifeViewCell.swift */,
+				7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */,
+				7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */,
+			);
+			path = Hp;
+			sourceTree = "<group>";
+		};
 		739B70B42E6FC72200C438D1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +239,7 @@
 		739B70B72E6FC72D00C438D1 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				7353EF092E7AB2AA007158B2 /* Hp */,
 				73B8A0722E786A9C007496DB /* Personal */,
 				73B8A06D2E785B85007496DB /* Cell */,
 				7351B8B12E740DD6001F36B3 /* Step */,
@@ -248,6 +275,7 @@
 		739B70BA2E6FC73400C438D1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7353EEFB2E7AB03B007158B2 /* ContactsManager.swift */,
 				7351B8B62E740EC1001F36B3 /* URLParameterParser.swift */,
 				739B70DF2E6FDA5E00C438D1 /* BaseModel.swift */,
 				739B70D32E6FD05200C438D1 /* AuthManager.swift */,
@@ -272,6 +300,7 @@
 		73B8A0722E786A9C007496DB /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				7353EF072E7AB274007158B2 /* PopCityView.swift */,
 				7353EDF32E7A404A007158B2 /* PopEnmuView.swift */,
 				736E48282E7938DB00A2786B /* PersonalViewModel.swift */,
 				73B8A0732E786AAF007496DB /* PersonalViewController.swift */,
@@ -455,6 +484,12 @@
 				73063EEE2E77ED5D0084DD7E /* PassportView.swift in Sources */,
 				7351B8B32E740DF1001F36B3 /* AppStepView.swift in Sources */,
 				73063EF02E77ED6B0084DD7E /* PassportViewModel.swift in Sources */,
+				7353EF022E7AB0FF007158B2 /* LoveLifeViewCell.swift in Sources */,
+				7353EF032E7AB0FF007158B2 /* LifeGoodViewController.swift in Sources */,
+				7353EF042E7AB0FF007158B2 /* LoveLifeViewController.swift in Sources */,
+				7353EF052E7AB0FF007158B2 /* LifeGoodViewModel.swift in Sources */,
+				7353EF062E7AB0FF007158B2 /* LoveLifeViewModel.swift in Sources */,
+				7353EEFC2E7AB03C007158B2 /* ContactsManager.swift in Sources */,
 				73B8A06C2E7858E5007496DB /* PopImageView.swift in Sources */,
 				739B70E42E6FF55000C438D1 /* IDFVManager.swift in Sources */,
 				73063EF22E77F11E0084DD7E /* PassportViewCell.swift in Sources */,
@@ -462,6 +497,7 @@
 				73BFEDDE2E717CB000020AA9 /* HomeView.swift in Sources */,
 				73063EE92E77E9500084DD7E /* PassportViewController.swift in Sources */,
 				73D73B9A2E77AB2100200F57 /* StepViewCell.swift in Sources */,
+				7353EF082E7AB274007158B2 /* PopCityView.swift in Sources */,
 				73C99C8E2E72BC080099F9A4 /* RateView.swift in Sources */,
 				7351B8B02E73E9C2001F36B3 /* OrderViewCell.swift in Sources */,
 				73F7BFA32E70224E005C8C43 /* LoadingView.swift in Sources */,

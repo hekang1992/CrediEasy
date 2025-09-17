@@ -171,6 +171,18 @@ class AppStepViewViewController: BaseViewController {
                 personalVc.productID = productID
                 personalVc.pagetitle = model.ande?.kinematograph?.spermatogonia ?? ""
                 self.navigationController?.pushViewController(personalVc, animated: true)
+            }else if epees == "pinioned" {
+                let lifeVc = LifeGoodViewController()
+                lifeVc.productID = productID
+                lifeVc.pagetitle = model.ande?.kinematograph?.spermatogonia ?? ""
+                self.navigationController?.pushViewController(lifeVc, animated: true)
+            }else if epees == "Sparidae" {
+                let loveVc = LoveLifeViewController()
+                loveVc.productID = productID
+                loveVc.pagetitle = model.ande?.kinematograph?.spermatogonia ?? ""
+                self.navigationController?.pushViewController(loveVc, animated: true)
+            }else if epees == "tykhana" {
+                
             }
         }).disposed(by: disposeBag)
         
@@ -223,7 +235,7 @@ extension AppStepViewViewController {
         if ideist == 0 {
             if epees == "renerve" {
                 judgeID(productID: productID)
-            }else if epees == "phenogenesis" {
+            }else  {
                 let viewModel = DetailViewModel.shared
                 viewModel.getProductDetaiInfo(productID: productID, isTap: true)
             }
@@ -237,6 +249,18 @@ extension AppStepViewViewController {
                 personalVc.productID = productID
                 personalVc.pagetitle = model.spermatogonia ?? ""
                 self.navigationController?.pushViewController(personalVc, animated: true)
+            }else if epees == "pinioned" {
+                let lifeVc = LifeGoodViewController()
+                lifeVc.productID = productID
+                lifeVc.pagetitle = model.spermatogonia ?? ""
+                self.navigationController?.pushViewController(lifeVc, animated: true)
+            }else if epees == "Sparidae" {
+                let loveVc = LoveLifeViewController()
+                loveVc.productID = productID
+                loveVc.pagetitle = model.spermatogonia ?? ""
+                self.navigationController?.pushViewController(loveVc, animated: true)
+            }else if epees == "tykhana" {
+                
             }
         }
     }

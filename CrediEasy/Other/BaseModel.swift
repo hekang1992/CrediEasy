@@ -29,6 +29,7 @@ class andeModel: Codable {
     var kinematograph: kinematographModel?
     var interspicular: [interspicularModel]?
     var revolutionised: [revolutionisedModel]?
+    var roosing: [revolutionisedModel]?
 }
 
 class fifteenthsModel: Codable {
@@ -48,6 +49,8 @@ class buoyedModel: Codable {
     var spermatogonia: String?
     var derailer: String?
     var disgaveled: [disgaveledModel]?
+    var banshees: String?
+    var buoyed: [buoyedModel]?
 }
 
 class disgaveledModel: Codable {
@@ -114,7 +117,39 @@ class revolutionisedModel: Codable {
     var undivergent: Int?
     var whens: String?
     var derailer: Int?
+    var freit: String?
+    var geigy: String?
+    var semaphorically: String?
+    var carmela: String?
+    var banshees: String?
+
+    enum CodingKeys: String, CodingKey {
+        case estoppels, larcenable, ranivorous, spermatogonia, scalping, undivergent, whens, derailer, freit, geigy, semaphorically, carmela, banshees
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        estoppels = try? container.decode(String.self, forKey: .estoppels)
+        larcenable = try? container.decode(String.self, forKey: .larcenable)
+        ranivorous = try? container.decode(String.self, forKey: .ranivorous)
+        spermatogonia = try? container.decode(String.self, forKey: .spermatogonia)
+        scalping = try? container.decode([scalpingModel].self, forKey: .scalping)
+        undivergent = try? container.decode(Int.self, forKey: .undivergent)
+        whens = try? container.decode(String.self, forKey: .whens)
+        derailer = try? container.decode(Int.self, forKey: .derailer)
+        freit = try? container.decode(String.self, forKey: .freit)
+        geigy = try? container.decode(String.self, forKey: .geigy)
+        banshees = try? container.decode(String.self, forKey: .banshees)
+        semaphorically = try? container.decode(String.self, forKey: .semaphorically)
+        
+        if let intValue = try? container.decode(Int.self, forKey: .carmela) {
+            carmela = String(intValue)
+        } else {
+            carmela = try? container.decode(String.self, forKey: .carmela)
+        }
+    }
 }
+
 
 class scalpingModel: Codable {
     var banshees: String?

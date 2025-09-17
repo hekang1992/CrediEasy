@@ -8,13 +8,13 @@
 import UIKit
 import TYAlertController
 
-class PersonalViewController: BaseViewController {
+class LifeGoodViewController: BaseViewController {
     
     var productID: String = ""
     
     var pagetitle: String = ""
     
-    let viewModel = PersonalViewModel()
+    let viewModel = LifeGoodViewModel()
     
     var model: BaseModel?
     
@@ -87,7 +87,7 @@ class PersonalViewController: BaseViewController {
         viewModel.detailModel.asObservable().subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
             stepView.modelArray = model.ande?.beakful ?? []
-            stepView.setCurrentIndex(1, animated: false)
+            stepView.setCurrentIndex(2, animated: false)
         }).disposed(by: disposeBag)
         
         view.addSubview(whiteView)
@@ -145,7 +145,7 @@ class PersonalViewController: BaseViewController {
 
 }
 
-extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
+extension LifeGoodViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01

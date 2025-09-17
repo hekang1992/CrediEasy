@@ -1,5 +1,5 @@
 //
-//  PersonalViewModel.swift
+//  LifeGoodViewModel.swift
 //  CrediEasy
 //
 //  Created by 何康 on 2025/9/16.
@@ -8,7 +8,7 @@
 import RxRelay
 import Combine
 
-final class PersonalViewModel {
+final class LifeGoodViewModel {
     
     var detailModel = BehaviorRelay<BaseModel?>(value: nil)
     
@@ -30,7 +30,7 @@ final class PersonalViewModel {
     func getPersonalInfo(with productID: String, completion: @escaping (BaseModel) -> Void) {
         ViewHud.addLoadView()
         let dict = ["fuckups": productID]
-        NetworkManager.shared.postForm(path: "/Sharpsburg/unknits", parameters: dict).sink { completion in
+        NetworkManager.shared.postForm(path: "/Sharpsburg/greeting", parameters: dict).sink { completion in
             ViewHud.hideLoadView()
         } receiveValue: { model in
             completion(model)
@@ -39,7 +39,7 @@ final class PersonalViewModel {
     
     func safePersonalInfo(wit dict: [String: Any], completion: @escaping (BaseModel) -> Void) {
         ViewHud.addLoadView()
-        NetworkManager.shared.postForm(path: "/Sharpsburg/abidances", parameters: dict).sink { completion in
+        NetworkManager.shared.postForm(path: "/Sharpsburg/ensalada", parameters: dict).sink { completion in
             ViewHud.hideLoadView()
         } receiveValue: { model in
             completion(model)

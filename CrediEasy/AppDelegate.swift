@@ -22,9 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    
 }
-
 
 extension AppDelegate {
     
@@ -45,7 +43,8 @@ extension AppDelegate {
     }
     
     func initKeyBord() {
-        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
     
