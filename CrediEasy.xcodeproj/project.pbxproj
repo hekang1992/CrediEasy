@@ -31,6 +31,7 @@
 		7353EF052E7AB0FF007158B2 /* LifeGoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EEFE2E7AB0FF007158B2 /* LifeGoodViewModel.swift */; };
 		7353EF062E7AB0FF007158B2 /* LoveLifeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */; };
 		7353EF082E7AB274007158B2 /* PopCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EF072E7AB274007158B2 /* PopCityView.swift */; };
+		7353EF0B2E7AB75F007158B2 /* ChangeCidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353EF0A2E7AB75F007158B2 /* ChangeCidViewController.swift */; };
 		736E48292E7938E200A2786B /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736E48282E7938DB00A2786B /* PersonalViewModel.swift */; };
 		739B70C02E6FC7B300C438D1 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */; };
 		739B70C22E6FC7C600C438D1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739B70C12E6FC7C600C438D1 /* BaseView.swift */; };
@@ -98,6 +99,7 @@
 		7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveLifeViewController.swift; sourceTree = "<group>"; };
 		7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveLifeViewModel.swift; sourceTree = "<group>"; };
 		7353EF072E7AB274007158B2 /* PopCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCityView.swift; sourceTree = "<group>"; };
+		7353EF0A2E7AB75F007158B2 /* ChangeCidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeCidViewController.swift; path = ../ChangeCidViewController.swift; sourceTree = SOURCE_ROOT; };
 		736E48282E7938DB00A2786B /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
 		739B70BF2E6FC7B300C438D1 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		739B70C12E6FC7C600C438D1 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				7353EEFF2E7AB0FF007158B2 /* LoveLifeViewCell.swift */,
 				7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */,
 				7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */,
+				7353EF0A2E7AB75F007158B2 /* ChangeCidViewController.swift */,
 			);
 			path = Hp;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				73063EEE2E77ED5D0084DD7E /* PassportView.swift in Sources */,
 				7351B8B32E740DF1001F36B3 /* AppStepView.swift in Sources */,
 				73063EF02E77ED6B0084DD7E /* PassportViewModel.swift in Sources */,
+				7353EF0B2E7AB75F007158B2 /* ChangeCidViewController.swift in Sources */,
 				7353EF022E7AB0FF007158B2 /* LoveLifeViewCell.swift in Sources */,
 				7353EF032E7AB0FF007158B2 /* LifeGoodViewController.swift in Sources */,
 				7353EF042E7AB0FF007158B2 /* LoveLifeViewController.swift in Sources */,

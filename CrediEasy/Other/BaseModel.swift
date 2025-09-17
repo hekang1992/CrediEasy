@@ -89,6 +89,7 @@ class beakfulModel: Codable {
     var prelatish: String?
     var ideist: Int?
     var epees: String?
+    var roguy: String?
 }
 
 class foxtrotModel: Codable {
@@ -100,6 +101,7 @@ class foxtrotModel: Codable {
 class kinematographModel: Codable {
     var epees: String?
     var spermatogonia: String?
+    var roguy: String?
 }
 
 class interspicularModel: Codable {

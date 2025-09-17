@@ -182,7 +182,12 @@ class AppStepViewViewController: BaseViewController {
                 loveVc.pagetitle = model.ande?.kinematograph?.spermatogonia ?? ""
                 self.navigationController?.pushViewController(loveVc, animated: true)
             }else if epees == "tykhana" {
-                
+                let cidVc = ChangeCidViewController()
+                cidVc.productID = productID
+                cidVc.pagetitle = model.ande?.kinematograph?.spermatogonia ?? ""
+                let pageUrl = model.ande?.kinematograph?.roguy ?? ""
+                cidVc.pageUrl = pageUrl
+                self.navigationController?.pushViewController(cidVc, animated: true)
             }
         }).disposed(by: disposeBag)
         
@@ -260,7 +265,12 @@ extension AppStepViewViewController {
                 loveVc.pagetitle = model.spermatogonia ?? ""
                 self.navigationController?.pushViewController(loveVc, animated: true)
             }else if epees == "tykhana" {
-                
+                let cidVc = ChangeCidViewController()
+                cidVc.productID = productID
+                cidVc.pagetitle = model.spermatogonia ?? ""
+                let pageUrl = model.roguy ?? ""
+                cidVc.pageUrl = pageUrl
+                self.navigationController?.pushViewController(cidVc, animated: true)
             }
         }
     }

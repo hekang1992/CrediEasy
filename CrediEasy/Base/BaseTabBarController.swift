@@ -38,7 +38,7 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: .selected)
     }
     
-    private func createNavController(viewController: UIViewController, title: String, imageName: String, selectedImageName: String) -> UINavigationController {
+    private func createNavController(viewController: UIViewController, title: String, imageName: String, selectedImageName: String) -> BaseNavigationController {
         
         let navController = BaseNavigationController(rootViewController: viewController)
         navController.tabBarItem.title = title
@@ -69,7 +69,7 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let navController = viewController as? UINavigationController {
+        if let navController = viewController as? BaseNavigationController {
             if let _ = navController.topViewController as? HomeViewController {
                 print("首页被点击")
             } else if let _ = navController.topViewController as? OrderViewController {
