@@ -171,7 +171,19 @@ class AppStepViewViewController: BaseViewController {
             let epees = model.ande?.kinematograph?.epees ?? ""
             if epees == "renerve" {
                 self.isTap = true
-                viewModel.getIDetaiInfo(productID: productID, isTap: true)
+                viewModel.getIDetaiInfo(productID: productID) { model in
+                    let ideist = model.ande?.foxtrot?.ideist ?? 0
+                    if ideist == 0 {
+                        let passVc = PassportViewController()
+                        passVc.productID = self.productID
+                        passVc.model = model
+                        self.navigationController?.pushViewController(passVc, animated: true)
+                    }else {
+                        let passVc = UploadFaceViewController()
+                        passVc.productID = self.productID
+                        self.navigationController?.pushViewController(passVc, animated: true)
+                    }
+                }
             }else if epees == "phenogenesis" {
                 let personalVc = PersonalViewController()
                 personalVc.productID = productID
@@ -194,26 +206,19 @@ class AppStepViewViewController: BaseViewController {
                 let pageUrl = model.ande?.kinematograph?.roguy ?? ""
                 cidVc.pageUrl = pageUrl
                 self.navigationController?.pushViewController(cidVc, animated: true)
+            }else if epees == "" {
+                ToastShowMessage.showToast(message: "fuc------")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.idModel.asObservable().subscribe(onNext: { [weak self] model in
-            guard let self = self, let model = model else { return }
-            if self.isTap == false {
-                return
-            }
-            let ideist = model.ande?.foxtrot?.ideist ?? 0
-            if ideist == 0 {
-                let passVc = PassportViewController()
-                passVc.productID = productID
-                passVc.model = model
-                self.navigationController?.pushViewController(passVc, animated: true)
-            }else {
-                let passVc = UploadFaceViewController()
-                passVc.productID = productID
-                self.navigationController?.pushViewController(passVc, animated: true)
-            }
-        }).disposed(by: disposeBag)
+//        viewModel.idModel.asObservable()
+//            .subscribe(onNext: { [weak self] model in
+//            guard let self = self, let model = model else { return }
+//            if self.isTap == false {
+//                return
+//            }
+//
+//        }).disposed(by: disposeBag)
         
         
         tableView.rx.modelSelected(beakfulModel.self)
@@ -247,12 +252,7 @@ extension AppStepViewViewController {
         let ideist = model.ideist ?? 0
         let epees = model.epees ?? ""
         if ideist == 0 {
-            if epees == "renerve" {
-                judgeID(productID: productID, isTap: isTap)
-            }else  {
-                let viewModel = DetailViewModel.shared
-                viewModel.getProductDetaiInfo(productID: productID, isTap: true)
-            }
+            viewModel.getProductDetaiInfo(productID: productID, isTap: true)
         }else {
             if epees == "renerve" {
                 let passVc = UploadFaceViewController()
@@ -282,10 +282,6 @@ extension AppStepViewViewController {
                 self.navigationController?.pushViewController(cidVc, animated: true)
             }
         }
-    }
-    
-    private func judgeID(productID: String, isTap: Bool? = false) {
-        viewModel.getIDetaiInfo(productID: productID, isTap: isTap)
     }
     
 }

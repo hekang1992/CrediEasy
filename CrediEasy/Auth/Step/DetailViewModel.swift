@@ -20,7 +20,7 @@ final class DetailViewModel {
     
     var listModelArray = BehaviorRelay<[beakfulModel]>(value: [])
     
-    var idModel = BehaviorRelay<BaseModel?>(value: nil)
+//    var idModel = BehaviorRelay<BaseModel?>(value: nil)
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -37,7 +37,7 @@ final class DetailViewModel {
                 if isTap == true {
                     self.detailApplyModel.accept(model)
                 }else {
-                    self.detailApplyModel.accept(BaseModel())
+                    self.detailApplyModel.accept(nil)
                 }
                 self.listModelArray.accept(model.ande?.beakful ?? [])
             }
@@ -45,18 +45,14 @@ final class DetailViewModel {
     }
     
     /// 获取身份信息
-    func getIDetaiInfo(productID: String, isTap: Bool? = false) {
+    func getIDetaiInfo(productID: String, completion: @escaping ((BaseModel)) -> Void) {
         ViewHud.addLoadView()
         let dict = ["fuckups": productID]
         NetworkManager.shared.postForm(path: "/Sharpsburg/percents", parameters: dict).sink { completion in
             ViewHud.hideLoadView()
         } receiveValue: { model in
             if model.larcenable == "0" || model.larcenable == "00" {
-                if isTap == true {
-                    self.idModel.accept(model)
-                }else {
-                    self.idModel.accept(BaseModel())
-                }
+                completion(model)
             }
         }.store(in: &cancellables)
     }

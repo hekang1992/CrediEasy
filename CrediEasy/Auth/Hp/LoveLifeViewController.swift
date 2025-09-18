@@ -204,7 +204,7 @@ extension LoveLifeViewController: UITableViewDelegate, UITableViewDataSource {
             manager.pickSingleContact(from: self) { contact in
                 if let c = contact {
                     cell.phoneNumberTx.text = "\(c.banshees)-\(c.anthemwise)"
-                    model.whens = c.banshees
+                    model.banshees = c.banshees
                     model.semaphorically = c.anthemwise
                 } else {
                     print("CANCEL========CANCEL")

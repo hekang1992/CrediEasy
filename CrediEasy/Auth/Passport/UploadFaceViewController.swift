@@ -332,7 +332,6 @@ class UploadFaceViewController: BaseViewController {
                 if faceBool == 0 {
                     popFaceView()
                 }else {
-                    let viewModel = DetailViewModel.shared
                     viewModel.getProductDetaiInfo(productID: productID, isTap: true)
                 }
             }

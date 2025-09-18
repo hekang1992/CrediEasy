@@ -20,7 +20,8 @@ class LoveLifeViewCell: BaseViewCell {
             
             let name = model.banshees ?? ""
             let semaphorically = model.semaphorically ?? ""
-            phoneNumberTx.text = "\(name)-\(semaphorically)"
+            let npInfo = "\(name)-\(semaphorically)"
+            phoneNumberTx.text = npInfo == "-" ? "" : npInfo
         }
     }
     

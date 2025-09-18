@@ -67,7 +67,7 @@ class ChangeCidViewController: BaseViewController {
         
         webView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(headView.snp.bottom).offset(1)
+            make.top.equalTo(headView.snp.bottom).offset(10)
         }
     }
     
