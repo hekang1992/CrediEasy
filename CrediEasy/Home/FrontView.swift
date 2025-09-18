@@ -203,13 +203,10 @@ class ItemCell: UICollectionViewCell {
         return smallImageView
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .darkText
-        label.numberOfLines = 0
-        return label
+    lazy var nameView: SmallNameView = {
+        let nameView = SmallNameView()
+        nameView.logoImageView.image = UIImage(named: "center_logo_image")
+        return nameView
     }()
     
     override init(frame: CGRect) {
@@ -224,7 +221,7 @@ class ItemCell: UICollectionViewCell {
     private func setupUI() {
         contentView.addSubview(bgImageView)
         bgImageView.addSubview(smallImageView)
-        bgImageView.addSubview(titleLabel)
+        bgImageView.addSubview(nameView)
         
         bgImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -233,12 +230,13 @@ class ItemCell: UICollectionViewCell {
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(94)
         }
-        titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(8)
+        nameView.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview()
+            make.bottom.equalTo(smallImageView.snp.top)
         }
     }
     
     func configure(with text: String) {
-        titleLabel.text = text
+        nameView.desclabel.text = "Credit Easy"
     }
 }

@@ -44,3 +44,44 @@ class RateView: BaseView {
     }
     
 }
+
+class SmallNameView: BaseView {
+    
+    lazy var logoImageView: UIImageView = {
+        let logoImageView = UIImageView()
+        logoImageView.contentMode = .scaleAspectFit
+        return logoImageView
+    }()
+    
+    lazy var desclabel: UILabel = {
+        let desclabel = UILabel()
+        desclabel.textColor = UIColor.init(hexString: "#FFFFFF")
+        desclabel.textAlignment = .left
+        desclabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(500))
+        return desclabel
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(desclabel)
+        addSubview(logoImageView)
+        
+        desclabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview().offset(12)
+            make.height.equalTo(17)
+        }
+        
+        logoImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalTo(desclabel.snp.left).offset(-6)
+            make.size.equalTo(CGSize(width: 18, height: 18))
+        }
+        
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
