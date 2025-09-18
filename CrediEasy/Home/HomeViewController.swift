@@ -75,7 +75,7 @@ class HomeViewController: BaseViewController {
                             homeView.appLogoImageView.kf.setImage(with: URL(string: model.crackrope ?? ""))
                             homeView.appNamelabel.text = model.threeDes ?? ""
                         }
-                    }else if model.derailer == "agaricaceae" { /// 2
+                    }else if model.derailer == "Daneflower" { /// 2
                         homeView.isHidden = true
                         hotView.isHidden = false
                     }
