@@ -62,6 +62,7 @@ class InputTextCell: BaseViewCell {
         phoneTx.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
         phoneTx.textColor = UIColor.init(hexString: "#0073E5")
         phoneTx.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        phoneTx.delegate = self
         return phoneTx
     }()
     
@@ -101,6 +102,15 @@ class InputTextCell: BaseViewCell {
         if let authModel = authModel {
             authModel.whens = textField.text
         }
+    }
+    
+}
+
+extension InputTextCell: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

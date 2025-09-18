@@ -60,7 +60,7 @@ class ClickTextCell: BaseViewCell {
         phoneTx.attributedPlaceholder = attrString
         phoneTx.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
         phoneTx.textColor = UIColor.init(hexString: "#0073E5")
-        phoneTx.isEnabled = true
+        phoneTx.isUserInteractionEnabled = false
         return phoneTx
     }()
     
