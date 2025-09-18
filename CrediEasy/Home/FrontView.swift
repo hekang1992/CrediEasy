@@ -209,6 +209,40 @@ class ItemCell: UICollectionViewCell {
         return nameView
     }()
     
+    lazy var applyImageView: UIImageView = {
+        let applyImageView = UIImageView()
+        applyImageView.image = UIImage(named: "apply_lad_image")
+        applyImageView.isUserInteractionEnabled = true
+        return applyImageView
+    }()
+    
+    lazy var desclabel: UILabel = {
+        let desclabel = UILabel()
+        desclabel.textColor = UIColor.init(hexString: "#98B4CF")
+        desclabel.textAlignment = .center
+        desclabel.text = "Loan Amount"
+        desclabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(400))
+        return desclabel
+    }()
+    
+    lazy var moneylabel: UILabel = {
+        let moneylabel = UILabel()
+        moneylabel.textColor = UIColor.init(hexString: "#1C2123")
+        moneylabel.textAlignment = .center
+        moneylabel.text = "₱90.000"
+        moneylabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(800))
+        return moneylabel
+    }()
+    
+    lazy var applabel: UILabel = {
+        let applabel = UILabel()
+        applabel.textColor = UIColor.init(hexString: "#865000")
+        applabel.textAlignment = .center
+        applabel.text = "Apply"
+        applabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(700))
+        return applabel
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -222,6 +256,10 @@ class ItemCell: UICollectionViewCell {
         contentView.addSubview(bgImageView)
         bgImageView.addSubview(smallImageView)
         bgImageView.addSubview(nameView)
+        bgImageView.addSubview(applyImageView)
+        smallImageView.addSubview(desclabel)
+        smallImageView.addSubview(moneylabel)
+        applyImageView.addSubview(applabel)
         
         bgImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -233,6 +271,24 @@ class ItemCell: UICollectionViewCell {
         nameView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(smallImageView.snp.top)
+        }
+        applyImageView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-6)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 148, height: 32))
+        }
+        desclabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(9)
+            make.height.equalTo(15)
+        }
+        moneylabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(desclabel.snp.bottom)
+            make.height.equalTo(20)
+        }
+        applabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
