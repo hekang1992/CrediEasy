@@ -7,8 +7,11 @@
 
 import UIKit
 import MJRefresh
+import RxSwift
 
 class HomeViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     let viewModel = HomeViewModel()
     

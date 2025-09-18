@@ -37,7 +37,7 @@ final class DetailViewModel {
                 if isTap == true {
                     self.detailApplyModel.accept(model)
                 }else {
-                    self.detailApplyModel.accept(nil)
+                    self.detailApplyModel.accept(BaseModel())
                 }
                 self.listModelArray.accept(model.ande?.beakful ?? [])
             }
@@ -45,14 +45,18 @@ final class DetailViewModel {
     }
     
     /// 获取身份信息
-    func getIDetaiInfo(productID: String) {
+    func getIDetaiInfo(productID: String, isTap: Bool? = false) {
         ViewHud.addLoadView()
         let dict = ["fuckups": productID]
         NetworkManager.shared.postForm(path: "/Sharpsburg/percents", parameters: dict).sink { completion in
             ViewHud.hideLoadView()
         } receiveValue: { model in
             if model.larcenable == "0" || model.larcenable == "00" {
-                self.idModel.accept(model)
+                if isTap == true {
+                    self.idModel.accept(model)
+                }else {
+                    self.idModel.accept(BaseModel())
+                }
             }
         }.store(in: &cancellables)
     }

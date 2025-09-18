@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class PassportViewController: BaseViewController {
 
     var productID: String = ""
+    
+    let disposeBag = DisposeBag()
     
     var model: BaseModel? {
         didSet {

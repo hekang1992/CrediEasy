@@ -7,8 +7,11 @@
 
 import UIKit
 import TYAlertController
+import RxSwift
 
 class PersonalViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     var productID: String = ""
     

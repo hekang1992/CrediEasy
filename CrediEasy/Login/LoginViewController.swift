@@ -7,10 +7,14 @@
 
 import UIKit
 import RxGesture
+import RxSwift
 
 class LoginViewController: BaseViewController {
     
+    let disposeBag = DisposeBag()
+    
     private var countdownTimer: Timer?
+    
     private var remainingSeconds: Int = 60
     
     let viewModel = LoginViewModel()

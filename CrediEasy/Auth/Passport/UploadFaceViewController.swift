@@ -7,8 +7,11 @@
 
 import UIKit
 import TYAlertController
+import RxSwift
 
 class UploadFaceViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     let viewModel = PassportViewModel()
     

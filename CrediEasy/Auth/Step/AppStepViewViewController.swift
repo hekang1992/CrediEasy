@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class AppStepViewViewController: BaseViewController {
     
     var productID: String = ""
     
     let viewModel = DetailViewModel.shared
+    
+    let disposeBag = DisposeBag()
+    
+    var isTap: Bool = false
     
     lazy var oneView: RateView = {
         let oneView = RateView()
@@ -165,7 +170,8 @@ class AppStepViewViewController: BaseViewController {
             guard let self = self, let model = model else { return }
             let epees = model.ande?.kinematograph?.epees ?? ""
             if epees == "renerve" {
-                viewModel.getIDetaiInfo(productID: productID)
+                self.isTap = true
+                viewModel.getIDetaiInfo(productID: productID, isTap: true)
             }else if epees == "phenogenesis" {
                 let personalVc = PersonalViewController()
                 personalVc.productID = productID
@@ -193,7 +199,11 @@ class AppStepViewViewController: BaseViewController {
         
         viewModel.idModel.asObservable().subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
-            if model.ande?.foxtrot?.ideist == 0 {
+            if self.isTap == false {
+                return
+            }
+            let ideist = model.ande?.foxtrot?.ideist ?? 0
+            if ideist == 0 {
                 let passVc = PassportViewController()
                 passVc.productID = productID
                 passVc.model = model
@@ -209,16 +219,14 @@ class AppStepViewViewController: BaseViewController {
         tableView.rx.modelSelected(beakfulModel.self)
             .subscribe(onNext: { [weak self] model in
                 guard let self = self else { return }
-                judgeAuthSetpWithModel(form: model, productID: productID)
+                judgeAuthSetpWithModel(form: model, productID: productID, isTap: true)
+                self.isTap = true
             }).disposed(by: disposeBag)
-        
         
         applyBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             viewModel.getProductDetaiInfo(productID: productID, isTap: true)
         }).disposed(by: disposeBag)
-        
-        
         
     }
     
@@ -234,12 +242,13 @@ class AppStepViewViewController: BaseViewController {
 extension AppStepViewViewController {
     
     private func judgeAuthSetpWithModel(form model: beakfulModel,
-                                        productID: String) {
+                                        productID: String,
+                                        isTap: Bool? = false) {
         let ideist = model.ideist ?? 0
         let epees = model.epees ?? ""
         if ideist == 0 {
             if epees == "renerve" {
-                judgeID(productID: productID)
+                judgeID(productID: productID, isTap: isTap)
             }else  {
                 let viewModel = DetailViewModel.shared
                 viewModel.getProductDetaiInfo(productID: productID, isTap: true)
@@ -275,8 +284,8 @@ extension AppStepViewViewController {
         }
     }
     
-    private func judgeID(productID: String) {
-        viewModel.getIDetaiInfo(productID: productID)
+    private func judgeID(productID: String, isTap: Bool? = false) {
+        viewModel.getIDetaiInfo(productID: productID, isTap: isTap)
     }
     
 }

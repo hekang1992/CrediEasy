@@ -8,8 +8,11 @@
 import UIKit
 import TYAlertController
 import Combine
+import RxSwift
 
 class SettingViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     private var cancellables = Set<AnyCancellable>()
     

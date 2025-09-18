@@ -7,10 +7,13 @@
 
 import UIKit
 import MJRefresh
+import RxSwift
 
 class OrderViewController: BaseViewController {
     
     var type: String = "4"
+    
+    let disposeBag = DisposeBag()
     
     let viewModel = OrderViewModel()
     

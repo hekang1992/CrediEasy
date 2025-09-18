@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     let viewModel = CenterViewModel()
     

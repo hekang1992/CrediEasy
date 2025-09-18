@@ -26,7 +26,7 @@ final class NetworkManager {
         parameters: [String: Any]? = nil
     ) -> AnyPublisher<BaseModel, NetworkError> {
         let url = baseURL + path
-        let para = APIQueryBuilder.getPera()
+        let para = APIQueryBuilder.getParameters()
         let apiUrl = URLQueryBuilder.appendingQueryParameters(to: url, parameters: para) ?? ""
         return AF.request(apiUrl, method: .get, parameters: parameters)
             .publishDecodable(type: BaseModel.self)
@@ -40,7 +40,7 @@ final class NetworkManager {
         parameters: [String: Any]
     ) -> AnyPublisher<BaseModel, NetworkError> {
         let url = baseURL + path
-        let para = APIQueryBuilder.getPera()
+        let para = APIQueryBuilder.getParameters()
         let apiUrl = URLQueryBuilder.appendingQueryParameters(to: url, parameters: para) ?? ""
         return AF.request(apiUrl,
                           method: .post,
@@ -58,7 +58,7 @@ final class NetworkManager {
         parameters: [String: Any]
     ) -> AnyPublisher<BaseModel, NetworkError> {
         let url = baseURL + path
-        let para = APIQueryBuilder.getPera()
+        let para = APIQueryBuilder.getParameters()
         let apiUrl = URLQueryBuilder.appendingQueryParameters(to: url, parameters: para) ?? ""
         return Future<BaseModel, NetworkError> { promise in
             AF.upload(multipartFormData: { formData in
@@ -87,7 +87,7 @@ final class NetworkManager {
         imageName: String = "perisinuitis"
     ) -> AnyPublisher<BaseModel, NetworkError> {
         let url = baseURL + path
-        let para = APIQueryBuilder.getPera()
+        let para = APIQueryBuilder.getParameters()
         let apiUrl = URLQueryBuilder.appendingQueryParameters(to: url, parameters: para) ?? ""
         return Future<BaseModel, NetworkError> { promise in
             AF.upload(multipartFormData: { formData in
@@ -134,7 +134,7 @@ struct URLQueryBuilder {
 }
 
 struct APIQueryBuilder {
-    static func getPera() -> [String: String] {
+    static func getParameters() -> [String: String] {
         let dict = ["metacoracoid": "1.0.0",
                     "recamera": UIDevice.current.name,
                     "turnscrew": IDFVManager.shared.getPersistentIDFV() ?? "",
