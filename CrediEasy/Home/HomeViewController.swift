@@ -19,7 +19,14 @@ class HomeViewController: BaseViewController {
     
     lazy var homeView: HomeView = {
         let homeView = HomeView()
+        homeView.isHidden = true
         return homeView
+    }()
+    
+    lazy var hotView: FrontView = {
+        let hotView = FrontView()
+        hotView.isHidden = true
+        return hotView
     }()
     
     override func viewDidLoad() {
@@ -27,7 +34,11 @@ class HomeViewController: BaseViewController {
         
         // Do any additional setup after loading the view.
         view.addSubview(homeView)
+        view.addSubview(hotView)
         homeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        hotView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         self.homeView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
@@ -50,7 +61,9 @@ class HomeViewController: BaseViewController {
             self.homeView.scrollView.mj_header?.endRefreshing()
             if model.larcenable == "0" || model.larcenable == "00" {
                 for model in model.ande?.buoyed ?? [] {
-                    if model.derailer == "discinoid" {
+                    if model.derailer == "discinoid" { /// 1
+                        homeView.isHidden = false
+                        hotView.isHidden = true
                         self.disgaveledModelArray = model.disgaveled ?? []
                         let disgaveledModelArray = model.disgaveled ?? []
                         if let model = disgaveledModelArray.first {
@@ -62,6 +75,9 @@ class HomeViewController: BaseViewController {
                             homeView.appLogoImageView.kf.setImage(with: URL(string: model.crackrope ?? ""))
                             homeView.appNamelabel.text = model.threeDes ?? ""
                         }
+                    }else if model.derailer == "agaricaceae" { /// 2
+                        homeView.isHidden = true
+                        hotView.isHidden = false
                     }
                 }
             }
@@ -81,6 +97,11 @@ class HomeViewController: BaseViewController {
                 let stepVc = AppStepViewViewController()
                 stepVc.productID = dict["fuckups"] ?? ""
                 self.navigationController?.pushViewController(stepVc, animated: true)
+            }else {
+                let pageUrl = model.ande?.roguy ?? ""
+                let webVc = ChangeCidViewController()
+                webVc.pageUrl = pageUrl
+                self.navigationController?.pushViewController(webVc, animated: true)
             }
         }).disposed(by: disposeBag)
         

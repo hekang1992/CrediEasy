@@ -104,3 +104,10 @@ class CityInfoModel{
     private init() {}
     var cityModel: andeModel?
 }
+
+/// 城市信息model
+class LocationInfoModel{
+    static let shared = LocationInfoModel()
+    private init() {}
+    var model: LocationInfo?
+}

@@ -31,6 +31,11 @@ class UploadFaceViewController: BaseViewController {
     
     var isShowFaceAlert: Bool = false
     
+    var enterPhototime: String = ""
+    var enterCameratime: String = ""
+    
+    let pointViewModel = PointViewModel()
+    
     lazy var whiteView: UIView = {
         let whiteView = UIView(frame: .zero)
         whiteView.backgroundColor = .white
@@ -133,6 +138,8 @@ class UploadFaceViewController: BaseViewController {
             make.height.equalTo(40)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
+        
+        enterPhototime = String(Int(Date().timeIntervalSince1970))
         
         headView.backBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
@@ -277,6 +284,50 @@ class UploadFaceViewController: BaseViewController {
             successView.tableView.reloadData()
             let alertVc = TYAlertController(alert: successView, preferredStyle: .actionSheet)!
             self.present(alertVc, animated: true)
+            var time: String = ""
+            successView.dateBlock = { [weak self] cell in
+                guard let self = self else { return }
+                let modelArray = model.ande?.interspicular ?? []
+                for model in modelArray {
+                    if model.larcenable == "phratry" {
+                        let hydrophoria = model.hydrophoria ?? ""
+                        if time.isEmpty {
+                            time = hydrophoria.isEmpty ? "1999-10-30" : hydrophoria
+                        }else {
+                         time = time
+                        }
+                    }
+                }
+                
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let window = windowScene.windows.first {
+                    // 使用 window
+                    let pickView = DatePickerView(frame: self.view.frame,
+                                                  defaultDateString: time)
+                    window.addSubview(pickView)
+                    
+                    pickView.onDateChanged = { date in
+                        cell.phoneTx.text = date
+                        time = date
+                        for model in modelArray {
+                            if model.larcenable == "phratry" {
+                                model.hydrophoria = time
+                            }
+                        }
+                    }
+                    
+                    pickView.cancelBtn.rx.tap.subscribe(onNext: {
+                        pickView.removeFromSuperview()
+                    }).disposed(by: disposeBag)
+                    
+                    pickView.sureBtn.rx.tap.subscribe(onNext: {
+                        pickView.removeFromSuperview()
+                    }).disposed(by: disposeBag)
+                    
+                }
+                
+            }
+            
             successView.saveBtn.rx.tap.subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 let modelArray = model.ande?.interspicular ?? []
@@ -288,10 +339,13 @@ class UploadFaceViewController: BaseViewController {
                     dict[key] = value
                 }
                 viewModel.safePhotoInfo(with: dict) { model in
-                    self.dismiss(animated: true) {
-                        self.viewModel.getIDetaiInfo(productID: self.productID)
-                        ToastShowMessage.showToast(message: model.hypsodonty ?? "")
+                    if model.larcenable == "0" || model.larcenable == "00" {
+                        self.dismiss(animated: true) {
+                            self.viewModel.getIDetaiInfo(productID: self.productID)
+                            self.pointViewModel.getMonesesInfo(with: "3", pergamos: self.enterPhototime, paludicoline: String(Int(Date().timeIntervalSince1970)))
+                        }
                     }
+                    ToastShowMessage.showToast(message: model.hypsodonty ?? "")
                 }
             }).disposed(by: disposeBag)
         }).disposed(by: disposeBag)
@@ -359,7 +413,7 @@ extension UploadFaceViewController {
         photoView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.dismiss(animated: true) {
-                self.photoLibraryManager.pickPhoto(from: self, allowsEditing: true) { [weak self] image, info in
+                self.photoLibraryManager.pickPhoto(from: self, allowsEditing: false) { [weak self] image, info in
                     guard let self = self, let image = image else { return }
                     self.handleSelectedImage(image: image, concordantly: 2)
                 }
@@ -369,7 +423,8 @@ extension UploadFaceViewController {
         photoView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.dismiss(animated: true) {
-                self.cameraManager.takePhoto(from: self, allowsEditing: true) { [weak self] image, info in
+                self.enterCameratime = String(Int(Date().timeIntervalSince1970))
+                self.cameraManager.takePhoto(from: self, allowsEditing: false) { [weak self] image, info in
                     guard let self = self, let image = image else { return }
                     self.handleSelectedImage(image: image, concordantly: 1)
                 }
@@ -414,8 +469,13 @@ extension UploadFaceViewController {
         viewModel.upLoadFaceImage(with: dict, image: image, completion: { model in
             if model.larcenable == "0" || model.larcenable == "00" {
                 self.popToSpecificViewController()
+                self.pointViewModel.getMonesesInfo(with: "4", pergamos: self.enterCameratime, paludicoline: String(Int(Date().timeIntervalSince1970)))
             }
         })
     }
     
 }
+
+//let pickView = DatePickerView(defaultDateString: "09-09-2011")
+//let alertVc = TYAlertController(alert: pickView, preferredStyle: .actionSheet)!
+//self.present(alertVc, animated: true)

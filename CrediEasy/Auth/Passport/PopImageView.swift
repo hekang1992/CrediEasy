@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import TYAlertController
 
 class PopImageView: BaseView {
     
     var modelArray: [interspicularModel]?
+    
+    var dateBlock: ((ClickTextCell) -> Void)?
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -122,6 +125,10 @@ extension PopImageView: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.model = model
+            cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.dateBlock?(cell)
+            }).disposed(by: disposeBag)
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell", for: indexPath) as! InputTextCell
@@ -131,5 +138,10 @@ extension PopImageView: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    
+}
+
+extension PopImageView {
+    
     
 }

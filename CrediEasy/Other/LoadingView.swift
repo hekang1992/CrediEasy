@@ -62,6 +62,9 @@ class ViewHud {
                 }
             }
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+            hideLoadView()
+        }
     }
     
     static func hideLoadView() {

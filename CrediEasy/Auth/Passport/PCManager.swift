@@ -17,9 +17,9 @@ enum PermissionType {
     var displayName: String {
         switch self {
         case .camera:
-            return "相机"
+            return "Camera"
         case .photoLibrary:
-            return "相册"
+            return "PhotoLibrary"
         }
     }
 }
@@ -83,7 +83,7 @@ class PhotoLibraryManager: NSObject {
     private func presentImagePicker(allowsEditing: Bool) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = allowsEditing
+        imagePicker.allowsEditing = false
         imagePicker.delegate = self
         imagePicker.modalPresentationStyle = .fullScreen
         presentingViewController?.present(imagePicker, animated: true)
@@ -208,7 +208,18 @@ class CameraManager: NSObject {
         
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = allowsEditing
+        imagePicker.allowsEditing = false
+        
+        if allowsEditing == true {
+            imagePicker.cameraDevice = .front
+            DispatchQueue.main.async {
+                self.hideCameraChangeButton(in: imagePicker.view)
+            }
+        }else {
+            imagePicker.cameraDevice = .rear
+        }
+        
+        
         imagePicker.delegate = self
         imagePicker.modalPresentationStyle = .fullScreen
         imagePicker.cameraCaptureMode = .photo
@@ -283,4 +294,18 @@ extension CameraManager: UIImagePickerControllerDelegate, UINavigationController
         captureHandler?(nil, nil)
         captureHandler = nil
     }
+}
+
+extension CameraManager {
+    
+    private func hideCameraChangeButton(in view: UIView) {
+        for subview in view.subviews {
+            if let button = subview as? UIButton, String(describing: button).contains("CAMFlipButton") {
+                button.isHidden = true
+            } else {
+                hideCameraChangeButton(in: subview)
+            }
+        }
+    }
+    
 }

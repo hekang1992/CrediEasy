@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 
 class PassportViewController: BaseViewController {
+    
+    var entertime = ""
 
     var productID: String = ""
     
@@ -22,6 +24,8 @@ class PassportViewController: BaseViewController {
             passportView.twoTableView.reloadData()
         }
     }
+    
+    let pointViewModel = PointViewModel()
     
     lazy var passportView: PassportView = {
         let passportView = PassportView(frame: .zero)
@@ -52,8 +56,11 @@ class PassportViewController: BaseViewController {
             make.left.right.bottom.equalToSuperview()
         }
         
+        entertime = String(Int(Date().timeIntervalSince1970))
+        
         passportView.modelBlock = { [weak self] type in
             guard let self = self else { return }
+            pointViewModel.getMonesesInfo(with: "2", pergamos: entertime, paludicoline: String(Int(Date().timeIntervalSince1970)))
             let uploadVc = UploadFaceViewController()
             uploadVc.type = type
             uploadVc.productID = productID

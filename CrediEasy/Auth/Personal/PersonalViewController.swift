@@ -11,6 +11,8 @@ import RxSwift
 
 class PersonalViewController: BaseViewController {
     
+    let pointViewModel = PointViewModel()
+    
     let disposeBag = DisposeBag()
     
     var productID: String = ""
@@ -20,6 +22,8 @@ class PersonalViewController: BaseViewController {
     let viewModel = PersonalViewModel()
     
     var model: BaseModel?
+    
+    var entertime: String = ""
     
     lazy var stepView: StepView = {
         let stepView = StepView()
@@ -85,6 +89,7 @@ class PersonalViewController: BaseViewController {
             make.height.equalTo(40)
         }
         
+        entertime = String(Int(Date().timeIntervalSince1970))
         viewModel.getProductDetaiInfo(productID: productID)
         
         viewModel.detailModel.asObservable().subscribe(onNext: { [weak self] model in
@@ -141,6 +146,7 @@ class PersonalViewController: BaseViewController {
         viewModel.safePersonalInfo(wit: dict) { model in
             if model.larcenable == "0" || model.larcenable == "00" {
                 self.popToSpecificViewController()
+                self.pointViewModel.getMonesesInfo(with: "5", pergamos: self.entertime, paludicoline: String(Int(Date().timeIntervalSince1970)))
             }
             ToastShowMessage.showToast(message: model.hypsodonty ?? "")
         }

@@ -24,6 +24,10 @@ class LoginViewController: BaseViewController {
         return loginView
     }()
     
+    var entertime: String = ""
+    
+    let pointViewModel = PointViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +35,7 @@ class LoginViewController: BaseViewController {
         loginView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+        entertime = String(Int(Date().timeIntervalSince1970))
         loginView.sendBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             let phoneNumber = self.loginView.phoneTx.text ?? ""
@@ -41,6 +45,7 @@ class LoginViewController: BaseViewController {
             }
             let dict = ["anthemwise": phoneNumber, "app": "code"]
             viewModel.getCodeInfo(dict: dict, type: "code")
+            entertime = String(Int(Date().timeIntervalSince1970))
         }).disposed(by: disposeBag)
         
         loginView.voiceBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -52,6 +57,7 @@ class LoginViewController: BaseViewController {
             }
             let dict = ["anthemwise": phoneNumber, "app": "voice"]
             viewModel.getCodeInfo(dict: dict, type: "voice")
+            entertime = String(Int(Date().timeIntervalSince1970))
         }).disposed(by: disposeBag)
         
         viewModel.codemodel.subscribe(onNext: { [weak self] model in
@@ -93,8 +99,10 @@ class LoginViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
             }
+            self.pointViewModel.getMonesesInfo(with: "1",
+                                               pergamos: self.entertime,
+                                               paludicoline: String(Int(Date().timeIntervalSince1970)))
         }).disposed(by: disposeBag)
-        
         
         LocationManager.shared.requestLocation { info in
             if let info = info {

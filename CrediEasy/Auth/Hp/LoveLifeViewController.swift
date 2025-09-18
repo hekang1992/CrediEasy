@@ -25,6 +25,10 @@ class LoveLifeViewController: BaseViewController {
     
     var phoneDictArray: [[String: String]] = []
     
+    var entertime: String = ""
+    
+    let pointViewModel = PointViewModel()
+    
     lazy var stepView: StepView = {
         let stepView = StepView()
         return stepView
@@ -75,7 +79,7 @@ class LoveLifeViewController: BaseViewController {
             make.height.equalTo(40)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
-        
+        entertime = String(Int(Date().timeIntervalSince1970))
         headView.backBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             popToSpecificViewController()
@@ -151,6 +155,7 @@ class LoveLifeViewController: BaseViewController {
         viewModel.safePersonalInfo(wit: dict) { model in
             if model.larcenable == "0" || model.larcenable == "00" {
                 self.popToSpecificViewController()
+                self.pointViewModel.getMonesesInfo(with: "7", pergamos: self.entertime, paludicoline: String(Int(Date().timeIntervalSince1970)))
             }
             ToastShowMessage.showToast(message: model.hypsodonty ?? "")
         }

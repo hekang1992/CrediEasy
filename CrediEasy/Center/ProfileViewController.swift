@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import TYAlertController
 
 class ProfileViewController: BaseViewController {
     
@@ -42,6 +43,10 @@ class ProfileViewController: BaseViewController {
             if roguy == setttingSchemeUrl {
                 let settingVc = SettingViewController()
                 self.navigationController?.pushViewController(settingVc, animated: true)
+            }else {
+                let webVc = ChangeCidViewController()
+                webVc.pageUrl = roguy
+                self.navigationController?.pushViewController(webVc, animated: true)
             }
         }
     }

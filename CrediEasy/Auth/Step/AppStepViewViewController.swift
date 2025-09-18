@@ -14,9 +14,13 @@ class AppStepViewViewController: BaseViewController {
     
     let viewModel = DetailViewModel.shared
     
+    let pointViewModel = PointViewModel()
+    
     let disposeBag = DisposeBag()
     
     var isTap: Bool = false
+    
+    var entertime = ""
     
     lazy var oneView: RateView = {
         let oneView = RateView()
@@ -88,6 +92,8 @@ class AppStepViewViewController: BaseViewController {
         view.backgroundColor = UIColor.init(hexString: "#0073E5")
         
         view.addSubview(headView)
+        
+        entertime = String(Int(Date().timeIntervalSince1970))
         
         headView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
@@ -207,7 +213,25 @@ class AppStepViewViewController: BaseViewController {
                 cidVc.pageUrl = pageUrl
                 self.navigationController?.pushViewController(cidVc, animated: true)
             }else if epees == "" {
-                ToastShowMessage.showToast(message: "fuc------")
+                entertime = String(Int(Date().timeIntervalSince1970))
+                let overformalized = model.ande?.feliciana?.geet ?? ""
+                let foliature = model.ande?.feliciana?.foliature ?? 0
+                let tablelike = model.ande?.feliciana?.tablelike ?? ""
+                let hippolith = model.ande?.feliciana?.hippolith ?? 0
+                let dict = ["overformalized": overformalized,
+                            "foliature": foliature,
+                            "tablelike": tablelike,
+                            "hippolith": hippolith]
+                viewModel.getOrderInfo(to: dict) { model in
+                    if model.larcenable == "0" || model.larcenable == "00" {
+                        let pageUrl = model.ande?.roguy ?? ""
+                        let webVc = ChangeCidViewController()
+                        webVc.pageUrl = pageUrl
+                        webVc.orderNumber = overformalized
+                        self.navigationController?.pushViewController(webVc, animated: true)
+                        self.pointViewModel.getMonesesInfo(with: "9", pergamos: String(Int(Date().timeIntervalSince1970)), paludicoline: String(Int(Date().timeIntervalSince1970)), milkiness: overformalized)
+                    }
+                }
             }
         }).disposed(by: disposeBag)
         

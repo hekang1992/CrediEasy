@@ -115,7 +115,6 @@ class ContactsManager: NSObject, CNContactPickerDelegate {
     }
 }
 
-// MARK: - 数据模型
 struct ContactModel: Codable {
     let banshees: String
     let anthemwise: String

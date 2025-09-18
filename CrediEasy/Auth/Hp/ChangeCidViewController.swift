@@ -8,10 +8,9 @@
 import UIKit
 import WebKit
 import RxSwift
+import StoreKit
 
 class ChangeCidViewController: BaseViewController {
-    
-    // MARK: - Properties
     
     let disposeBag = DisposeBag()
     
@@ -19,8 +18,12 @@ class ChangeCidViewController: BaseViewController {
     var pagetitle: String = ""
     var pageUrl: String?
     
-    // MARK: - UI Components
+    var entertime: String = ""
     
+    let pointViewModel = PointViewModel()
+    
+    var orderNumber: String = ""
+        
     private lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         let scriptNames = [
@@ -37,18 +40,15 @@ class ChangeCidViewController: BaseViewController {
         webView.navigationDelegate = self
         return webView
     }()
-    
-    // MARK: - Lifecycle
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupBindings()
         loadWebContent()
+        entertime = String(Int(Date().timeIntervalSince1970))
     }
-    
-    // MARK: - Setup Methods
-    
+        
     private func setupUI() {
         view.backgroundColor = UIColor(hexString: "#0073E5")
         
@@ -78,9 +78,7 @@ class ChangeCidViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
     }
-    
-    // MARK: - Web Content Loading
-    
+        
     private func loadWebContent() {
         guard let pageUrl = pageUrl else { return }
         
@@ -99,25 +97,57 @@ class ChangeCidViewController: BaseViewController {
         
         webView.load(URLRequest(url: finalUrl))
         print("Loaded URL: \(finalUrl.absoluteString)")
+        
+        webView.rx.observe(String.self, "title")
+            .subscribe(onNext: { [weak self] title in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.headView.namelabel.text = title
+                }
+            }).disposed(by: disposeBag)
+        
     }
 }
-
-// MARK: - WKNavigationDelegate & WKScriptMessageHandler
 
 extension ChangeCidViewController: WKNavigationDelegate, WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController,
                              didReceive message: WKScriptMessage) {
-        // Handle script messages here
         print("Received message: \(message.name) - \(message.body)")
+        let messageName = message.name
+        if messageName == "Microgaster" {
+            self.popToSpecificViewController()
+        }else if messageName == "Strophius" {
+            entertime = String(Int(Date().timeIntervalSince1970))
+        }else if messageName == "tradable" {
+            pointViewModel.getMonesesInfo(with: "8", pergamos: entertime, paludicoline: String(Int(Date().timeIntervalSince1970)))
+        }else if messageName == "Alexio" {
+            pointViewModel.getMonesesInfo(with: "10", pergamos: entertime, paludicoline: String(Int(Date().timeIntervalSince1970)), milkiness: orderNumber)
+        }else if messageName == "subtenancy" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
+            }
+        }else if messageName == "theatrize" {
+            if #available(iOS 14.0, *), let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
+            }
+        }else if messageName == "pluvialine" {
+            
+        }
     }
     
-    // Optional: Implement WKNavigationDelegate methods as needed
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("WebView started loading")
+        ViewHud.addLoadView()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("WebView finished loading")
+        ViewHud.hideLoadView()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
+        print("WebView error")
+        ViewHud.hideLoadView()
     }
 }

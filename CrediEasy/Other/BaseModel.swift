@@ -71,6 +71,9 @@ class felicianaModel: Codable {
     var crackrope: String?
     var lutes: lutesModel?
     var consuelo: String?
+    var geet: String?
+    var hippolith: Int?
+    var tablelike: String?
 }
 
 class lutesModel: Codable {

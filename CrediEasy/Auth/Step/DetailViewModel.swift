@@ -57,4 +57,15 @@ final class DetailViewModel {
         }.store(in: &cancellables)
     }
     
+    
+    func getOrderInfo(to dict: [String: Any], completion: @escaping ((BaseModel) -> Void)) {
+        ViewHud.addLoadView()
+        NetworkManager.shared.postForm(path: "/Sharpsburg/overreligiousness", parameters: dict).sink { completion in
+            ViewHud.hideLoadView()
+        } receiveValue: { model in
+            completion(model)
+        }.store(in: &cancellables)
+
+    }
+    
 }

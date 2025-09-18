@@ -26,6 +26,10 @@ class LifeGoodViewController: BaseViewController {
         return stepView
     }()
     
+    let pointViewModel = PointViewModel()
+    
+    var entertime: String = ""
+    
     lazy var whiteView: UIView = {
         let whiteView = UIView(frame: .zero)
         whiteView.backgroundColor = .white
@@ -85,6 +89,7 @@ class LifeGoodViewController: BaseViewController {
             make.height.equalTo(40)
         }
         
+        entertime = String(Int(Date().timeIntervalSince1970))
         viewModel.getProductDetaiInfo(productID: productID)
         
         viewModel.detailModel.asObservable().subscribe(onNext: { [weak self] model in
@@ -141,6 +146,7 @@ class LifeGoodViewController: BaseViewController {
         viewModel.safePersonalInfo(wit: dict) { model in
             if model.larcenable == "0" || model.larcenable == "00" {
                 self.popToSpecificViewController()
+                self.pointViewModel.getMonesesInfo(with: "6", pergamos: self.entertime, paludicoline: String(Int(Date().timeIntervalSince1970)))
             }
             ToastShowMessage.showToast(message: model.hypsodonty ?? "")
         }
