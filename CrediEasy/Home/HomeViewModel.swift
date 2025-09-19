@@ -59,4 +59,14 @@ final class HomeViewModel {
 
     }
     
+    func uploadAppinfo(to jsonStr: String) {
+        let dict = ["ande": jsonStr]
+        NetworkManager.shared.postForm(path: "/Sharpsburg/melena",
+                                       parameters: dict).sink { completion in
+        } receiveValue: { model in
+            
+        }.store(in: &cancellables)
+
+    }
+    
 }

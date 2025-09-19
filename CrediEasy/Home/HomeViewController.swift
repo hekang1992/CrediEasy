@@ -17,6 +17,8 @@ class HomeViewController: BaseViewController {
     
     var disgaveledModelArray: [disgaveledModel] = []
     
+    let loginViewModel = LoginViewModel()
+    
     lazy var homeView: HomeView = {
         let homeView = HomeView()
         homeView.isHidden = true
@@ -117,6 +119,8 @@ class HomeViewController: BaseViewController {
         
         viewModel.getCityAddressInfo()
         
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +134,29 @@ extension HomeViewController {
     
     private func getHomeInfo() {
         viewModel.getHomeInfo()
+        
+        LocationManager.shared.requestLocation { info in
+            if let info = info {
+                let dict = ["deflux": info.administrativeArea ?? "",
+                            "smacksman": info.countryCode ?? "",
+                            "girasol": info.country ?? "",
+                            "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
+                            "squeegeing": String(format: "%.6f", info.longitude),
+                            "homostylism": String(format: "%.6f", info.longitude),
+                            "unspread": info.locality ?? "",
+                            "fleche": info.subLocality ?? ""]
+                self.loginViewModel.uploadLoacationInfo(dict: dict)
+            } else {
+                print("❌========")
+            }
+        }
+        
+        let dict = DeviceInfoProvider.getDeviceInfoJSON()
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted),
+           let jsonString = String(data: jsonData, encoding: .utf8) {
+            viewModel.uploadAppinfo(to: jsonString)
+        }
+        
     }
     
 }

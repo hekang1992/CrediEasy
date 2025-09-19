@@ -110,8 +110,8 @@ class LoginViewController: BaseViewController {
                             "smacksman": info.countryCode ?? "",
                             "girasol": info.country ?? "",
                             "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
-                            "squeegeing": info.latitude,
-                            "homostylism": info.latitude,
+                            "squeegeing": String(format: "%.6f", info.longitude),
+                            "homostylism": String(format: "%.6f", info.longitude),
                             "unspread": info.locality ?? "",
                             "fleche": info.subLocality ?? ""]
                 self.viewModel.uploadLoacationInfo(dict: dict)

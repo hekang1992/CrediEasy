@@ -33,7 +33,7 @@ class LaunchViewController: BaseViewController {
 
 extension LaunchViewController {
     
-    private func getIDFAinfo() {
+    func getIDFAinfo() {
         IDFAManager.requestIDFA { authorized in
             print("IDFA=======: \(authorized ?? "")")
         }

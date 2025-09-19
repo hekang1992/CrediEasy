@@ -20,4 +20,5 @@ target 'CrediEasy' do
   pod 'lottie-ios'
   pod 'Toast-Swift'
   pod 'MJRefresh'
+  
 end

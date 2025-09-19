@@ -86,6 +86,11 @@ class OrderViewController: BaseViewController {
         return tableView
     }()
     
+    lazy var emptyView: EmptyView = {
+        let emptyView = EmptyView(frame: .zero)
+        return emptyView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -138,7 +143,13 @@ class OrderViewController: BaseViewController {
         
         viewModel.model.asObservable().subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
-            self.modelArray = model.ande?.buoyed ?? []
+            let modelArray = model.ande?.buoyed ?? []
+            self.modelArray = modelArray
+            if modelArray.isEmpty {
+                self.emptyView.isHidden = false
+            }else {
+                self.emptyView.isHidden = true
+            }
             self.tableView.reloadData()
             self.tableView.mj_header?.endRefreshing()
         }).disposed(by: disposeBag)
@@ -147,6 +158,12 @@ class OrderViewController: BaseViewController {
             guard let self = self else { return }
             viewModel.getOrderListInfo(type: type)
         })
+        
+        tableView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.height.equalTo(tableView)
+            make.width.equalTo(tableView)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
