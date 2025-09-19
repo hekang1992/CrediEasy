@@ -51,6 +51,7 @@ class buoyedModel: Codable {
     var disgaveled: [disgaveledModel]?
     var banshees: String?
     var buoyed: [buoyedModel]?
+    var opinicuses: String?
 }
 
 class disgaveledModel: Codable {
