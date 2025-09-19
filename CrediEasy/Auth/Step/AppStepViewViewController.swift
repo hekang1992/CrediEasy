@@ -156,17 +156,25 @@ class AppStepViewViewController: BaseViewController {
         }
         
         viewModel.detailModel.asObservable().subscribe(onNext: { [weak self] model in
-            guard let self = self, let model = model else { return }
-            let simple = model.ande?.feliciana?.symbol ?? ""
-            let foliature = model.ande?.feliciana?.foliature ?? 0
-            headView.namelabel.text = model.ande?.feliciana?.saxcornet ?? ""
-            moneyLabel.text = simple + "\(foliature)"
-            oneView.desclabel.text = model.ande?.feliciana?.lutes?.sunned?.unrecreant ?? ""
-            twoView.desclabel.text = model.ande?.feliciana?.lutes?.nickled?.unrecreant ?? ""
-            applyBtn.setTitle(model.ande?.feliciana?.consuelo ?? "", for: .normal)
+            guard let self = self else { return }
+            if let model = model {
+                let simple = model.ande?.feliciana?.symbol ?? ""
+                let foliature = model.ande?.feliciana?.foliature ?? 0
+                headView.namelabel.text = model.ande?.feliciana?.saxcornet ?? ""
+                moneyLabel.text = simple + "\(foliature)"
+                oneView.desclabel.text = model.ande?.feliciana?.lutes?.sunned?.unrecreant ?? ""
+                twoView.desclabel.text = model.ande?.feliciana?.lutes?.nickled?.unrecreant ?? ""
+                applyBtn.setTitle(model.ande?.feliciana?.consuelo ?? "", for: .normal)
+            } else {
+                headView.namelabel.text = ""
+                moneyLabel.text = ""
+                oneView.desclabel.text = ""
+                twoView.desclabel.text = ""
+                applyBtn.setTitle("", for: .normal)
+            }
         }).disposed(by: disposeBag)
         
-        viewModel.listModelArray.asObservable().bind(to: tableView.rx.items(cellIdentifier: "StepViewCell", cellType: StepViewCell.self)) { row, model, cell in
+        viewModel.listModelArray.compactMap { $0 ?? [] }.asObservable().bind(to: tableView.rx.items(cellIdentifier: "StepViewCell", cellType: StepViewCell.self)) { row, model, cell in
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.model = model
@@ -235,14 +243,14 @@ class AppStepViewViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
-//        viewModel.idModel.asObservable()
-//            .subscribe(onNext: { [weak self] model in
-//            guard let self = self, let model = model else { return }
-//            if self.isTap == false {
-//                return
-//            }
-//
-//        }).disposed(by: disposeBag)
+        //        viewModel.idModel.asObservable()
+        //            .subscribe(onNext: { [weak self] model in
+        //            guard let self = self, let model = model else { return }
+        //            if self.isTap == false {
+        //                return
+        //            }
+        //
+        //        }).disposed(by: disposeBag)
         
         
         tableView.rx.modelSelected(beakfulModel.self)

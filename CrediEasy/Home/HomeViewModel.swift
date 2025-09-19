@@ -52,6 +52,8 @@ final class HomeViewModel {
         } receiveValue: { model in
             if model.larcenable == "0" || model.larcenable == "00" {
                 self.applyModel.accept(model)
+            }else {
+                ToastShowMessage.showToast(message: model.hypsodonty ?? "")
             }
         }.store(in: &cancellables)
 

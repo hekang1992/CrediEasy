@@ -10,6 +10,8 @@ import SnapKit
 
 class FrontView: BaseView {
     
+    var headBlock: ((Int) -> Void)?
+    
     var smallProductArray: [disgaveledModel]? {
         didSet {
             collectionView.reloadData()
@@ -61,18 +63,21 @@ class FrontView: BaseView {
     private lazy var oneImageView: UIImageView = {
         let oneImageView = UIImageView()
         oneImageView.image = UIImage(named: "fr_tw_image")
+        oneImageView.isUserInteractionEnabled = true
         return oneImageView
     }()
     
     private lazy var twoImageView: UIImageView = {
         let twoImageView = UIImageView()
         twoImageView.image = UIImage(named: "fr_cover_image")
+        twoImageView.isUserInteractionEnabled = true
         return twoImageView
     }()
     
     private lazy var threeImageView: UIImageView = {
         let threeImageView = UIImageView()
         threeImageView.image = UIImage(named: "fr_whi_image")
+        threeImageView.isUserInteractionEnabled = true
         return threeImageView
     }()
     
@@ -247,6 +252,13 @@ class FrontView: BaseView {
             make.bottom.equalToSuperview()
             self.collectionViewHeightConstraint = make.height.equalTo(0).constraint
         }
+        
+        applyBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            if let model = headProductArray?.first {
+                self.headBlock?(model.amps ?? 0)
+            }
+        }).disposed(by: disposeBag)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -303,6 +315,12 @@ extension FrontView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         let availableWidth = collectionView.frame.width - totalHorizontalSpacing
         let cellWidth = floor(availableWidth / 2)
         return CGSize(width: cellWidth, height: 122)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = smallProductArray?[indexPath.item]
+        let productID = model?.amps ?? 0
+        self.headBlock?(productID)
     }
 }
 

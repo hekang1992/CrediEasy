@@ -59,6 +59,11 @@ class HomeViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        self.hotView.headBlock = { [weak self] productID in
+            guard let self = self else { return }
+            viewModel.applyProductInfo(productID: productID)
+        }
+        
         viewModel.model.asObservable().subscribe(onNext: { [weak self] model in
             guard let self = self, let model1 = model else { return }
             self.homeView.scrollView.mj_header?.endRefreshing()

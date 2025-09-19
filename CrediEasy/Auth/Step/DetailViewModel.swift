@@ -18,7 +18,7 @@ final class DetailViewModel {
     /// 产品详情模型---是点击底部的--apply的
     var detailApplyModel = BehaviorRelay<BaseModel?>(value: nil)
     
-    var listModelArray = BehaviorRelay<[beakfulModel]>(value: [])
+    var listModelArray = BehaviorRelay<[beakfulModel]?>(value: nil)
     
 //    var idModel = BehaviorRelay<BaseModel?>(value: nil)
     
@@ -40,6 +40,11 @@ final class DetailViewModel {
                     self.detailApplyModel.accept(nil)
                 }
                 self.listModelArray.accept(model.ande?.beakful ?? [])
+            }else {
+                self.detailModel.accept(nil)
+                self.detailApplyModel.accept(nil)
+                self.listModelArray.accept(nil)
+                ToastShowMessage.showToast(message: model.hypsodonty ?? "")
             }
         }.store(in: &cancellables)
     }
