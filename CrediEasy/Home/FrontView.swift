@@ -10,9 +10,43 @@ import SnapKit
 
 class FrontView: BaseView {
     
-    private var data: [String] = []
+    var smallProductArray: [disgaveledModel]? {
+        didSet {
+            collectionView.reloadData()
+            updateCollectionViewHeight()
+        }
+    }
+    
+    var headProductArray: [disgaveledModel]? {
+        didSet {
+            guard let headProductArray = headProductArray, let model = headProductArray.first else { return }
+            productImageView.kf.setImage(with: URL(string: model.crackrope ?? ""))
+            appNamelabel.text = model.saxcornet ?? ""
+            desclabel.text = model.arrode ?? ""
+            moneylabel.text = model.photoelectron ?? ""
+            oneView.desclabel.text = model.fleuret ?? ""
+            twoView.desclabel.text = model.unresourcefulness ?? ""
+            applyBtn.setTitle(model.consuelo ?? "", for: .normal)
+        }
+    }
+    
+    var model: BaseModel? {
+        didSet {
+            guard let model = model else { return }
+            let buoyedModelArray = model.ande?.buoyed ?? []
+            for model in buoyedModelArray {
+                if model.derailer == "Daneflower" {
+                    smallProductArray = model.disgaveled ?? []
+                }else if model.derailer == "agaricaceae" {
+                    headProductArray = model.disgaveled ?? []
+                }
+            }
+        }
+    }
+    
     private var collectionViewHeightConstraint: Constraint?
     
+    // MARK: - UI
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
@@ -22,36 +56,43 @@ class FrontView: BaseView {
         return scrollView
     }()
     
-    lazy var oneImageView: UIImageView = {
+    private let contentView = UIView()
+    
+    private lazy var oneImageView: UIImageView = {
         let oneImageView = UIImageView()
         oneImageView.image = UIImage(named: "fr_tw_image")
         return oneImageView
     }()
     
-    lazy var twoImageView: UIImageView = {
+    private lazy var twoImageView: UIImageView = {
         let twoImageView = UIImageView()
         twoImageView.image = UIImage(named: "fr_cover_image")
         return twoImageView
     }()
     
-    lazy var threeImageView: UIImageView = {
+    private lazy var threeImageView: UIImageView = {
         let threeImageView = UIImageView()
         threeImageView.image = UIImage(named: "fr_whi_image")
         return threeImageView
     }()
     
-    lazy var appNamelabel: UILabel = {
+    private lazy var productImageView: UIImageView = {
+        let productImageView = UIImageView()
+        return productImageView
+    }()
+    
+    private lazy var appNamelabel: UILabel = {
         let appNamelabel = UILabel()
-        appNamelabel.textColor = UIColor.init(hexString: "#FFFFFF")
+        appNamelabel.textColor = UIColor(hexString: "#FFFFFF")
         appNamelabel.textAlignment = .left
         appNamelabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(700))
         return appNamelabel
     }()
     
-    lazy var morelabel: UILabel = {
+    private lazy var morelabel: UILabel = {
         let morelabel = UILabel()
         morelabel.text = "More Products"
-        morelabel.textColor = UIColor.init(hexString: "#1C2123")
+        morelabel.textColor = UIColor(hexString: "#1C2123")
         morelabel.textAlignment = .left
         morelabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(500))
         return morelabel
@@ -71,16 +112,65 @@ class FrontView: BaseView {
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: "ItemCell")
         return collectionView
     }()
-
+    
+    lazy var desclabel: UILabel = {
+        let desclabel = UILabel()
+        desclabel.textColor = UIColor.init(hexString: "#999B9C")
+        desclabel.textAlignment = .left
+        desclabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
+        return desclabel
+    }()
+    
+    lazy var moneylabel: UILabel = {
+        let moneylabel = UILabel()
+        moneylabel.textColor = UIColor.init(hexString: "#1C2123")
+        moneylabel.textAlignment = .left
+        moneylabel.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight(800))
+        return moneylabel
+    }()
+    
+    lazy var oneView: RateView = {
+        let oneView = RateView()
+        oneView.logoImageView.image = UIImage(named: "rate_list_image")
+        return oneView
+    }()
+    
+    lazy var twoView: RateView = {
+        let twoView = RateView()
+        twoView.logoImageView.image = UIImage(named: "rae_li_image")
+        return twoView
+    }()
+    
+    lazy var applyBtn: UIButton = {
+        let applyBtn = UIButton(type: .custom)
+        applyBtn.setTitle("Obtain loan amount", for: .normal)
+        applyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(500))
+        applyBtn.setTitleColor(.white, for: .normal)
+        applyBtn.backgroundColor = UIColor.init(hexString: "#0073E5")
+        applyBtn.layer.cornerRadius = 27
+        applyBtn.layer.masksToBounds = true
+        return applyBtn
+    }()
+    
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         addSubview(oneImageView)
         addSubview(twoImageView)
         addSubview(scrollView)
+        addSubview(productImageView)
         addSubview(appNamelabel)
-        scrollView.addSubview(threeImageView)
-        scrollView.addSubview(morelabel)
-        scrollView.addSubview(collectionView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(threeImageView)
+        contentView.addSubview(morelabel)
+        contentView.addSubview(collectionView)
+        
+        threeImageView.addSubview(desclabel)
+        threeImageView.addSubview(moneylabel)
+        threeImageView.addSubview(oneView)
+        threeImageView.addSubview(twoView)
+        threeImageView.addSubview(applyBtn)
         
         oneImageView.snp.makeConstraints { make in
             make.top.left.equalToSuperview()
@@ -90,73 +180,100 @@ class FrontView: BaseView {
             make.top.left.equalToSuperview()
             make.size.equalTo(CGSize(width: screen_width, height: 433))
         }
-        
-        
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        appNamelabel.snp.makeConstraints { make in
+        productImageView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.size.equalTo(CGSize(width: 25, height: 25))
+        }
+        appNamelabel.snp.makeConstraints { make in
+            make.centerY.equalTo(productImageView.snp.centerY)
+            make.left.equalTo(productImageView.snp.right).offset(5)
             make.height.equalTo(20)
         }
         
+        // scrollView & contentView
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        
         threeImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(90)
+            make.top.equalToSuperview().offset(95)
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 335, height: 219))
         }
+        
+        desclabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(20)
+            make.height.equalTo(17)
+        }
+        moneylabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(desclabel.snp.bottom).offset(6)
+            make.height.equalTo(44)
+        }
+        oneView.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(moneylabel.snp.bottom).offset(12)
+            make.height.equalTo(26)
+            make.width.equalTo(110)
+        }
+        twoView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().offset(20)
+            make.top.equalTo(moneylabel.snp.bottom).offset(12)
+            make.height.equalTo(26)
+        }
+        applyBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(twoView.snp.bottom).offset(24)
+            make.size.equalTo(CGSize(width: 295, height: 54))
+        }
+        
+        // "More Products"
         morelabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.height.equalTo(20)
             make.top.equalTo(threeImageView.snp.bottom).offset(13)
         }
         
-        setupData()
+        // CollectionView
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(morelabel.snp.bottom).offset(20)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+            self.collectionViewHeightConstraint = make.height.equalTo(0).constraint
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupData() {
-        // 模拟数据
-        data = (1...20).map { "Item \($0)" }
-        collectionView.reloadData()
+    // MARK: - Update Height
+    private func updateCollectionViewHeight() {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        
+        let itemCount = smallProductArray?.count ?? 0
+        let numberOfRows = ceil(CGFloat(itemCount) / 2.0)
+        
+        let cellHeight: CGFloat = 122
+        let totalVerticalSpacing = layout.sectionInset.top + layout.sectionInset.bottom +
+        (layout.minimumLineSpacing * max(numberOfRows - 1, 0))
+        let totalHeight = (cellHeight * numberOfRows) + totalVerticalSpacing
+        
+        collectionViewHeightConstraint?.update(offset: totalHeight)
+        layoutIfNeeded()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(morelabel.snp.bottom).offset(20)
-            make.left.equalToSuperview()
-            make.width.equalTo(scrollView)
+        collectionView.snp.updateConstraints { make in
             make.bottom.equalToSuperview().offset(-safeAreaInsets.bottom)
-            self.collectionViewHeightConstraint = make.height.equalTo(0).constraint
         }
-        
-        updateCollectionViewHeight()
-    }
-    
-    private func updateCollectionViewHeight() {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        
-        let itemCount = data.count
-        let numberOfRows = ceil(CGFloat(itemCount) / 2.0)
-        
-        let totalHorizontalSpacing = layout.sectionInset.left + layout.sectionInset.right + layout.minimumInteritemSpacing
-        let availableWidth = collectionView.frame.width - totalHorizontalSpacing
-        
-        let cellHeight: CGFloat = 122
-        
-        let totalVerticalSpacing = layout.sectionInset.top + layout.sectionInset.bottom +
-                                  (layout.minimumLineSpacing * (numberOfRows - 1))
-        let totalHeight = (cellHeight * numberOfRows) + totalVerticalSpacing
-        
-        collectionViewHeightConstraint?.update(offset: totalHeight)
-        
-        layoutIfNeeded()
     }
     
 }
@@ -164,27 +281,31 @@ class FrontView: BaseView {
 // MARK: - UICollectionView DataSource & Delegate
 extension FrontView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return smallProductArray?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemCell
-        cell.configure(with: data[indexPath.item])
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell",
+                                                      for: indexPath) as! ItemCell
+        let model = smallProductArray?[indexPath.item]
+        cell.model = model
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else {
             return CGSize(width: 100, height: 100)
         }
-        
         let totalHorizontalSpacing = layout.sectionInset.left + layout.sectionInset.right + layout.minimumInteritemSpacing
         let availableWidth = collectionView.frame.width - totalHorizontalSpacing
         let cellWidth = floor(availableWidth / 2)
-        
-        return CGSize(width: cellWidth, height: 120)
+        return CGSize(width: cellWidth, height: 122)
     }
 }
+
 
 // MARK: - Custom CollectionView Cell
 class ItemCell: UICollectionViewCell {
@@ -220,7 +341,6 @@ class ItemCell: UICollectionViewCell {
         let desclabel = UILabel()
         desclabel.textColor = UIColor.init(hexString: "#98B4CF")
         desclabel.textAlignment = .center
-        desclabel.text = "Loan Amount"
         desclabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(400))
         return desclabel
     }()
@@ -229,7 +349,6 @@ class ItemCell: UICollectionViewCell {
         let moneylabel = UILabel()
         moneylabel.textColor = UIColor.init(hexString: "#1C2123")
         moneylabel.textAlignment = .center
-        moneylabel.text = "₱90.000"
         moneylabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(800))
         return moneylabel
     }()
@@ -238,7 +357,6 @@ class ItemCell: UICollectionViewCell {
         let applabel = UILabel()
         applabel.textColor = UIColor.init(hexString: "#865000")
         applabel.textAlignment = .center
-        applabel.text = "Apply"
         applabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(700))
         return applabel
     }()
@@ -292,7 +410,15 @@ class ItemCell: UICollectionViewCell {
         }
     }
     
-    func configure(with text: String) {
-        nameView.desclabel.text = "Credit Easy"
+    var model: disgaveledModel? {
+        didSet {
+            guard let model = model else { return }
+            let logoUrl = model.crackrope ?? ""
+            self.nameView.logoImageView.kf.setImage(with: URL(string: logoUrl))
+            self.nameView.desclabel.text = model.saxcornet ?? ""
+            self.desclabel.text = model.arrode ?? ""
+            self.moneylabel.text = model.photoelectron ?? ""
+            self.applabel.text = model.consuelo ?? ""
+        }
     }
 }

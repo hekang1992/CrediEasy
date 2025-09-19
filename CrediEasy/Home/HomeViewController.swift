@@ -44,6 +44,9 @@ class HomeViewController: BaseViewController {
         self.homeView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.getHomeInfo()
         })
+        self.hotView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.getHomeInfo()
+        })
         
         self.homeView.applyBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
@@ -57,10 +60,11 @@ class HomeViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         viewModel.model.asObservable().subscribe(onNext: { [weak self] model in
-            guard let self = self, let model = model else { return }
+            guard let self = self, let model1 = model else { return }
             self.homeView.scrollView.mj_header?.endRefreshing()
-            if model.larcenable == "0" || model.larcenable == "00" {
-                for model in model.ande?.buoyed ?? [] {
+            self.hotView.scrollView.mj_header?.endRefreshing()
+            if model1.larcenable == "0" || model1.larcenable == "00" {
+                for model in model1.ande?.buoyed ?? [] {
                     if model.derailer == "discinoid" { /// 1
                         homeView.isHidden = false
                         hotView.isHidden = true
@@ -78,6 +82,7 @@ class HomeViewController: BaseViewController {
                     }else if model.derailer == "Daneflower" { /// 2
                         homeView.isHidden = true
                         hotView.isHidden = false
+                        hotView.model = model1
                     }
                 }
             }

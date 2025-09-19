@@ -62,6 +62,7 @@ class disgaveledModel: Codable {
     var unresourcefulness: String?
     var amps: Int?
     var threeDes: String?
+    var saxcornet : String?
 }
 
 class felicianaModel: Codable {

