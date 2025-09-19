@@ -15,8 +15,12 @@ class OrderViewCell: BaseViewCell {
             let opinicuses = model.opinicuses ?? ""
             if opinicuses.isEmpty {
                 bgImageView.image = UIImage(named: "no_type_image")
+                appImageView.isHidden = true
+                appLabel.isHidden = true
             }else {
                 bgImageView.image = UIImage(named: "have_type_limge")
+                appImageView.isHidden = false
+                appLabel.isHidden = false
             }
             typrBtn.setTitle(model.consuelo ?? "", for: .normal)
             logoImageView.kf.setImage(with: URL(string: model.crackrope ?? ""))
@@ -24,6 +28,7 @@ class OrderViewCell: BaseViewCell {
             moneyLabel.text = model.concentre ?? ""
             timeLabel.text = "\(model.refool ?? ""): \((model.nonmarveling ?? ""))"
             nameLabel.text = model.saxcornet ?? ""
+            appLabel.text = opinicuses
         }
     }
     
@@ -85,6 +90,20 @@ class OrderViewCell: BaseViewCell {
         return nameLabel
     }()
     
+    lazy var appImageView: UIImageView = {
+        let appImageView = UIImageView()
+        appImageView.image = UIImage(named: "type_btn_image")
+        return appImageView
+    }()
+    
+    lazy var appLabel: UILabel = {
+        let appLabel = UILabel()
+        appLabel.textAlignment = .center
+        appLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(800))
+        appLabel.textColor = UIColor.init(hexString: "#FFFFFF")
+        return appLabel
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(bgImageView)
@@ -95,6 +114,8 @@ class OrderViewCell: BaseViewCell {
         bgImageView.addSubview(moneyLabel)
         bgImageView.addSubview(timeLabel)
         bgImageView.addSubview(nameLabel)
+        bgImageView.addSubview(appImageView)
+        appImageView.addSubview(appLabel)
         bgImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.centerX.equalToSuperview()
@@ -135,6 +156,14 @@ class OrderViewCell: BaseViewCell {
             make.centerY.equalTo(timeLabel.snp.centerY)
             make.right.equalToSuperview().offset(-12)
             make.height.equalTo(15)
+        }
+        appImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 311, height: 44))
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        appLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
