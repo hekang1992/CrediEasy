@@ -19,6 +19,8 @@ class OrderViewController: BaseViewController {
     
     var modelArray: [buoyedModel] = []
     
+    var cellBlock: ((String) -> Void)?
+    
     lazy var oneBtn: UIButton = {
         let oneBtn = UIButton(type: .custom)
         oneBtn.setImage(UIImage(named: "all_nor_image"), for: .normal)
@@ -197,6 +199,20 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = modelArray[indexPath.row]
+        let pageUrl = model.pompilidae ?? ""
+        if pageUrl.isEmpty {
+            return
+        }
+        if pageUrl.contains(detailSchemeUrl) {
+            let dict = URLParameterParser.getQueryParameters(from: pageUrl)
+            let stepVc = AppStepViewViewController()
+            stepVc.productID = dict["fuckups"] ?? ""
+            self.navigationController?.pushViewController(stepVc, animated: true)
+        }else if pageUrl.hasPrefix("http") {
+            let webVc = ChangeCidViewController()
+            webVc.pageUrl = pageUrl
+            self.navigationController?.pushViewController(webVc, animated: true)
+        }
     }
     
 }
