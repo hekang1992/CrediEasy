@@ -104,19 +104,7 @@ class AppStepViewViewController: BaseViewController {
         
         headView.backBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            let leaveView = LeaveView(frame: self.view.frame)
-            if let alertVc = TYAlertController(alert: leaveView, preferredStyle: .alert) {
-                self.present(alertVc, animated: true)
-            }
-            leaveView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true) {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            }).disposed(by: disposeBag)
-            
-            leaveView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true)
-            }).disposed(by: disposeBag)
+            self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
         
         view.addSubview(moneyLabel)

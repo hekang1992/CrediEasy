@@ -28,6 +28,8 @@ class LoginViewController: BaseViewController {
     
     let pointViewModel = PointViewModel()
     
+    let locationManager = LocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,14 +106,14 @@ class LoginViewController: BaseViewController {
                                                paludicoline: String(Int(Date().timeIntervalSince1970)))
         }).disposed(by: disposeBag)
         
-        LocationManager.shared.requestLocation { info in
+        locationManager.requestLocation { info in
             if let info = info {
                 let dict = ["deflux": info.administrativeArea ?? "",
                             "smacksman": info.countryCode ?? "",
                             "girasol": info.country ?? "",
                             "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
-                            "squeegeing": String(format: "%.6f", info.longitude),
-                            "homostylism": String(format: "%.6f", info.longitude),
+                            "squeegeing": String(format: "%.6f", info.longitude ?? 0.0),
+                            "homostylism": String(format: "%.6f", info.longitude ?? 0.0),
                             "unspread": info.locality ?? "",
                             "fleche": info.subLocality ?? ""]
                 self.viewModel.uploadLoacationInfo(dict: dict)

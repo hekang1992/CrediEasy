@@ -43,9 +43,9 @@ extension AppDelegate {
     }
     
     func initKeyBord() {
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = true
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+        IQKeyboardManager.shared.keyboardDistance = 1
     }
     
     @objc func changeRootVc(_ noti: Notification) {

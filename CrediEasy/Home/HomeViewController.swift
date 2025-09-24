@@ -20,6 +20,8 @@ class HomeViewController: BaseViewController {
     
     let loginViewModel = LoginViewModel()
     
+    let locationManager = LocationManager()
+    
     lazy var homeView: HomeView = {
         let homeView = HomeView()
         homeView.isHidden = true
@@ -170,14 +172,14 @@ extension HomeViewController {
     private func getHomeInfo() {
         viewModel.getHomeInfo()
         
-        LocationManager.shared.requestLocation { info in
+        locationManager.requestLocation { info in
             if let info = info {
                 let dict = ["deflux": info.administrativeArea ?? "",
                             "smacksman": info.countryCode ?? "",
                             "girasol": info.country ?? "",
                             "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
-                            "squeegeing": String(format: "%.6f", info.longitude),
-                            "homostylism": String(format: "%.6f", info.longitude),
+                            "squeegeing": String(format: "%.6f", info.longitude ?? 0.0),
+                            "homostylism": String(format: "%.6f", info.longitude ?? 0.0),
                             "unspread": info.locality ?? "",
                             "fleche": info.subLocality ?? ""]
                 self.loginViewModel.uploadLoacationInfo(dict: dict)
@@ -185,14 +187,14 @@ extension HomeViewController {
                 print("❌========")
             }
         }
-        
+    
         var dict = DeviceInfoProvider.getDeviceInfoJSON()
         /// WiFi
         var avitaminotic: [String: Any] = [:]
         DeviceInfoProvider.getWiFiDetails { [self] details in
             avitaminotic["pamperedly"] = [
-                "butyrometric": details["ssid"] ?? "",
-                "banshees": details["bssid"] ?? ""
+                "butyrometric": details["bssid"] ?? "",
+                "banshees": details["ssid"] ?? ""
             ]
             dict["avitaminotic"] = avitaminotic
             if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted),

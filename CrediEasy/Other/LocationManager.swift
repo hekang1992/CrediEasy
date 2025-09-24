@@ -10,8 +10,8 @@ import Foundation
 import CoreLocation
 
 struct LocationInfo {
-    let latitude: Double
-    let longitude: Double
+    let latitude: Double?
+    let longitude: Double?
     let countryCode: String?
     let country: String?
     let administrativeArea: String?
@@ -23,19 +23,22 @@ struct LocationInfo {
 }
 
 class LocationManager: NSObject {
-    static let shared = LocationManager()
-    
     private let manager = CLLocationManager()
     private let geocoder = CLGeocoder()
     private var completion: ((LocationInfo?) -> Void)?
     
-    /// 标记是否已经弹出过“拒绝定位”的提示
+    /// 标记是否已经弹出过"拒绝定位"的提示
     private var hasShownDeniedAlert = false
     
-    private override init() {
+    override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    }
+    
+    deinit {
+        // 清理资源
+        completion = nil
     }
     
     func requestLocation(completion: @escaping (LocationInfo?) -> Void) {
@@ -61,6 +64,12 @@ class LocationManager: NSObject {
         }
     }
     
+    /// 停止位置更新
+    func stopUpdatingLocation() {
+        manager.stopUpdatingLocation()
+        completion = nil
+    }
+    
     private func showDeniedAlertIfNeeded() {
         guard !hasShownDeniedAlert else { return }
         hasShownDeniedAlert = true
@@ -73,7 +82,7 @@ class LocationManager: NSObject {
             
             let alert = UIAlertController(
                 title: "Location permission",
-                message: "You’ve disabled location permission. To restore full functionality, go to Settings > Privacy > Location Services, select our app, and enable location access.",
+                message: "You've disabled location permission. To restore full functionality, go to Settings > Privacy > Location Services, select our app, and enable location access.",
                 preferredStyle: .alert
             )
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

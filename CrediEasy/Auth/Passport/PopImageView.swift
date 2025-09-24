@@ -110,7 +110,7 @@ class PopImageView: BaseView {
         tableView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(oneImageView.snp.bottom).offset(14)
-            make.bottom.equalTo(saveBtn.snp.top).offset(-10)
+            make.bottom.equalTo(saveBtn.snp.top).offset(-1)
         }
         cancelBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)

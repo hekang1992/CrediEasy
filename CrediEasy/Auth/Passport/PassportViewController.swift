@@ -53,13 +53,13 @@ class PassportViewController: BaseViewController {
                 self.present(alertVc, animated: true)
             }
             leaveView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true) {
-                    self?.popToSpecificViewController()
-                }
+                self?.dismiss(animated: true)
             }).disposed(by: disposeBag)
             
             leaveView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true)
+                self?.dismiss(animated: true) {
+                    self?.popToSpecificViewController()
+                }
             }).disposed(by: disposeBag)
         }).disposed(by: disposeBag)
         
