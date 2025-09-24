@@ -23,6 +23,8 @@ class ChangeCidViewController: BaseViewController {
     let pointViewModel = PointViewModel()
     
     var orderNumber: String = ""
+    
+    var type: String = ""
         
     private lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
@@ -88,7 +90,12 @@ class ChangeCidViewController: BaseViewController {
     private func setupBindings() {
         headView.backBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.popToSpecificViewController()
+                guard let self = self else { return }
+                if type == "O" {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }else {
+                    self.popToSpecificViewController()
+                }
             })
             .disposed(by: disposeBag)
         

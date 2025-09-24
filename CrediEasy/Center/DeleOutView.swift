@@ -141,3 +141,50 @@ class LogOutView: BaseView {
     }
     
 }
+
+class LeaveView: BaseView {
+    
+    lazy var popImageView: UIImageView = {
+        let popImageView = UIImageView()
+        popImageView.image = UIImage(named: "leave_li_image")
+        popImageView.isUserInteractionEnabled = true
+        popImageView.contentMode = .scaleAspectFit
+        return popImageView
+    }()
+    
+    lazy var leftBtn: UIButton = {
+        let leftBtn = UIButton(type: .custom)
+        return leftBtn
+    }()
+    
+    lazy var rightBtn: UIButton = {
+        let rightBtn = UIButton(type: .custom)
+        return rightBtn
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(popImageView)
+        popImageView.addSubview(leftBtn)
+        popImageView.addSubview(rightBtn)
+        popImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-30)
+            make.size.equalTo(CGSize(width: 307, height: 263))
+        }
+        
+        leftBtn.snp.makeConstraints { make in
+            make.left.bottom.equalToSuperview()
+            make.size.equalTo(CGSize(width: 150, height: 80))
+        }
+        rightBtn.snp.makeConstraints { make in
+            make.right.bottom.equalToSuperview()
+            make.size.equalTo(CGSize(width: 150, height: 80))
+        }
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}

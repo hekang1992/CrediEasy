@@ -80,9 +80,22 @@ class LoveLifeViewController: BaseViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
         entertime = String(Int(Date().timeIntervalSince1970))
+        
         headView.backBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            popToSpecificViewController()
+            let leaveView = LeaveView(frame: self.view.frame)
+            if let alertVc = TYAlertController(alert: leaveView, preferredStyle: .alert) {
+                self.present(alertVc, animated: true)
+            }
+            leaveView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true) {
+                    self?.popToSpecificViewController()
+                }
+            }).disposed(by: disposeBag)
+            
+            leaveView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true)
+            }).disposed(by: disposeBag)
         }).disposed(by: disposeBag)
         
         view.addSubview(stepView)

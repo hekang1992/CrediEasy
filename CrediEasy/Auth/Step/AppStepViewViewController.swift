@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import TYAlertController
 
 class AppStepViewViewController: BaseViewController {
     
@@ -103,7 +104,19 @@ class AppStepViewViewController: BaseViewController {
         
         headView.backBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            self.navigationController?.popViewController(animated: true)
+            let leaveView = LeaveView(frame: self.view.frame)
+            if let alertVc = TYAlertController(alert: leaveView, preferredStyle: .alert) {
+                self.present(alertVc, animated: true)
+            }
+            leaveView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true) {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }).disposed(by: disposeBag)
+            
+            leaveView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true)
+            }).disposed(by: disposeBag)
         }).disposed(by: disposeBag)
         
         view.addSubview(moneyLabel)
@@ -267,6 +280,7 @@ class AppStepViewViewController: BaseViewController {
                         let pageUrl = model.ande?.roguy ?? ""
                         let webVc = ChangeCidViewController()
                         webVc.pageUrl = pageUrl
+                        webVc.type = "O"
                         webVc.orderNumber = overformalized
                         self.navigationController?.pushViewController(webVc, animated: true)
                         self.pointViewModel.getMonesesInfo(with: "9", pergamos: String(Int(Date().timeIntervalSince1970)), paludicoline: String(Int(Date().timeIntervalSince1970)), milkiness: overformalized)

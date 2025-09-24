@@ -20,7 +20,6 @@ class BaseViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
     func popToSpecificViewController() {
         guard let navigationController = self.navigationController else { return }

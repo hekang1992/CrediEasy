@@ -154,12 +154,11 @@ class SettingViewController: BaseViewController {
         
         oneListView.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            let deleteView = DeleteView(frame: UIScreen.main.bounds)
+            let deleteView = DeleteView(frame: self.view.frame)
             if let alertVc = TYAlertController(alert: deleteView, preferredStyle: .alert) {
                 self.present(alertVc, animated: true)
             }
             deleteView.agreeBtn.rx.tap.subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
                 deleteView.agreeBtn.isSelected.toggle()
             }).disposed(by: disposeBag)
             
@@ -195,7 +194,7 @@ class SettingViewController: BaseViewController {
         
         loginOutBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            let logoutView = LogOutView(frame: UIScreen.main.bounds)
+            let logoutView = LogOutView(frame: self.view.frame)
             if let alertVc = TYAlertController(alert: logoutView, preferredStyle: .alert) {
                 self.present(alertVc, animated: true)
             }
