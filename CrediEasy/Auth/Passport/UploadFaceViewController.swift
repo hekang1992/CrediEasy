@@ -433,7 +433,6 @@ extension UploadFaceViewController {
         photoView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.dismiss(animated: true) {
-                self.enterCameratime = String(Int(Date().timeIntervalSince1970))
                 self.cameraManager.takePhoto(from: self, allowsEditing: false) { [weak self] image, info in
                     guard let self = self, let image = image else { return }
                     self.handleSelectedImage(image: image, concordantly: 1)
@@ -444,6 +443,7 @@ extension UploadFaceViewController {
     
     private func popFaceView() {
         isShowFaceAlert = true
+        self.enterCameratime = String(Int(Date().timeIntervalSince1970))
         let faceView = PopFaceView(frame: self.view.frame)
         let alertVc = TYAlertController(alert: faceView, preferredStyle: .alert)!
         self.present(alertVc, animated: true)
