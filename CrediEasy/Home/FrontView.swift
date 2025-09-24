@@ -259,6 +259,13 @@ class FrontView: BaseView {
                 self.headBlock?(model.amps ?? 0)
             }
         }).disposed(by: disposeBag)
+        
+        threeImageView.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            if let model = headProductArray?.first {
+                self.headBlock?(model.amps ?? 0)
+            }
+        }).disposed(by: disposeBag)
     }
     
     @MainActor required init?(coder: NSCoder) {
