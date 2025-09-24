@@ -15,7 +15,7 @@ final class LoveLifeViewModel {
     
     private var cancellables = Set<AnyCancellable>()
     
-    /// 获取产品详情信息
+    /// 
     func getProductDetaiInfo(productID: String,
                              isTap: Bool? = false) {
         let dict = ["fuckups": productID]
@@ -27,7 +27,7 @@ final class LoveLifeViewModel {
         }.store(in: &cancellables)
     }
     
-    /// 个人信息
+    ///
     func getPersonalInfo(with productID: String, completion: @escaping (BaseModel) -> Void) {
         ViewHud.addLoadView()
         let dict = ["fuckups": productID]

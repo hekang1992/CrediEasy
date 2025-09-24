@@ -47,7 +47,7 @@ class PassportViewCell: BaseViewCell {
         bgView.addSubview(rightImageView)
         
         bgView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(34)
+            make.left.equalToSuperview().offset(14)
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
             make.height.equalTo(60)

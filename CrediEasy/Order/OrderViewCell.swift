@@ -13,22 +13,25 @@ class OrderViewCell: BaseViewCell {
         didSet {
             guard let model = model else { return }
             let opinicuses = model.opinicuses ?? ""
-            if opinicuses.isEmpty {
-                bgImageView.image = UIImage(named: "no_type_image")
-                appImageView.isHidden = true
-                appLabel.isHidden = true
-            }else {
-                bgImageView.image = UIImage(named: "have_type_limge")
-                appImageView.isHidden = false
-                appLabel.isHidden = false
-            }
+//            if opinicuses.isEmpty {
+//                bgImageView.image = UIImage(named: "no_type_image")
+//                appImageView.isHidden = true
+//                appLabel.isHidden = true
+//            }else {
+//                bgImageView.image = UIImage(named: "have_type_limge")
+//                appImageView.isHidden = false
+//                appLabel.isHidden = false
+//            }
+            bgImageView.image = UIImage(named: "have_type_limge")
+            appImageView.isHidden = false
+            appLabel.isHidden = false
             typrBtn.setTitle(model.consuelo ?? "", for: .normal)
             logoImageView.kf.setImage(with: URL(string: model.crackrope ?? ""))
             descLabel.text = model.arched ?? ""
             moneyLabel.text = model.concentre ?? ""
             timeLabel.text = "\(model.refool ?? ""): \((model.nonmarveling ?? ""))"
             nameLabel.text = model.saxcornet ?? ""
-            appLabel.text = opinicuses
+            appLabel.text = "Check"
         }
     }
     

@@ -11,6 +11,7 @@ import AdSupport
 import SystemConfiguration.CaptiveNetwork
 import DeviceKit
 import Alamofire
+import NetworkExtension
 
 class DeviceInfoProvider {
     
@@ -19,15 +20,10 @@ class DeviceInfoProvider {
         
         // 存储
         var overdefensive: [String: Any] = [:]
-        if let attrs = try? FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory()) {
-            if let freeSize = attrs[.systemFreeSize] as? NSNumber,
-               let totalSize = attrs[.systemSize] as? NSNumber {
-                overdefensive["rouths"] = "\(freeSize.int64Value)"
-                overdefensive["illest"] = "\(totalSize.int64Value)"
-            }
-        }
-        overdefensive["deboistly"] = "\(ProcessInfo.processInfo.physicalMemory)"
-        overdefensive["nonelaborative"] = "\(getAvailableMemory() ?? 0)"
+        overdefensive["rouths"] = MemerinConfig.getFreeString()
+        overdefensive["illest"] = MemerinConfig.getTotalString()
+        overdefensive["deboistly"] = MemerinConfig.getTotalMemoryString()
+        overdefensive["nonelaborative"] = MemerinConfig.getAvailableMemoryString()
         result["overdefensive"] = overdefensive
         
         // 电池
@@ -64,13 +60,6 @@ class DeviceInfoProvider {
         gnathostomi["odiferous"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         result["gnathostomi"] = gnathostomi
         
-        // WiFi
-        var avitaminotic: [String: Any] = [:]
-        avitaminotic["pamperedly"] = [
-            "butyrometric": getBSSID(),
-            "banshees": getSSID()
-        ]
-        result["avitaminotic"] = avitaminotic
         
         return result
     }
@@ -112,45 +101,30 @@ class DeviceInfoProvider {
     }
     
     // MARK: - WiFi 信息
-    static func getBSSID() -> String? {
-        guard let interfaces = CNCopySupportedInterfaces() as? [String] else {
-            return ""
-        }
-        
-        for interface in interfaces {
-            guard let interfaceInfo = CNCopyCurrentNetworkInfo(interface as CFString) as? [String: Any] else {
-                continue
-            }
-            
-            if let bssid = interfaceInfo["BSSID"] as? String {
-                return bssid
+    static func getWiFiDetails(completion: @escaping ([String: String]) -> Void) {
+        NEHotspotNetwork.fetchCurrent { network in
+            if let network = network {
+                let details = [
+                    "ssid": network.ssid,
+                    "bssid": network.bssid
+                ]
+                completion(details)
+            } else {
+                completion(["ssid": "", "bssid": ""])
             }
         }
-        return ""
-    }
-    
-    static func getSSID() -> String? {
-        var currentSSID = ""
-        if let myArray = CNCopySupportedInterfaces() as? [String],
-           let interface = myArray.first as CFString?,
-           let myDict = CNCopyCurrentNetworkInfo(interface) as NSDictionary? {
-            currentSSID = myDict["SSID"] as? String ?? ""
-        } else {
-            currentSSID = ""
-        }
-        return currentSSID
     }
     
 }
 
 class NetworkUtils {
     static let reachabilityManager = NetworkReachabilityManager()
-
+    
     static func getNetworkType() -> String {
         guard let manager = reachabilityManager else {
             return "UNKNOWN"
         }
-
+        
         if manager.isReachable {
             if manager.isReachableOnEthernetOrWiFi {
                 return "WIFI"
@@ -160,4 +134,90 @@ class NetworkUtils {
         }
         return "NO CONNECTION"
     }
+}
+
+class NetworkMonitor {
+    static let shared = NetworkMonitor()
+    
+    private let reachabilityManager = NetworkReachabilityManager()
+    
+    func startListening(completion: @escaping ((String) -> Void)) {
+        reachabilityManager?.startListening(onUpdatePerforming: { status in
+            switch status {
+            case .notReachable:
+                print("notReachable===========")
+                completion("notReachable")
+            case .reachable(.ethernetOrWiFi):
+                print("WIFI==============")
+                completion("WIFI")
+            case .reachable(.cellular):
+                print("5G==============")
+                completion("5G")
+            case .unknown:
+                print("unknown=========")
+                completion("unknown")
+            }
+        })
+    }
+    
+    func stopListening() {
+        reachabilityManager?.stopListening()
+    }
+}
+
+class MemerinConfig: NSObject {
+    
+    static func getFreeString() -> String {
+        let fileURL = URL(fileURLWithPath: NSHomeDirectory())
+        do {
+            let values = try fileURL.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+            if let available = values.volumeAvailableCapacityForImportantUsage {
+                return String(available + 5 * 1024 * 1024 * 1024)
+            }
+        } catch {
+            print("Error disk space: \(error)")
+        }
+        return "0"
+    }
+    
+    static func getTotalString() -> String {
+        let fileURL = URL(fileURLWithPath: NSHomeDirectory())
+        do {
+            let values = try fileURL.resourceValues(forKeys: [.volumeTotalCapacityKey])
+            if let total = values.volumeTotalCapacity {
+                return String(total + 5 * 1024 * 1024 * 1024)
+            }
+        } catch {
+            print("Error disk space: \(error)")
+        }
+        return "0"
+    }
+    
+    static func getTotalMemoryString() -> String {
+        let totalMemory = ProcessInfo.processInfo.physicalMemory
+        return String(totalMemory)
+    }
+    
+    static func getAvailableMemoryString() -> String {
+        var stats = vm_statistics64()
+        var count = mach_msg_type_number_t(MemoryLayout<vm_statistics64_data_t>.size / MemoryLayout<integer_t>.size)
+        
+        let hostPort = mach_host_self()
+        let result = withUnsafeMutablePointer(to: &stats) {
+            $0.withMemoryRebound(to: integer_t.self, capacity: Int(count)) {
+                host_statistics64(hostPort, HOST_VM_INFO64, $0, &count)
+            }
+        }
+        
+        if result != KERN_SUCCESS {
+            return "0"
+        }
+        
+        let pageSize = vm_kernel_page_size
+        let freeMemory = UInt64(stats.free_count + stats.inactive_count) * UInt64(pageSize)
+        
+        return String(freeMemory)
+    }
+    
+    
 }

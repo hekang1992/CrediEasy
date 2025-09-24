@@ -5,6 +5,7 @@
 //  Created by 何康 on 2025/9/10.
 //
 
+import UIKit
 import Foundation
 import CoreLocation
 
@@ -28,6 +29,9 @@ class LocationManager: NSObject {
     private let geocoder = CLGeocoder()
     private var completion: ((LocationInfo?) -> Void)?
     
+    /// 标记是否已经弹出过“拒绝定位”的提示
+    private var hasShownDeniedAlert = false
+    
     private override init() {
         super.init()
         manager.delegate = self
@@ -48,11 +52,39 @@ class LocationManager: NSObject {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .restricted, .denied:
+            showDeniedAlertIfNeeded()
             completion(nil)
         case .authorizedWhenInUse, .authorizedAlways:
             manager.requestLocation()
         @unknown default:
             completion(nil)
+        }
+    }
+    
+    private func showDeniedAlertIfNeeded() {
+        guard !hasShownDeniedAlert else { return }
+        hasShownDeniedAlert = true
+        
+        DispatchQueue.main.async {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let rootVC = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
+                return
+            }
+            
+            let alert = UIAlertController(
+                title: "Location permission",
+                message: "You’ve disabled location permission. To restore full functionality, go to Settings > Privacy > Location Services, select our app, and enable location access.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Setting", style: .default, handler: { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString),
+                   UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            }))
+            
+            rootVC.present(alert, animated: true)
         }
     }
 }
@@ -104,6 +136,7 @@ extension LocationManager: CLLocationManagerDelegate {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
             manager.requestLocation()
         } else if status == .denied || status == .restricted {
+            showDeniedAlertIfNeeded()
             completion?(nil)
             completion = nil
         }

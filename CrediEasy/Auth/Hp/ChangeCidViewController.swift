@@ -40,6 +40,13 @@ class ChangeCidViewController: BaseViewController {
         webView.navigationDelegate = self
         return webView
     }()
+    
+    lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView()
+        progressView.progressTintColor = UIColor.init(hexString: "#E51F89")
+        progressView.trackTintColor = .lightGray
+        return progressView
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +60,7 @@ class ChangeCidViewController: BaseViewController {
         view.backgroundColor = UIColor(hexString: "#0073E5")
         
         view.addSubview(headView)
+        view.addSubview(progressView)
         view.addSubview(webView)
         
         setupConstraints()
@@ -65,9 +73,15 @@ class ChangeCidViewController: BaseViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
         
+        progressView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(headView.snp.bottom)
+            make.height.equalTo(2)
+        }
+        
         webView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(headView.snp.bottom).offset(10)
+            make.top.equalTo(progressView.snp.bottom)
         }
     }
     
@@ -77,6 +91,7 @@ class ChangeCidViewController: BaseViewController {
                 self?.popToSpecificViewController()
             })
             .disposed(by: disposeBag)
+        
     }
         
     private func loadWebContent() {
@@ -105,6 +120,21 @@ class ChangeCidViewController: BaseViewController {
                     self.headView.namelabel.text = title
                 }
             }).disposed(by: disposeBag)
+        
+        webView.rx.observe(Double.self, "estimatedProgress")
+            .compactMap { $0 }
+            .map { Float($0) }
+            .bind(to: progressView.rx.progress)
+            .disposed(by: disposeBag)
+        
+        webView.rx.observe(Double.self, "estimatedProgress")
+            .compactMap { $0 }
+            .filter { $0 == 1.0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.progressView.setProgress(0.0, animated: false)
+                self?.progressView.isHidden = true
+            })
+            .disposed(by: disposeBag)
         
     }
 }
@@ -138,16 +168,13 @@ extension ChangeCidViewController: WKNavigationDelegate, WKScriptMessageHandler 
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("WebView started loading")
-        ViewHud.addLoadView()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("WebView finished loading")
-        ViewHud.hideLoadView()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
         print("WebView error")
-        ViewHud.hideLoadView()
     }
 }

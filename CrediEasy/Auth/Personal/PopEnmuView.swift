@@ -14,6 +14,7 @@ class PopEnmuView: BaseView {
     var model: revolutionisedModel? {
         didSet {
             guard let model = model else { return }
+            namelabel.text = model.estoppels ?? ""
         }
     }
     
@@ -34,11 +35,19 @@ class PopEnmuView: BaseView {
         return bgImageView
     }()
     
-    lazy var headImageView: UIImageView = {
-        let headImageView = UIImageView()
-        headImageView.image = UIImage(named: "chose_l_imge")
-        headImageView.contentMode = .scaleAspectFit
-        return headImageView
+//    lazy var headImageView: UIImageView = {
+//        let headImageView = UIImageView()
+//        headImageView.image = UIImage(named: "chose_l_imge")
+//        headImageView.contentMode = .scaleAspectFit
+//        return headImageView
+//    }()
+    
+    lazy var namelabel: UILabel = {
+        let namelabel = UILabel()
+        namelabel.textColor = UIColor.init(hexString: "#0073E5")
+        namelabel.textAlignment = .center
+        namelabel.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(500))
+        return namelabel
     }()
     
     lazy var cancelBtn: UIButton = {
@@ -70,7 +79,7 @@ class PopEnmuView: BaseView {
         addSubview(bgView)
         bgView.addSubview(cancelBtn)
         bgView.addSubview(bgImageView)
-        bgView.addSubview(headImageView)
+        bgView.addSubview(namelabel)
         bgView.addSubview(sureBtn)
         bgView.addSubview(pickerView)
         
@@ -82,13 +91,14 @@ class PopEnmuView: BaseView {
             make.top.left.right.equalToSuperview()
             make.height.equalTo(181)
         }
-        headImageView.snp.makeConstraints { make in
+        namelabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 167, height: 24))
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(20)
         }
         cancelBtn.snp.makeConstraints { make in
-            make.centerY.equalTo(headImageView.snp.centerY)
+            make.centerY.equalTo(namelabel.snp.centerY)
             make.right.equalToSuperview().offset(-20)
             make.size.equalTo(CGSize(width: 25, height: 25))
         }
@@ -100,7 +110,7 @@ class PopEnmuView: BaseView {
         }
         pickerView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(headImageView.snp.bottom).offset(5)
+            make.top.equalTo(namelabel.snp.bottom).offset(5)
             make.bottom.equalTo(sureBtn.snp.top).offset(-5)
         }
         

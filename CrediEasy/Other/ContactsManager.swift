@@ -39,11 +39,11 @@ class ContactsManager: NSObject, CNContactPickerDelegate {
     
     // MARK: - 弹出提示框
     private func showPermissionAlert(from viewController: UIViewController) {
-        let alert = UIAlertController(title: "通讯录权限未开启",
-                                      message: "请前往 设置 > 隐私 > 通讯录 打开权限",
+        let alert = UIAlertController(title: "Contacts permission",
+                                      message: "Contacts permission is denied. To turn it back on, go to Settings > Privacy > Contacts, locate our app, and enable access.",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "去设置", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Setting", style: .default, handler: { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
@@ -69,7 +69,7 @@ class ContactsManager: NSObject, CNContactPickerDelegate {
             
             do {
                 try self.contactStore.enumerateContacts(with: request) { contact, _ in
-                    let fullName = "\(contact.familyName)\(contact.givenName)"
+                    let fullName = "\(contact.givenName) \(contact.familyName)"
                     let phones = contact.phoneNumbers.map { $0.value.stringValue }
                     if !phones.isEmpty {
                         let phoneStr = phones.joined(separator: ",")
@@ -103,7 +103,7 @@ class ContactsManager: NSObject, CNContactPickerDelegate {
     
     // MARK: - CNContactPickerDelegate
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        let fullName = "\(contact.familyName) \(contact.givenName)"
+        let fullName = "\(contact.givenName) \(contact.familyName)"
         let phones = contact.phoneNumbers.map { $0.value.stringValue }
         let phoneStr = phones.first ?? ""
         let contactModel = ContactModel(banshees: fullName, anthemwise: phoneStr)

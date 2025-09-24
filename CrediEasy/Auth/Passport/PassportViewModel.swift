@@ -22,7 +22,9 @@ final class PassportViewModel {
     func getProductDetaiInfo(productID: String,
                              isTap: Bool? = false) {
         let dict = ["fuckups": productID]
+        ViewHud.addLoadView()
         NetworkManager.shared.postForm(path: "/Sharpsburg/anderssen", parameters: dict).sink { completion in
+            ViewHud.hideLoadView()
         } receiveValue: { model in
             if model.larcenable == "0" || model.larcenable == "00" {
                 self.detailModel.accept(model)

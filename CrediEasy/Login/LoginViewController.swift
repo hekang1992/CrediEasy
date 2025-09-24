@@ -119,6 +119,14 @@ class LoginViewController: BaseViewController {
                 print("❌========")
             }
         }
+        
+        loginView.agreementLabel.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let webVc = ChangeCidViewController()
+            webVc.pageUrl = FacebookModel.shared.model?.ande?.hematopoietically ?? ""
+            self.navigationController?.pushViewController(webVc, animated: true)
+        }).disposed(by: disposeBag)
+        
     }
     
     deinit {

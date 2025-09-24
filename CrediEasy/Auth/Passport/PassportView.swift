@@ -63,7 +63,8 @@ class PassportView: BaseView {
         oneTableView.register(PassportViewCell.self,
                               forCellReuseIdentifier: "PassportViewCell1")
         oneTableView.estimatedRowHeight = 80
-        oneTableView.showsVerticalScrollIndicator = false
+        oneTableView.showsVerticalScrollIndicator = true
+        oneTableView.showsHorizontalScrollIndicator = true
         oneTableView.contentInsetAdjustmentBehavior = .never
         oneTableView.rowHeight = UITableView.automaticDimension
         oneTableView.delegate = self
@@ -81,7 +82,8 @@ class PassportView: BaseView {
         twoTableView.register(PassportViewCell.self,
                               forCellReuseIdentifier: "PassportViewCell2")
         twoTableView.estimatedRowHeight = 80
-        twoTableView.showsVerticalScrollIndicator = false
+        twoTableView.showsVerticalScrollIndicator = true
+        twoTableView.showsHorizontalScrollIndicator = true
         twoTableView.contentInsetAdjustmentBehavior = .never
         twoTableView.rowHeight = UITableView.automaticDimension
         twoTableView.delegate = self
@@ -129,13 +131,15 @@ class PassportView: BaseView {
         }
         oneTableView.snp.makeConstraints { make in
             make.top.equalTo(oneLabel.snp.bottom).offset(18)
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview().offset(24)
             make.height.equalTo(370)
+            make.centerX.equalToSuperview()
         }
         twoTableView.snp.makeConstraints { make in
             make.top.equalTo(twoLabel.snp.bottom).offset(18)
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview().offset(24)
             make.height.equalTo(370)
+            make.centerX.equalToSuperview()
         }
     }
     

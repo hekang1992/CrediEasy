@@ -14,6 +14,16 @@ class SettingViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
+    var model: BaseModel? {
+        didSet {
+            guard let model = model, let toothful = model.ande?.toothful?.first else { return }
+            let priInfo = toothful.skyhook ?? ""
+            let loanInfo = toothful.circumduct ?? ""
+            twoListView.isHidden = priInfo.isEmpty
+            threeListView.isHidden = loanInfo.isEmpty
+        }
+    }
+    
     private var cancellables = Set<AnyCancellable>()
     
     lazy var headImageView: UIImageView = {
@@ -148,15 +158,39 @@ class SettingViewController: BaseViewController {
             if let alertVc = TYAlertController(alert: deleteView, preferredStyle: .alert) {
                 self.present(alertVc, animated: true)
             }
+            deleteView.agreeBtn.rx.tap.subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                deleteView.agreeBtn.isSelected.toggle()
+            }).disposed(by: disposeBag)
+            
             deleteView.leftBtn.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true) {
-                    self?.deleteAppInfo()
+                guard let self = self else { return }
+                if deleteView.agreeBtn.isSelected {
+                    self.dismiss(animated: true) {
+                        self.deleteAppInfo()
+                    }
+                }else {
+                    ToastShowMessage.showToast(message: "Please read and agree to the above content")
                 }
             }).disposed(by: disposeBag)
             
             deleteView.rightBtn.rx.tap.subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true)
             }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
+        
+        twoListView.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let webVc = ChangeCidViewController()
+            webVc.pageUrl = model?.ande?.toothful?.first?.skyhook ?? ""
+            self.navigationController?.pushViewController(webVc, animated: true)
+        }).disposed(by: disposeBag)
+        
+        threeListView.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let webVc = ChangeCidViewController()
+            webVc.pageUrl = model?.ande?.toothful?.first?.circumduct ?? ""
+            self.navigationController?.pushViewController(webVc, animated: true)
         }).disposed(by: disposeBag)
         
         loginOutBtn.rx.tap.subscribe(onNext: { [weak self] in

@@ -36,6 +36,8 @@ class UploadFaceViewController: BaseViewController {
     
     let pointViewModel = PointViewModel()
     
+    let pointFaceViewModel = PointViewModel()
+    
     lazy var whiteView: UIView = {
         let whiteView = UIView(frame: .zero)
         whiteView.backgroundColor = .white
@@ -284,6 +286,13 @@ class UploadFaceViewController: BaseViewController {
             successView.tableView.reloadData()
             let alertVc = TYAlertController(alert: successView, preferredStyle: .actionSheet)!
             self.present(alertVc, animated: true)
+            
+            successView.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+            }).disposed(by: disposeBag)
+            
+            
             var time: String = ""
             successView.dateBlock = { [weak self] cell in
                 guard let self = self else { return }
@@ -294,7 +303,7 @@ class UploadFaceViewController: BaseViewController {
                         if time.isEmpty {
                             time = hydrophoria.isEmpty ? "1999-10-30" : hydrophoria
                         }else {
-                         time = time
+                            time = time
                         }
                     }
                 }
@@ -386,6 +395,7 @@ class UploadFaceViewController: BaseViewController {
                 if faceBool == 0 {
                     popFaceView()
                 }else {
+                    let viewModel = DetailViewModel.shared
                     viewModel.getProductDetaiInfo(productID: productID, isTap: true)
                 }
             }
@@ -395,7 +405,7 @@ class UploadFaceViewController: BaseViewController {
         viewModel.getIDetaiInfo(productID: productID)
         
     }
-
+    
 }
 
 extension UploadFaceViewController {
@@ -468,14 +478,13 @@ extension UploadFaceViewController {
                     "agynic": type] as [String : Any]
         viewModel.upLoadFaceImage(with: dict, image: image, completion: { model in
             if model.larcenable == "0" || model.larcenable == "00" {
-                self.popToSpecificViewController()
-                self.pointViewModel.getMonesesInfo(with: "4", pergamos: self.enterCameratime, paludicoline: String(Int(Date().timeIntervalSince1970)))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    self.popToSpecificViewController()
+                }
+                self.pointFaceViewModel.getMonesesInfo(with: "4", pergamos: self.enterCameratime, paludicoline: String(Int(Date().timeIntervalSince1970)))
             }
         })
     }
     
 }
 
-//let pickView = DatePickerView(defaultDateString: "09-09-2011")
-//let alertVc = TYAlertController(alert: pickView, preferredStyle: .actionSheet)!
-//self.present(alertVc, animated: true)

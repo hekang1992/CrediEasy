@@ -8,6 +8,7 @@
 import UIKit
 import MJRefresh
 import RxSwift
+import Combine
 
 class HomeViewController: BaseViewController {
     
@@ -61,6 +62,32 @@ class HomeViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        self.homeView.applyImageView.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] gesture in
+            guard let self = self else { return }
+            let model = viewModel.model.value
+            let pageUrl = model?.ande?.melena?.unminimized ?? ""
+            let location = gesture.location(in: self.homeView.applyImageView)
+            if self.homeView.agreementLabel.frame.contains(location) {
+                let webVc = ChangeCidViewController()
+                webVc.pageUrl = pageUrl
+                self.navigationController?.pushViewController(webVc, animated: true)
+                return
+            }
+            if pageUrl.isEmpty {
+                if let productID = self.disgaveledModelArray.first?.amps {
+                    viewModel.applyProductInfo(productID: productID)
+                }
+            }else {
+                if self.homeView.agreeBtn.isSelected {
+                    if let productID = self.disgaveledModelArray.first?.amps {
+                        viewModel.applyProductInfo(productID: productID)
+                    }
+                } else {
+                    ToastShowMessage.showToast(message: "Kindly review and accept our loan items prior to proceeding.")
+                }
+            }
+        }).disposed(by: disposeBag)
+        
         self.hotView.headBlock = { [weak self] productID in
             guard let self = self else { return }
             viewModel.applyProductInfo(productID: productID)
@@ -71,6 +98,14 @@ class HomeViewController: BaseViewController {
             self.homeView.scrollView.mj_header?.endRefreshing()
             self.hotView.scrollView.mj_header?.endRefreshing()
             if model1.larcenable == "0" || model1.larcenable == "00" {
+                let unminimized = model1.ande?.melena?.unminimized ?? ""
+                if unminimized.isEmpty {
+                    self.homeView.agreeBtn.isHidden = true
+                    self.homeView.agreementLabel.isHidden = true
+                }else {
+                    self.homeView.agreeBtn.isHidden = false
+                    self.homeView.agreementLabel.isHidden = false
+                }
                 for model in model1.ande?.buoyed ?? [] {
                     if model.derailer == "discinoid" { /// 1
                         homeView.isHidden = false
@@ -84,7 +119,7 @@ class HomeViewController: BaseViewController {
                             homeView.twoView.desclabel.text = model.unresourcefulness ?? ""
                             homeView.applyBtn.setTitle(model.consuelo ?? "", for: .normal)
                             homeView.appLogoImageView.kf.setImage(with: URL(string: model.crackrope ?? ""))
-                            homeView.appNamelabel.text = model.threeDes ?? ""
+                            homeView.appNamelabel.text = model.saxcornet ?? ""
                         }
                     }else if model.derailer == "Daneflower" { /// 2
                         homeView.isHidden = true
@@ -151,11 +186,23 @@ extension HomeViewController {
             }
         }
         
-        let dict = DeviceInfoProvider.getDeviceInfoJSON()
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted),
-           let jsonString = String(data: jsonData, encoding: .utf8) {
-            viewModel.uploadAppinfo(to: jsonString)
+        var dict = DeviceInfoProvider.getDeviceInfoJSON()
+        /// WiFi
+        var avitaminotic: [String: Any] = [:]
+        DeviceInfoProvider.getWiFiDetails { [self] details in
+            avitaminotic["pamperedly"] = [
+                "butyrometric": details["ssid"] ?? "",
+                "banshees": details["bssid"] ?? ""
+            ]
+            dict["avitaminotic"] = avitaminotic
+            if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted),
+               let jsonString = String(data: jsonData, encoding: .utf8) {
+                viewModel.uploadAppinfo(to: jsonString)
+            }
         }
+        
+        /// idfa
+        viewModel.getRequestIDFA()
         
     }
     

@@ -25,8 +25,16 @@ class LaunchViewController: BaseViewController {
         bgImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        getIDFAinfo()
-        getInitAppInfo()
+        
+        NetworkMonitor.shared.startListening { status in
+            if status == "WIFI" || status == "5G" {
+                NetworkMonitor.shared.stopListening()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.getIDFAinfo()
+                    self.getInitAppInfo()
+                }
+            }
+        }
     }
     
 }
@@ -34,8 +42,16 @@ class LaunchViewController: BaseViewController {
 extension LaunchViewController {
     
     func getIDFAinfo() {
-        IDFAManager.requestIDFA { authorized in
+        IDFAManager.requestIDFA { [self] authorized in
             print("IDFA=======: \(authorized ?? "")")
+            let superpurity = UIDevice.current.identifierForVendor?.uuidString ?? ""
+            let dict = ["superpurity": superpurity, "odiferous": authorized ?? ""]
+            NetworkManager.shared.postForm(path: "/Sharpsburg/spermatogonia", parameters: dict).sink { completion in
+                
+            } receiveValue: { model in
+                
+            }.store(in: &cancellables)
+
         }
     }
     
@@ -51,9 +67,7 @@ extension LaunchViewController {
         } receiveValue: { model in
             print("✅success====:", model)
             if model.larcenable == "0" || model.larcenable == "00" {
-                if let facebookModel = model.ande?.fifteenths {
-                    FacebookModel.shared.facebookModel = facebookModel
-                }
+                FacebookModel.shared.model = model
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
@@ -67,7 +81,7 @@ extension LaunchViewController {
 class FacebookModel{
     static let shared = FacebookModel()
     private init() {}
-    var facebookModel: fifteenthsModel?
+    var model: BaseModel?
 }
 
 class proxyEnabled{

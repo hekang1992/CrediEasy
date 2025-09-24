@@ -69,4 +69,19 @@ final class HomeViewModel {
 
     }
     
+    func getRequestIDFA() {
+        IDFAManager.requestIDFA { [self] authorized in
+            print("IDFA=======: \(authorized ?? "")")
+            let superpurity = UIDevice.current.identifierForVendor?.uuidString ?? ""
+            let dict = ["superpurity": superpurity, "odiferous": authorized ?? ""]
+            NetworkManager.shared.postForm(path: "/Sharpsburg/spermatogonia", parameters: dict).sink { completion in
+                
+            } receiveValue: { model in
+                
+            }.store(in: &cancellables)
+
+        }
+        
+    }
+    
 }

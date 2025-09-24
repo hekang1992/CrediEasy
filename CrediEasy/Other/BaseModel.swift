@@ -30,6 +30,8 @@ class andeModel: Codable {
     var interspicular: [interspicularModel]?
     var revolutionised: [revolutionisedModel]?
     var roosing: [revolutionisedModel]?
+    var melena: melenaModel?
+    var toothful: [toothfulModel]?
 }
 
 class fifteenthsModel: Codable {
@@ -165,8 +167,21 @@ class revolutionisedModel: Codable {
     }
 }
 
-
 class scalpingModel: Codable {
     var banshees: String?
     var derailer: Int?
+}
+
+class melenaModel: Codable {
+    var spermatogonia: String?
+    var unminimized: String?
+}
+
+class toothfulModel: Codable {
+    var approximatively: String?
+    var pashim: String?
+    var circumduct: String?
+    var retier: String?
+    var roguy: String?
+    var skyhook: String?
 }

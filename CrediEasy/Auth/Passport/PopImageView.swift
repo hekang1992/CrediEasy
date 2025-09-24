@@ -40,6 +40,12 @@ class PopImageView: BaseView {
         return twoImageView
     }()
     
+    lazy var cancelBtn: UIButton = {
+        let cancelBtn = UIButton(type: .custom)
+        cancelBtn.setImage(UIImage(named: "cancel_lis_image"), for: .normal)
+        return cancelBtn
+    }()
+    
     lazy var saveBtn: UIButton = {
         let saveBtn = UIButton(type: .custom)
         saveBtn.setTitle("Confirm", for: .normal)
@@ -77,6 +83,7 @@ class PopImageView: BaseView {
         bgImageView.addSubview(oneImageView)
         bgView.addSubview(saveBtn)
         bgView.addSubview(tableView)
+        bgView.addSubview(cancelBtn)
         bgView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(427)
@@ -104,6 +111,11 @@ class PopImageView: BaseView {
             make.left.right.equalToSuperview()
             make.top.equalTo(oneImageView.snp.bottom).offset(14)
             make.bottom.equalTo(saveBtn.snp.top).offset(-10)
+        }
+        cancelBtn.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.size.equalTo(CGSize(width: 25, height: 25))
         }
     }
     

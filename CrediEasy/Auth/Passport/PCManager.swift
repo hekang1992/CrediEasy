@@ -91,16 +91,16 @@ class PhotoLibraryManager: NSObject {
     
     fileprivate func showPermissionAlert(for permission: PermissionType) {
         let alert = UIAlertController(
-            title: "权限被拒绝",
-            message: "请前往设置允许访问\(permission.displayName)",
+            title: "Photo permission",
+            message: "Photo permission is currently turned off. To re-enable, open Settings > Privacy > Photos, choose our app, and allow access.",
             preferredStyle: .alert
         )
         
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.selectionHandler?(nil, nil)
         }
         
-        let settingsAction = UIAlertAction(title: "去设置", style: .default) { _ in
+        let settingsAction = UIAlertAction(title: "Setting", style: .default) { _ in
             self.openAppSettings()
             self.selectionHandler?(nil, nil)
         }
@@ -229,12 +229,12 @@ class CameraManager: NSObject {
     
     private func showCameraNotAvailableAlert() {
         let alert = UIAlertController(
-            title: "相机不可用",
-            message: "当前设备不支持相机功能",
+            title: "Camera",
+            message: "Camera error",
             preferredStyle: .alert
         )
         
-        let okAction = UIAlertAction(title: "确定", style: .default) { _ in
+        let okAction = UIAlertAction(title: "Sure", style: .default) { _ in
             self.captureHandler?(nil, nil)
         }
         
@@ -244,16 +244,16 @@ class CameraManager: NSObject {
     
     fileprivate func showPermissionAlert(for permission: PermissionType) {
         let alert = UIAlertController(
-            title: "权限被拒绝",
-            message: "请前往设置允许访问\(permission.displayName)",
+            title: "Camera permission",
+            message: "Camera use is restricted. To enable camera features, visit Settings > Privacy > Camera, find our app, and allow access.",
             preferredStyle: .alert
         )
         
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.captureHandler?(nil, nil)
         }
         
-        let settingsAction = UIAlertAction(title: "去设置", style: .default) { _ in
+        let settingsAction = UIAlertAction(title: "Setting", style: .default) { _ in
             self.openAppSettings()
             self.captureHandler?(nil, nil)
         }

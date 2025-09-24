@@ -42,6 +42,7 @@ class ProfileViewController: BaseViewController {
             let roguy = model.roguy ?? ""
             if roguy == setttingSchemeUrl {
                 let settingVc = SettingViewController()
+                settingVc.model = viewModel.model.value
                 self.navigationController?.pushViewController(settingVc, animated: true)
             }else {
                 let webVc = ChangeCidViewController()

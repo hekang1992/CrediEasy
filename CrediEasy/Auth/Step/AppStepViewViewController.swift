@@ -78,11 +78,11 @@ class AppStepViewViewController: BaseViewController {
         return applyBtn
     }()
     
-    lazy var priImageView: UIImageView = {
-        let priImageView = UIImageView()
-        priImageView.image = UIImage(named: "pri_li_step_image")
-        priImageView.isUserInteractionEnabled = true
-        return priImageView
+    lazy var agreementLabel: UILabel = {
+        let agreementLabel = UILabel()
+        agreementLabel.numberOfLines = 0
+        agreementLabel.textAlignment = .center
+        return agreementLabel
     }()
     
     override func viewDidLoad() {
@@ -148,8 +148,8 @@ class AppStepViewViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 345, height: 54))
         }
         
-        view.addSubview(priImageView)
-        priImageView.snp.makeConstraints { make in
+        view.addSubview(agreementLabel)
+        agreementLabel.snp.makeConstraints { make in
             make.top.equalTo(tableView.snp.bottom)
             make.size.equalTo(CGSize(width: 375, height: 50))
             make.centerX.equalToSuperview()
@@ -165,19 +165,51 @@ class AppStepViewViewController: BaseViewController {
                 oneView.desclabel.text = model.ande?.feliciana?.lutes?.sunned?.unrecreant ?? ""
                 twoView.desclabel.text = model.ande?.feliciana?.lutes?.nickled?.unrecreant ?? ""
                 applyBtn.setTitle(model.ande?.feliciana?.consuelo ?? "", for: .normal)
+                
+                let priStr = model.ande?.melena?.spermatogonia ?? ""
+                let baseString = "All operations strictly adhere to the protocols and standards outlined in our \(priStr)."
+                let attributedString = NSMutableAttributedString(string: baseString)
+                let entireAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(400)),
+                    .foregroundColor: UIColor.init(hexString: "#999B9C")
+                ]
+                attributedString.addAttributes(entireAttributes, range: NSRange(location: 0, length: baseString.count))
+                let linkText = "\(priStr)"
+                if let linkRange = baseString.range(of: linkText) {
+                    let nsRange = NSRange(linkRange, in: baseString)
+                    attributedString.addAttributes([
+                        .foregroundColor: UIColor.systemBlue,
+                        .underlineStyle: NSUnderlineStyle.single.rawValue
+                    ], range: nsRange)
+                }
+                agreementLabel.attributedText = attributedString
             } else {
                 headView.namelabel.text = ""
                 moneyLabel.text = ""
                 oneView.desclabel.text = ""
                 twoView.desclabel.text = ""
                 applyBtn.setTitle("", for: .normal)
+                agreementLabel.text = ""
             }
+        }).disposed(by: disposeBag)
+        
+        agreementLabel.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let webVc = ChangeCidViewController()
+            webVc.pageUrl = viewModel.detailModel.value?.ande?.melena?.unminimized ?? ""
+            self.navigationController?.pushViewController(webVc, animated: true)
         }).disposed(by: disposeBag)
         
         viewModel.listModelArray.compactMap { $0 ?? [] }.asObservable().bind(to: tableView.rx.items(cellIdentifier: "StepViewCell", cellType: StepViewCell.self)) { row, model, cell in
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.model = model
+            let ideist = model.ideist ?? 0
+            if ideist == 1 {
+                cell.rightImageView.image = UIImage(named: "list_step_succ")
+            }else {
+                cell.rightImageView.image = UIImage(named: "list_step_\(row)")
+            }
         }.disposed(by: disposeBag)
         
         viewModel.detailApplyModel.asObservable().subscribe(onNext: { [weak self] model in

@@ -38,7 +38,7 @@ class PassportViewController: BaseViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.init(hexString: "#0073E5")
         view.addSubview(headView)
-        headView.namelabel.text = "ldentity Authentication"
+        headView.namelabel.text = "Select Card Type"
         headView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.height.equalTo(40)

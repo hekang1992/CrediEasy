@@ -128,7 +128,6 @@ class HomeView: BaseView {
     
     lazy var applyBtn: UIButton = {
         let applyBtn = UIButton(type: .custom)
-        applyBtn.setTitle("Obtain loan amount", for: .normal)
         applyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(500))
         applyBtn.setTitleColor(.white, for: .normal)
         applyBtn.backgroundColor = UIColor.init(hexString: "#0073E5")

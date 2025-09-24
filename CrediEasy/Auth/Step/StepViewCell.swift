@@ -16,14 +16,6 @@ class StepViewCell: BaseViewCell {
             logoImageView.kf.setImage(with: URL(string: logoUrl))
             nameLabel.text = model.spermatogonia ?? ""
             descLabel.text = model.estoppels ?? ""
-            let epees = model.epees ?? ""
-            let ideist = model.ideist ?? 0
-            if ideist == 1 {
-                rightImageView.image = UIImage(named: "list_step_succ")
-            }else {
-                rightImageView.image = UIImage(named: "list_step_\(epees)")
-            }
-            
         }
     }
     

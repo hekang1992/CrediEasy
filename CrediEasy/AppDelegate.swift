@@ -49,7 +49,7 @@ extension AppDelegate {
     }
     
     @objc func changeRootVc(_ noti: Notification) {
-        let model = FacebookModel.shared.facebookModel
+        let model = FacebookModel.shared.model?.ande?.fifteenths
         Settings.shared.appID = model?.abidances ?? ""
         Settings.shared.clientToken = model?.moonblink ?? ""
         Settings.shared.displayName = model?.commonalty ?? ""
