@@ -27,8 +27,8 @@ class LocationManager: NSObject {
     private let geocoder = CLGeocoder()
     private var completion: ((LocationInfo?) -> Void)?
     
-    /// 标记是否已经弹出过"拒绝定位"的提示
-    private var hasShownDeniedAlert = false
+    /// UserDefaults 的 key
+    private let lastDeniedAlertDateKey = "LastDeniedAlertDate"
     
     override init() {
         super.init()
@@ -70,9 +70,38 @@ class LocationManager: NSObject {
         completion = nil
     }
     
+    /// 检查是否可以显示拒绝定位弹窗（一天只显示一次）
+    private func canShowDeniedAlert() -> Bool {
+        guard let lastAlertDate = UserDefaults.standard.object(forKey: lastDeniedAlertDateKey) as? Date else {
+            // 如果没有记录，说明可以显示
+            return true
+        }
+        
+        // 检查是否已经过了一天
+        let currentDate = Date()
+        let calendar = Calendar.current
+        
+        // 方法1：检查是否在同一天（更严格）
+        // return !calendar.isDate(currentDate, inSameDayAs: lastAlertDate)
+        
+        // 方法2：检查是否已经过了24小时（更灵活）
+        let timeInterval = currentDate.timeIntervalSince(lastAlertDate)
+        let hours24: TimeInterval = 24 * 60 * 60
+        return timeInterval >= hours24
+    }
+    
+    /// 记录弹窗显示时间
+    private func recordDeniedAlertDate() {
+        UserDefaults.standard.set(Date(), forKey: lastDeniedAlertDateKey)
+        UserDefaults.standard.synchronize()
+    }
+    
     private func showDeniedAlertIfNeeded() {
-        guard !hasShownDeniedAlert else { return }
-        hasShownDeniedAlert = true
+        // 检查是否可以显示弹窗
+        guard canShowDeniedAlert() else { return }
+        
+        // 记录本次弹窗时间
+        recordDeniedAlertDate()
         
         DispatchQueue.main.async {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -95,6 +124,17 @@ class LocationManager: NSObject {
             
             rootVC.present(alert, animated: true)
         }
+    }
+    
+    /// 重置弹窗记录（用于测试或特殊情况）
+    func resetDeniedAlertRecord() {
+        UserDefaults.standard.removeObject(forKey: lastDeniedAlertDateKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    /// 获取最后一次弹窗日期（用于调试）
+    func getLastDeniedAlertDate() -> Date? {
+        return UserDefaults.standard.object(forKey: lastDeniedAlertDateKey) as? Date
     }
 }
 

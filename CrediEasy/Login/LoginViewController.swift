@@ -106,20 +106,26 @@ class LoginViewController: BaseViewController {
                                                paludicoline: String(Int(Date().timeIntervalSince1970)))
         }).disposed(by: disposeBag)
         
-        locationManager.requestLocation { info in
-            if let info = info {
-                let dict = ["deflux": info.administrativeArea ?? "",
-                            "smacksman": info.countryCode ?? "",
-                            "girasol": info.country ?? "",
-                            "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
-                            "squeegeing": String(format: "%.6f", info.longitude ?? 0.0),
-                            "homostylism": String(format: "%.6f", info.longitude ?? 0.0),
-                            "unspread": info.locality ?? "",
-                            "fleche": info.subLocality ?? ""]
-                self.viewModel.uploadLoacationInfo(dict: dict)
-            } else {
-                print("❌========")
+        
+        let percents = UserDefaults.standard.object(forKey: "percents") as? Int ?? 0
+        if percents == 1 {
+            locationManager.requestLocation { info in
+                if let info = info {
+                    let dict = ["deflux": info.administrativeArea ?? "",
+                                "smacksman": info.countryCode ?? "",
+                                "girasol": info.country ?? "",
+                                "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
+                                "squeegeing": String(format: "%.6f", info.longitude ?? 0.0),
+                                "homostylism": String(format: "%.6f", info.longitude ?? 0.0),
+                                "unspread": info.locality ?? "",
+                                "fleche": info.subLocality ?? ""]
+                    self.viewModel.uploadLoacationInfo(dict: dict)
+                } else {
+                    print("❌========")
+                }
             }
+        }else {
+            
         }
         
         loginView.agreementLabel.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in

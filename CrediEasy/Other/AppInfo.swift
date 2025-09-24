@@ -18,10 +18,10 @@ class DeviceInfoProvider {
     static func getDeviceInfoJSON() -> [String: Any] {
         var result: [String: Any] = [:]
         
-        // 存储
         var overdefensive: [String: Any] = [:]
-        overdefensive["rouths"] = MemerinConfig.getFreeString()
-        overdefensive["illest"] = MemerinConfig.getTotalString()
+        let dickInfo = DiskSpaceHelper.debugPrintDiskInfo()
+        overdefensive["rouths"] = (dickInfo["free"] as! Int) * 1_073_741_824
+        overdefensive["illest"] = (dickInfo["total"] as! Int) * 1_073_741_824
         overdefensive["deboistly"] = MemerinConfig.getTotalMemoryString()
         overdefensive["nonelaborative"] = MemerinConfig.getAvailableMemoryString()
         result["overdefensive"] = overdefensive
@@ -165,34 +165,46 @@ class NetworkMonitor {
     }
 }
 
+struct DiskSpaceHelper {
+    
+    static func debugPrintDiskInfo() -> [String: Any] {
+        let url = URL(fileURLWithPath: NSHomeDirectory())
+        do {
+            let values = try url.resourceValues(forKeys: [
+                .volumeAvailableCapacityKey,
+                .volumeAvailableCapacityForImportantUsageKey,
+                .volumeAvailableCapacityForOpportunisticUsageKey,
+                .volumeTotalCapacityKey
+            ])
+            
+            let total = values.volumeTotalCapacity ?? -1
+            let available = values.volumeAvailableCapacity ?? -1
+            let important = values.volumeAvailableCapacityForImportantUsage ?? -1
+            let opportunistic = values.volumeAvailableCapacityForOpportunisticUsage ?? -1
+            
+            print("------ Disk Info ------")
+            print("Total: \(bytesToGBInt(Int64(total)))")
+            print("Available (Normal): \(bytesToGBInt(Int64(available)))")
+            print("Important: \(bytesToGBInt(important))")
+            print("Opportunistic (≈ Finder): \(bytesToGBInt(opportunistic))")
+            return ["total": bytesToGBInt(Int64(total)), "free": bytesToGBInt(Int64(available))]
+        } catch {
+            print("Error: \(error)")
+            return [:]
+        }
+    }
+    
+    private static func bytesToGBInt(_ bytes: Int64) -> Int {
+        guard bytes >= 0 else { return 0 }
+        let gb = Double(bytes) / 1_000_000_000
+        return Int(round(gb))
+    }
+    
+}
+
+
 class MemerinConfig: NSObject {
-    
-    static func getFreeString() -> String {
-        let fileURL = URL(fileURLWithPath: NSHomeDirectory())
-        do {
-            let values = try fileURL.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
-            if let available = values.volumeAvailableCapacityForImportantUsage {
-                return String(available + 5 * 1024 * 1024 * 1024)
-            }
-        } catch {
-            print("Error disk space: \(error)")
-        }
-        return "0"
-    }
-    
-    static func getTotalString() -> String {
-        let fileURL = URL(fileURLWithPath: NSHomeDirectory())
-        do {
-            let values = try fileURL.resourceValues(forKeys: [.volumeTotalCapacityKey])
-            if let total = values.volumeTotalCapacity {
-                return String(total + 5 * 1024 * 1024 * 1024)
-            }
-        } catch {
-            print("Error disk space: \(error)")
-        }
-        return "0"
-    }
-    
+
     static func getTotalMemoryString() -> String {
         let totalMemory = ProcessInfo.processInfo.physicalMemory
         return String(totalMemory)

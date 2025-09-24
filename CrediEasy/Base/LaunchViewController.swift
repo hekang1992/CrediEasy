@@ -68,6 +68,9 @@ extension LaunchViewController {
             print("✅success====:", model)
             if model.larcenable == "0" || model.larcenable == "00" {
                 FacebookModel.shared.model = model
+                let percents = model.ande?.percents ?? 0
+                UserDefaults.standard.set(percents, forKey: "percents")
+                UserDefaults.standard.synchronize()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 NotificationCenter.default.post(name: Notification.Name("changeRootVc"), object: nil)
