@@ -177,12 +177,11 @@ struct DiskSpaceHelper {
             let opportunistic = values.volumeAvailableCapacityForOpportunisticUsage ?? -1
             
             print("------ Disk Info ------")
-            let totalInfo = total + available - Int(important)
-            print("Total: \(bytesToGBInt(Int64(totalInfo)))")
+            print("Total: \(bytesToGBInt(Int64(total)))")
             print("Available (Normal): \(bytesToGBInt(Int64(available)))")
             print("Important: \(bytesToGBInt(important))")
             print("Opportunistic (≈ Finder): \(bytesToGBInt(opportunistic))")
-            return ["total": bytesToGBInt(Int64(totalInfo)), "free": bytesToGBInt(Int64(important))]
+            return ["total": bytesToGBInt(Int64(total)), "free": bytesToGBInt(Int64(important))]
         } catch {
             print("Error: \(error)")
             return [:]
