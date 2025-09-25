@@ -35,10 +35,12 @@ class AuthManager {
     func saveLoginInfo(phone: String, token: String) {
         UserDefaults.standard.set(phone, forKey: phoneKey)
         UserDefaults.standard.set(token, forKey: tokenKey)
+        UserDefaults.standard.synchronize()
     }
     
     func removeLoginInfo() {
         UserDefaults.standard.removeObject(forKey: phoneKey)
         UserDefaults.standard.removeObject(forKey: tokenKey)
+        UserDefaults.standard.synchronize()
     }
 }

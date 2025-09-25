@@ -40,6 +40,7 @@ class HomeViewController: BaseViewController {
         // Do any additional setup after loading the view.
         view.addSubview(homeView)
         view.addSubview(hotView)
+        view.backgroundColor = UIColor.white
         homeView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
