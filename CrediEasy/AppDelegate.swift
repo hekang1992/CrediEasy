@@ -45,7 +45,7 @@ extension AppDelegate {
     func initKeyBord() {
         IQKeyboardManager.shared.isEnabled = true
         IQKeyboardManager.shared.resignOnTouchOutside = true
-        IQKeyboardManager.shared.keyboardDistance = 1
+        IQKeyboardManager.shared.keyboardDistance = 2
     }
     
     @objc func changeRootVc(_ noti: Notification) {

@@ -66,7 +66,7 @@ DEPENDENCIES:
   - Alamofire
   - DeviceKit
   - FBSDKCoreKit
-  - IQKeyboardManagerSwift (~> 8.0.1)
+  - IQKeyboardManagerSwift
   - KeychainAccess
   - Kingfisher
   - lottie-ios
@@ -131,6 +131,6 @@ SPEC CHECKSUMS:
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: 5c4fb34dc087338b628173cba22240067bcd8850
+PODFILE CHECKSUM: 57b999672d16fb6e2bb1b81a6dacd86fe4fb00ea
 
 COCOAPODS: 1.16.2

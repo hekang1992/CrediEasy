@@ -86,7 +86,7 @@ class PopImageView: BaseView {
         bgView.addSubview(cancelBtn)
         bgView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(427)
+            make.height.equalTo(487)
         }
         bgImageView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
@@ -139,6 +139,7 @@ extension PopImageView: UITableViewDelegate, UITableViewDataSource {
             cell.model = model
             cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
+                self.endEditing(true)
                 self.dateBlock?(cell)
             }).disposed(by: disposeBag)
             return cell
