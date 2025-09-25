@@ -2,7 +2,7 @@
 //  CenterView.swift
 //  CrediEasy
 //
-//  Created by 何康 on 2025/9/10.
+//  Created by Jasper Asher on 2025/9/10.
 //
 
 import UIKit

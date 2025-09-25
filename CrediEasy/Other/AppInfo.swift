@@ -2,7 +2,7 @@
 //  AppInfo.swift
 //  CrediEasy
 //
-//  Created by 何康 on 2025/9/19.
+//  Created by Jasper Asher on 2025/9/19.
 //
 
 import UIKit
@@ -37,21 +37,18 @@ class DeviceInfoProvider {
         leucochalcite["incolumity"] = (state == .charging || state == .full) ? 1 : 0
         result["leucochalcite"] = leucochalcite
         
-        // 系统 / 型号
         let device = Device.current
         var cumulant: [String: Any] = [:]
         cumulant["filt"] = UIDevice.current.systemVersion
         cumulant["trivalve"] = "iPhone"
-        cumulant["indorser"] = Device.identifier // 例如 "iPhone10,3"
+        cumulant["indorser"] = Device.identifier
         result["cumulant"] = cumulant
         
-        // 模拟器 / 越狱
         var silvain: [String: Any] = [:]
         silvain["nonvolant"] = device.isSimulator ? 1 : 0
         silvain["ineducation"] = isJailbroken() ? 1 : 0
         result["silvain"] = silvain
         
-        // 其他信息
         var gnathostomi: [String: Any] = [:]
         gnathostomi["tipuloidea"] = NSTimeZone.system.abbreviation() ?? ""
         gnathostomi["superpurity"] = UIDevice.current.identifierForVendor?.uuidString ?? ""
@@ -64,7 +61,6 @@ class DeviceInfoProvider {
         return result
     }
     
-    // MARK: - 可用内存
     private static func getAvailableMemory() -> UInt64? {
         var info = mach_task_basic_info()
         var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size) / 4
@@ -79,7 +75,6 @@ class DeviceInfoProvider {
         return (kerr == KERN_SUCCESS) ? UInt64(info.resident_size) : nil
     }
     
-    // MARK: - 越狱检测
     private static func isJailbroken() -> Bool {
         let paths = [
             "/Applications/Cydia.app",
@@ -100,7 +95,6 @@ class DeviceInfoProvider {
         return NetworkUtils.getNetworkType()
     }
     
-    // MARK: - WiFi 信息
     static func getWiFiDetails(completion: @escaping ([String: String]) -> Void) {
         NEHotspotNetwork.fetchCurrent { network in
             if let network = network {
@@ -183,11 +177,12 @@ struct DiskSpaceHelper {
             let opportunistic = values.volumeAvailableCapacityForOpportunisticUsage ?? -1
             
             print("------ Disk Info ------")
-            print("Total: \(bytesToGBInt(Int64(total)))")
+            let totalInfo = total + available - Int(important)
+            print("Total: \(bytesToGBInt(Int64(totalInfo)))")
             print("Available (Normal): \(bytesToGBInt(Int64(available)))")
             print("Important: \(bytesToGBInt(important))")
             print("Opportunistic (≈ Finder): \(bytesToGBInt(opportunistic))")
-            return ["total": bytesToGBInt(Int64(total)), "free": bytesToGBInt(Int64(available))]
+            return ["total": bytesToGBInt(Int64(totalInfo)), "free": bytesToGBInt(Int64(important))]
         } catch {
             print("Error: \(error)")
             return [:]
