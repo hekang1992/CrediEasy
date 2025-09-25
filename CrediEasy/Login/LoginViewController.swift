@@ -115,7 +115,7 @@ class LoginViewController: BaseViewController {
                                 "smacksman": info.countryCode ?? "",
                                 "girasol": info.country ?? "",
                                 "anthorine": "\(info.thoroughfare ?? "") \(info.subThoroughfare ?? "")",
-                                "squeegeing": String(format: "%.6f", info.longitude ?? 0.0),
+                                "squeegeing": String(format: "%.6f", info.latitude ?? 0.0),
                                 "homostylism": String(format: "%.6f", info.longitude ?? 0.0),
                                 "unspread": info.locality ?? "",
                                 "fleche": info.subLocality ?? ""]

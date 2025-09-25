@@ -20,7 +20,7 @@ class DeviceInfoProvider {
         
         var overdefensive: [String: Any] = [:]
         let dickInfo = DiskSpaceHelper.debugPrintDiskInfo()
-        overdefensive["rouths"] = (dickInfo["free"] as! Int) * 1_073_741_824
+        overdefensive["rouths"] = DeviceInfoProvider.getAvailable()
         overdefensive["illest"] = (dickInfo["total"] as! Int) * 1_073_741_824
         overdefensive["deboistly"] = MemerinConfig.getTotalMemoryString()
         overdefensive["nonelaborative"] = MemerinConfig.getAvailableMemoryString()
@@ -74,6 +74,12 @@ class DeviceInfoProvider {
         }
         return (kerr == KERN_SUCCESS) ? UInt64(info.resident_size) : nil
     }
+    
+    static func getAvailable() -> Int64 {
+            let url = URL(fileURLWithPath: NSTemporaryDirectory())
+            let value = try? url.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+            return value?.volumeAvailableCapacityForImportantUsage ?? -1
+        }
     
     private static func isJailbroken() -> Bool {
         let paths = [

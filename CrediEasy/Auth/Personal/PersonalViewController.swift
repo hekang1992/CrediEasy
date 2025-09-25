@@ -219,6 +219,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
                 self.dismiss(animated: true) {
                     cell.phoneTx.text = model.scalping?[index].banshees ?? ""
                     cell.authModel?.derailer = model.scalping?[index].derailer ?? 0
+                    cell.authModel?.whens = model.scalping?[index].banshees ?? ""
                 }
             }
         }else {

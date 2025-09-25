@@ -245,12 +245,11 @@ extension LoveLifeViewController: UITableViewDelegate, UITableViewDataSource {
         popEnumView.sureBlock = { index in
             self.dismiss(animated: true) {
                 cell.phoneTx.text = model.scalping?[index].banshees ?? ""
+                cell.model?.whens = model.scalping?[index].banshees ?? ""
                 let derailer = model.scalping?[index].derailer ?? 0
                 cell.model?.carmela = derailer == 0 ? "" : String(model.scalping?[index].derailer ?? 0)
             }
         }
     }
-    
-    
-    
+
 }
