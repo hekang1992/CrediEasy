@@ -9,6 +9,8 @@ import UIKit
 
 class LoveLifeViewCell: BaseViewCell {
     
+    var tapClick: (() -> Void)?
+    
     var model: revolutionisedModel? {
         didSet {
             guard let model = model else { return }
@@ -157,6 +159,9 @@ class LoveLifeViewCell: BaseViewCell {
             make.edges.equalToSuperview()
         }
         
+        clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.tapClick?()
+        }).disposed(by: disposeBag)
     }
     
     @MainActor required init?(coder: NSCoder) {

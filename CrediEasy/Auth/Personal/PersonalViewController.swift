@@ -8,6 +8,7 @@
 import UIKit
 import TYAlertController
 import RxSwift
+import RxRelay
 
 class PersonalViewController: BaseViewController {
     
@@ -21,7 +22,7 @@ class PersonalViewController: BaseViewController {
     
     let viewModel = PersonalViewModel()
     
-    var model: BaseModel?
+    var model = BehaviorRelay<BaseModel?>(value: nil)
     
     var entertime: String = ""
     
@@ -133,12 +134,12 @@ class PersonalViewController: BaseViewController {
         }
         
         viewModel.getPersonalInfo(with: productID) { model in
-            self.model = model
+            self.model.accept(model)
             self.tableView.reloadData()
         }
         
         nextBtn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self, let modelArray = self.model?.ande?.revolutionised else { return }
+            guard let self = self, let modelArray = self.model.value?.ande?.revolutionised else { return }
             var dict = ["fuckups": productID]
             modelArray.forEach { model in
                 guard let key = model.larcenable else { return }
@@ -178,11 +179,11 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model?.ande?.revolutionised?.count ?? 0
+        return self.model.value?.ande?.revolutionised?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = self.model?.ande?.revolutionised?[indexPath.row]
+        let model = self.model.value?.ande?.revolutionised?[indexPath.row]
         let ranivorous = model?.ranivorous ?? ""
         if ranivorous == "seriosities" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell", for: indexPath) as! InputTextCell
@@ -195,10 +196,10 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.authModel = model
-            cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+            cell.tapClick = { [weak self] in
                 guard let self = self, let model = model else { return }
                 cellClickModel(with: model, cell: cell)
-            }).disposed(by: disposeBag)
+            }
             return cell
         }
     }

@@ -195,10 +195,10 @@ extension LifeGoodViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.authModel = model
-            cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+            cell.tapClick = { [weak self] in
                 guard let self = self, let model = model else { return }
                 cellClickModel(with: model, cell: cell)
-            }).disposed(by: disposeBag)
+            }
             return cell
         }
     }

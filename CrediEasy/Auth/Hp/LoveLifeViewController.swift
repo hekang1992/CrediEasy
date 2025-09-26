@@ -197,10 +197,10 @@ extension LoveLifeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         cell.model = model
-        cell.clickBtn.rx.tap.subscribe(onNext: { [weak self] in
+        cell.tapClick = { [weak self] in
             guard let self = self, let model = model else { return }
             cellClickModel(with: model, cell: cell)
-        }).disposed(by: disposeBag)
+        }
         
         cell.clickPhoneBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self, let model = model else { return }
