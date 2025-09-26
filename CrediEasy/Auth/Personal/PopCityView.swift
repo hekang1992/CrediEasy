@@ -108,7 +108,7 @@ class PopCityView: BaseView {
                 let provinces = model?.buoyed?[0].banshees ?? ""
                 let city = model?.buoyed?[0].buoyed?[0].banshees ?? ""
                 let area = model?.buoyed?[0].buoyed?[0].buoyed?[0].banshees ?? ""
-                cityInfoStr = "\(provinces)-\(city)-\(area)"
+                cityInfoStr = "\(provinces)|\(city)|\(area)"
             }
             self.sureBlock?(cityInfoStr)
         }).disposed(by: disposeBag)
